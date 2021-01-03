@@ -1,0 +1,32 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace YourModName.Items
+{
+    public class ODM : ModItem
+    {
+        public override void SetDefaults()
+        {
+            //clone and modify the ones we want to copy
+            item.CloneDefaults(ItemID.AmethystHook);
+            item.name = "ODM gear";
+            item.shootSpeed = 18f; // how quickly the hook is shot.
+            item.shoot = mod.ProjectileType("OD");
+        }
+        public override void AddRecipes()  //How to craft this item
+        {
+            /*
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Wood, 10);   //you need 10 Wood
+            recipe.AddIngredient(null, "ItemName");  //an example of how to add your custom ingredient
+            recipe.AddTile(TileID.Anvils);   //craftable at any anvils
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+            */
+        }
+    }
+}
