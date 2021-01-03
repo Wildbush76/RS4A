@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace E.Items
 {
 	//tiles
-	public class Bomb : ModTile
+	public class Bomb : ModTile//bomb is name of item
 	{
         public override void SetDefaults()
         {
@@ -99,8 +99,8 @@ namespace E.Items
 			item.useTime = 20;
 			item.useAnimation = 20;
 			item.magic = true;
-			item.width = 7;
-			item.height = 16;
+			item.width = 7;//hitbox not size
+			item.height = 16;//^
 			item.maxStack = 1;
 			item.consumable = false;
 			item.mana = 20;
@@ -120,7 +120,7 @@ namespace E.Items
 			recipe.AddIngredient(ItemID.PixieDust,20);
 			recipe.AddIngredient(ItemID.Dynamite, 5);
 			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
+			recipe.SetResult(this);//for it to make more than 1 u would do recipe.SetResult(this, 2). 2 is number thats it makes
 			recipe.AddRecipe();
 		}
     }
@@ -171,7 +171,7 @@ namespace E.Items
 			public override void SetDefaults()
 			{
 			projectile.position.X = Main.mouseX;
-			projectile.position.Y = Main.mouseY;
+			projectile.position.Y = Main.mouseY;//tried to make it exsplode at mouse, didnt work
 				projectile.width = 60;   //This defines the hitbox width
 				projectile.height = 45;    //This defines the hitbox height
 				projectile.aiStyle = 16;  //How the projectile works, 16 is the aistyle Used for: Grenades, Dynamite, Bombs, Sticky Bomb.
