@@ -78,7 +78,7 @@ namespace RS4A.Projectiles
         // default is 11, Lunar is 24
         public override void GrappleRetreatSpeed(Player player, ref float speed)
         {
-            speed = 30f;   //this is the grappling hook retire speed
+            speed = 50f;   //this is the grappling hook retire speed
         }
 
         public override void PostDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Color lightColor)
