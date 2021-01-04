@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace YourModName.Projectiles
+namespace RS4A.Projectiles
 {
-    public class CustomHookPr : ModProjectile
+    public class ODM : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -67,6 +67,7 @@ namespace YourModName.Projectiles
         public override float GrappleRange()
         {
             return 700f;       //this is the grappling hook range
+            
         }
 
         public override void NumGrappleHooks(Player player, ref int numHooks)
@@ -82,7 +83,7 @@ namespace YourModName.Projectiles
 
         public override void PostDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModLoader.GetTexture("RS4A/Projectiles/ODM_chain");    //this where the chain of grappling hook is drawn 
+            Texture2D texture = ModContent.GetTexture("RS4A/Projectiles/ODM_chain");    //this where the chain of grappling hook is drawn 
                                                                                                        //change YourModName with ur mod name/ and CustomHookPr_Chain with the name of ur one
             Vector2 position = projectile.Center;
             Vector2 mountedCenter = Main.player[projectile.owner].MountedCenter;
