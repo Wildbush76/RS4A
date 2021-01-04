@@ -12,7 +12,7 @@ namespace YourModName.Items
         public override void SetDefaults()
         {
             //clone and modify the ones we want to copy
-            item.CloneDefaults(ItemID.AmethystHook);
+            item.CloneDefaults(ItemID.DiamondHook);
             item.name = "ODM gear";
             item.shootSpeed = 18f; // how quickly the hook is shot.
             item.shoot = mod.ProjectileType("OD");
