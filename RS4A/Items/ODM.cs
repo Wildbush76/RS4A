@@ -22,7 +22,6 @@ namespace RS4A.Items
          /*   
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Wood, 10);   //you need 10 Wood
-            recipe.AddIngredient(null, "ItemName");  //an example of how to add your custom ingredient
             recipe.AddTile(TileID.Anvils);   //craftable at any anvils
             recipe.SetResult(this);
             recipe.AddRecipe();
