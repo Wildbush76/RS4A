@@ -12,7 +12,7 @@ namespace RS4A.Projectiles
         public override void SetStaticDefaults()
 			{
 
-				DisplayName.SetDefault("Dynomite arrows");
+				DisplayName.SetDefault("Dynamite arrows");
 
 			}
 			public override void SetDefaults()
@@ -29,7 +29,7 @@ namespace RS4A.Projectiles
 			}
 			public override void kill()
 			{
-				//Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, ProjectileID.StickyDynamite, 100, 0, projectile.whoAmI);
+				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, ProjectileID.StickyDynamite, 100, 0, projectile.whoAmI);
 			}
 
 
