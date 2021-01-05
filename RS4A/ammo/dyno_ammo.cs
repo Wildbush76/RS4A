@@ -2,7 +2,7 @@ public class Ammo : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Healing arrows");
+			DisplayName.SetDefault("DEATH");
 		}
 		public override void SetDefaults()
 		{
@@ -14,7 +14,7 @@ public class Ammo : ModItem
 			item.consumable = true;
 			item.knockBack = 1.2f;
 			item.rare = ItemRarityID.Blue;
-			item.shoot = mod.ProjectileType("Ar");
+			item.shoot = mod.ProjectileType("DEATH");
 			item.shootSpeed = 8.5f;
 			item.ammo = AmmoID.Arrow;
 			
@@ -23,10 +23,9 @@ public class Ammo : ModItem
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.LifeCrystal, 1);
-			recipe.AddIngredient(ItemID.WoodenArrow,10);
+			recipe.AddIngredient(ItemID.WoodenArrow,10000);
 			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this, 10);
+			recipe.SetResult(this, 1);
 			recipe.AddRecipe();
 
 		}
