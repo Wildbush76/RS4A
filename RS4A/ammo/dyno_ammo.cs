@@ -2,7 +2,7 @@ public class Ammo : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("DEATH");
+			DisplayName.SetDefault("Dynamite arrow");
 		}
 		public override void SetDefaults()
 		{
@@ -14,7 +14,7 @@ public class Ammo : ModItem
 			item.consumable = true;
 			item.knockBack = 1.2f;
 			item.rare = ItemRarityID.Blue;
-			item.shoot = mod.ProjectileType("DEATH");
+			item.shoot = mod.ProjectileType("dyno_arrow");
 			item.shootSpeed = 8.5f;
 			item.ammo = AmmoID.Arrow;
 			
@@ -23,9 +23,10 @@ public class Ammo : ModItem
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.WoodenArrow,10000);
+			recipe.AddIngredient(ItemID.WoodenArrow,5);
+			recipe.AddIngredient(ItemID.Dynamite,5);
 			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this, 1);
+			recipe.SetResult(this,5);
 			recipe.AddRecipe();
 
 		}
