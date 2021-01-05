@@ -13,8 +13,8 @@ namespace RS4A.Items
         {
             //clone and modify the ones we want to copy
             item.CloneDefaults(ItemID.AmethystHook);
-           // item.displayName = "ODM gear";
-            item.shootSpeed = 18f; // how quickly the hook is shot.
+            defaults.DisplayName = "ODM gear";
+            item.shootSpeed = 18f;
             item.shoot = mod.ProjectileType("ODM");
         }
         public override void AddRecipes()  //How to craft this item
