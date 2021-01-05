@@ -76,7 +76,7 @@ namespace RS4A.Projectiles
         }
         public override void GrapplePullSpeed(player player,ref float speed)
         {
-        speed = 30;//speed it pulls you
+        speed = 30f;//speed it pulls you
         }
         // default is 11, Lunar is 24
         public override void GrappleRetreatSpeed(Player player, ref float speed)
