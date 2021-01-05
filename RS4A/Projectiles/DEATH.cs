@@ -1,4 +1,4 @@
-public class Ar : ModProjectile
+public class DEATH : ModProjectile
 		{
 			public override void SetStaticDefaults()
 			{
@@ -22,7 +22,7 @@ public class Ar : ModProjectile
 			{
 
 				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, mod.projectileType("DEATH"), 100, 0, projectile.whoAmI);
-			
+			//say goodbye to your PC
 			}
 
 
