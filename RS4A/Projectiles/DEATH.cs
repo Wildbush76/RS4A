@@ -18,11 +18,10 @@ public class DEATH : ModProjectile
 				projectile.arrow = true;
 
 			}
-			public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+			public override void PreKill()
 			{
-
-				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, mod.projectileType("DEATH"), 100, 0, projectile.whoAmI);
-			//say goodbye to your PC
+                         Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, mod.projectileType("DEATH"), 100, 0, projectile.whoAmI);
+			 //say goodbye to your PC
 			}
 
 
