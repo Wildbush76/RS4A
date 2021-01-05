@@ -19,14 +19,13 @@ namespace RS4A.Items
         }
         public override void AddRecipes()  //How to craft this item
         {
-         /*   
+         
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 10);   //you need 10 Wood
-            recipe.AddIngredient(null, "ItemName");  //an example of how to add your custom ingredient
+            recipe.AddIngredient(ItemID.PinkSlime, 10);   //you need 10 Wood
             recipe.AddTile(TileID.Anvils);   //craftable at any anvils
             recipe.SetResult(this);
             recipe.AddRecipe();
-            */
+            
         }
     }
 }
