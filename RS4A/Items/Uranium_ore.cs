@@ -9,10 +9,12 @@ namespace RS4A.Items
 {
    public class Uranium_ore : ModItem
   {
-     public override void SetStaticDefualts()
-     {
-
-     }
+     public override void SetStaticDefaults()
+			{
+				DisplayName.SetDefault("Uranium ore");
+				Tooltip.SetDefault("Glowing green rock");
+			}
+         
   }
 
 }
