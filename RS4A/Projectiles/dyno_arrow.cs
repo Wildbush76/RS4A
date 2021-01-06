@@ -27,7 +27,7 @@ namespace RS4A.Projectiles
 				projectile.arrow = true;
 
 			}
-			public override void kill()
+			public override void Kill(int timeLeft)
 			{
 				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, ProjectileID.StickyDynamite, 100, 0, projectile.whoAmI);
 			}
