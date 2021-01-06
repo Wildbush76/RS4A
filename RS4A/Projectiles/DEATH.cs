@@ -24,7 +24,7 @@ public class DEATH : ModProjectile
 				projectile.arrow = true;
 
 			}
-			public override void PreKill()
+			public override void Kill(int timeLeft)
 			{
                          Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, mod.projectileType("DEATH"), 100, 0, projectile.whoAmI);
 			 //say goodbye to your PC
