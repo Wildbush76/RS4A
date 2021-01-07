@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Buffs
 {
-    public class Nfuel : ModBuff
+    public class Nfuel : ModBuffs
     {
     // idk how tf to do this
     //ill add stuf later for now it does nothing
