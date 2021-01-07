@@ -17,14 +17,14 @@ namespace RS4A.Projectiles
 		}
 		public override void SetDefaults()
 		{
-			projectile.damage = 30;
+			projectile.damage = 150;
 			projectile.friendly = true;
 			projectile.ranged = true;
 			projectile.width = 14;
 			projectile.height = 32;
 			projectile.aiStyle = 34;
 			projectile.penetrate = 1;
-			projectile.arrow = true;
+			projectile.rocket = true;
 
 		}
 		public override void Kill(int timeLeft)
