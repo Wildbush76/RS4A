@@ -1,3 +1,4 @@
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,13 +20,12 @@ namespace RS4A.Items
             item.maxStack = 999; 
         }
       
-       
        public override void AddRecipes()
 	   {
 	ModRecipe recipe = new ModRecipe(mod);
 	recipe.AddIngredient(null,"Uranium_bar",10);
-	recipe.AddIngredient(ItemId.MiniNuke2,10);
-	recipe.AddIngredient(ItemId.Wire,10);
+	recipe.AddIngredient(ItemID.RocketIV,10);
+	recipe.AddIngredient(ItemID.Wire,10);
 	recipe.AddTile(TileID.MythrilAnvil);
 	recipe.SetResult(this,10);
 	recipe.AddRecipe();
