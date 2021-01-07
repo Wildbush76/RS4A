@@ -17,8 +17,8 @@ namespace RS4A.Items
         public override void SetDefaults()
 		{
 				
-			item.width = 32;
-			item.height = 32;
+			item.width = 8;
+			item.height = 8;
 			item.consumable = true;
 			item.useStyle = 1;
 			item.useTime = 20;
