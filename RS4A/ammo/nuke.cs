@@ -17,7 +17,17 @@ namespace RS4A.Items
         }
         public override void SetDefaults()
         {
-            item.maxStack = 999; 
+           item.damage = 10;
+			item.ranged = true;
+			item.width = 7;
+			item.height = 13;
+			item.maxStack = 999;
+			item.consumable = true;
+			item.knockBack = 1.2f;
+			item.rare = ItemRarityID.Blue;
+			item.shoot = mod.ProjectileType("Nukep");
+			item.shootSpeed = 8.5f;
+			item.ammo = AmmoID.Rocket;
         }
       
        public override void AddRecipes()
