@@ -13,26 +13,29 @@ namespace death.Items
 
 		public override void SetDefaults() 
 		{
-			item.damage = 75;
+			item.damage = 67;
 			item.melee = true;
-			item.width = 40;
-			item.height = 40;
+			item.scale = 1.25f;
+			item.width = 50;
+			item.height = 50;
 			item.useTime = 7;
 			item.useAnimation = 7;
 			item.useStyle = 3;
-			item.knockBack = 3;
+			item.knockBack = 6;
 			item.value = 100000;
-			item.rare = 6;
+			item.rare = 5;
 			item.crit = 45;
 			item.UseSound = SoundID.Item1;
-			item.autoReuse = false;
+			item.autoReuse = true;
 		}
 
 		public override void AddRecipes() 
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddIngredient(ItemID.HallowedBar, 10);
+			recipe.AddIngredient(ItemID.CopperShortsword, 1);
+			recipe.AddIngredient(ItemID.SoulofLight, 6);
+			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
