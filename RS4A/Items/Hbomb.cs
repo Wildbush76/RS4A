@@ -27,6 +27,28 @@ namespace RS4A.Items
 			item.maxStack = 1;
 			item.autoReuse = false;
 		}
+		public override void AddRecipes()
+	   {
+	ModRecipe recipe = new ModRecipe(mod);
+	recipe.AddIngredient(null,"Fuel_cell",3);
+	recipe.AddIngredient(ItemID.Wire,200);
+	recipe.AddIngredient(ItemID.Exsposive,5);
+	recipe.AddIngredient(ItemID.IronBar,20);
+	recipe.AddTile(TileID.MythrilAnvil);
+	recipe.SetResult(this,1);
+	recipe.AddRecipe();
+       }
+       public override void AddRecipes()
+	   {
+	ModRecipe recipe = new ModRecipe(mod);
+	recipe.AddIngredient(null,"Fuel_cell",3);
+	recipe.AddIngredient(ItemID.Wire,200);
+	recipe.AddIngredient(ItemID.Exsposive,5);
+	recipe.AddIngredient(ItemID.LeadBar,20);
+	recipe.AddTile(TileID.MythrilAnvil);
+	recipe.SetResult(this,1);
+	recipe.AddRecipe();
+       }
          
    }
 
