@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
 {
-	public class dyno_arrow : ModProjectile
+	public class Nukep : ModProjectile
 	{
 		public override void SetStaticDefaults()
 		{
