@@ -1,7 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace death.Items
+namespace RS4A.Items
 {
 	public class hallowed_shortsword : ModItem
 	{
