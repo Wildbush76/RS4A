@@ -74,7 +74,7 @@ namespace RS4A.Projectiles
         {
             numHooks = 1;
         }
-        public override void GrapplePullSpeed(player player,ref float speed)
+        public override void GrapplePullSpeed(Player player,ref float speed)
         {
         speed = 30f;//speed it pulls you
         }
