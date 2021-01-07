@@ -24,7 +24,7 @@ namespace RS4A.Projectiles
 			projectile.height = 32;
 			projectile.aiStyle = 34;
 			projectile.penetrate = 1;
-			projectile.rocket = true;
+			//projectile.rocket = true; //too lazy to figure out rn
 
 		}
 		public override void Kill(int timeLeft)
