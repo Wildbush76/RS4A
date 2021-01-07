@@ -8,9 +8,11 @@ using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
+using System.Collections.Generic;
+using Terraria.GameContent.Generation;
 using static Terraria.ModLoader.ModContent;
 
-namespace TMMC
+namespace TMMCWorld
 {
     public class TMMCWorld : ModWorld
     {
@@ -26,7 +28,9 @@ namespace TMMC
 
         private void OreGeneration(GenerationProgress progress)
         {
-            progress.Message = "DOING STUFF";
+            progress.Message = "mother fat";
+
+
             for ( var i = 0; i < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); i++)
             {
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX);
