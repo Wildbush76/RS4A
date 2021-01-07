@@ -9,11 +9,15 @@ namespace RS4A.Items
 {
     public class ODM : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("ODM gear");
+        }
         public override void SetDefaults()
         {
             //clone and modify the ones we want to copy
             item.CloneDefaults(ItemID.AmethystHook);
-            defaults.DisplayName = "ODM gear";
+          
             item.shootSpeed = 18f;
             item.shoot = mod.ProjectileType("ODM");
         }
