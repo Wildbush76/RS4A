@@ -11,14 +11,14 @@ namespace RS4A.Items
   {
         public override void SetStaticDefaults()
         {
-			DisplayName.SetDefault("H Bomb");
-			Tooltip.SetDefault("is very large bomb");
+			DisplayName.SetDefault("Hydrogen Bomb");
+			Tooltip.SetDefault("its a very large bomb");
 		}
         public override void SetDefaults()
 		{
 				
-			item.width = 8;
-			item.height = 8;
+			item.width = 32;
+			item.height = 32;
 			item.consumable = true;
 			item.useStyle = 1;
 			item.useTime = 20;
