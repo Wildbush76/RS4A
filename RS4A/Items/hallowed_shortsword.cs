@@ -3,12 +3,12 @@ using Terraria.ModLoader;
 
 namespace death.Items
 {
-	public class dead : ModItem
+	public class hallowed_shortsword : ModItem
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Cool Shortie"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-			Tooltip.SetDefault("your mother is ashamed");
+			DisplayName.SetDefault("Hallowed Shortsword"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			Tooltip.SetDefault("The real deal.");
 		}
 
 		public override void SetDefaults() 
@@ -17,13 +17,13 @@ namespace death.Items
 			item.melee = true;
 			item.width = 40;
 			item.height = 40;
-			item.useTime = 1;
-			item.useAnimation = 1;
+			item.useTime = 7;
+			item.useAnimation = 7;
 			item.useStyle = 3;
 			item.knockBack = 3;
-			item.value = 10000;
+			item.value = 100000;
 			item.rare = 6;
-			item.crit = 6;
+			item.crit = 45;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = false;
 		}
