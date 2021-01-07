@@ -7,12 +7,12 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-    public class Uranium_bar : ModItem
+    public class Nfuel : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Uranium Bar");
-            Tooltip.SetDefault("Tastes good");
+            DisplayName.SetDefault("Nuclear fuel cell");
+            Tooltip.SetDefault("Its a oversized glow stick");
         }
         public override void SetDefaults()
         {
@@ -23,8 +23,10 @@ namespace RS4A.Items
        public override void AddRecipes()
 	   {
 	ModRecipe recipe = new ModRecipe(mod);
-	recipe.AddIngredient(null,"Uranium_or",3);
-	recipe.AddTile(TileID.AdamantiteForge);
+	recipe.AddIngredient(null,"Uranium_bar",3);
+	recipe.AddIngredient(ItemId.LeadBars,3);
+	recipe.AddIngredient(ItemId.Wire,10);
+	recipe.AddTile(TileID.MythrilAnvil);
 	recipe.SetResult(this,1);
 	recipe.AddRecipe();
        }
