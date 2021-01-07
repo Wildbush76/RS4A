@@ -24,8 +24,8 @@ namespace RS4A.Items
 	   {
 	ModRecipe recipe = new ModRecipe(mod);
 	recipe.AddIngredient(null,"Uranium_bar",3);
-	recipe.AddIngredient(ItemId.LeadBars,3);
-	recipe.AddIngredient(ItemId.Wire,10);
+	recipe.AddIngredient(ItemID.LeadBar,3);
+	recipe.AddIngredient(ItemID.Wire,10);
 	recipe.AddTile(TileID.MythrilAnvil);
 	recipe.SetResult(this,1);
 	recipe.AddRecipe();
