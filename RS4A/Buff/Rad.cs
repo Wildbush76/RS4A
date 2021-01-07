@@ -1,14 +1,15 @@
 using Microsoft.Xna.Framework;
-u
-}sing Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RS4A.Items
+namespace RS4A.Buffs
 {
-    public class Nfuel : ModItem
+    public class Nfuel : ModBuff
     {
+    
+    //ill add stuf later for now it does nothing
     }
 }
