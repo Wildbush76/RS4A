@@ -1,4 +1,4 @@
-public class Boom : ModProjectile
+public class GlowG : ModProjectile
 		{
 			public override void SetDefaults()
 			{
