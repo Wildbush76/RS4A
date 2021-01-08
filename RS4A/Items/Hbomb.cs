@@ -20,35 +20,26 @@ namespace RS4A.Items
 			item.width = 32;
 			item.height = 32;
 			item.consumable = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useTime = 20;
 			item.useAnimation = 20;
 			item.createTile = mod.TileType("H_Bomb");
 			item.maxStack = 1;
 			item.autoReuse = false;
+			item.scale = 1f;
 		}
 		public override void AddRecipes()
 	   {
 	ModRecipe recipe = new ModRecipe(mod);
-	recipe.AddIngredient(null,"Fuel_cell",3);
+	recipe.AddIngredient(null,"Nfuel",3);
 	recipe.AddIngredient(ItemID.Wire,200);
-	recipe.AddIngredient(ItemID.Exsposive,5);
+	recipe.AddIngredient(ItemID.Explosives,5);
 	recipe.AddIngredient(ItemID.IronBar,20);
 	recipe.AddTile(TileID.MythrilAnvil);
 	recipe.SetResult(this,1);
 	recipe.AddRecipe();
        }
-       public override void AddRecipes()
-	   {
-	ModRecipe recipe = new ModRecipe(mod);
-	recipe.AddIngredient(null,"Fuel_cell",3);
-	recipe.AddIngredient(ItemID.Wire,200);
-	recipe.AddIngredient(ItemID.Exsposive,5);
-	recipe.AddIngredient(ItemID.LeadBar,20);
-	recipe.AddTile(TileID.MythrilAnvil);
-	recipe.SetResult(this,1);
-	recipe.AddRecipe();
-       }
+      
          
    }
 
