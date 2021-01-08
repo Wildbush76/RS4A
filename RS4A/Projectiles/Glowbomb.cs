@@ -1,3 +1,11 @@
+using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+namespace RS4A.Projectiles
+{
 public class GlowG : ModProjectile
 		{
 			public override void SetDefaults()
@@ -38,3 +46,4 @@ public class GlowG : ModProjectile
 					}
 				}
 			}
+}
