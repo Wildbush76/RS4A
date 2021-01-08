@@ -33,13 +33,13 @@ namespace TMMCWorld
 
             for ( var i = 0; i < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); i++)
             {
-                int x = WorldGen.genRand.Next(0, Main.maxTilesX);
+                int x = WorldGen.genRand.Next(0, Main.maxTilesX);//i think makes max in one
                 int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceHigh, Main.maxTilesY);
                 WorldGen.TileRunner(
                     x,
                     y,
-                    (double)WorldGen.genRand.Next(3, 6),
-                    WorldGen.genRand.Next(2, 6),
+                    (double)WorldGen.genRand.Next(3, 6),//somthing else
+                    WorldGen.genRand.Next(2, 6),//somthing
                     mod.TileType("Uranium"),
                     false,
                     0f,
