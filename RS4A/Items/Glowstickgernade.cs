@@ -7,13 +7,11 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Glowstick gernade"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-		
+			DisplayName.SetDefault("Glowstick gernade");		
 		}
-
 		public override void SetDefaults() 
 		{
-			item.damage = 60;
+			item.damage = 0;
 			item.ranged = true;
                         item.consumable = true;
 			item.shoot = mod.ProjectileType("GlowG");
