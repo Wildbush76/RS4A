@@ -15,28 +15,27 @@ namespace RS4A.Items
 		{
 			item.damage = 60;
 			item.ranged = true;
-      item.consumable = true;
-			item.scale = 1.25f;
-			item.width = 50;
-			item.height = 50;
+                        item.consumable = true;
+			item.shoot = mod.ProjectileType("G");
+			item.width = 5;
+			item.height = 5;
 			item.useTime = 7;
 			item.useAnimation = 7;
-			item.useStyle = 3;
-			item.knockBack = 6;
+			item.useStyle = 1;
+			item.knockBack = 1;
 			item.value = 100;
 			item.rare = 5;
 			item.crit = 45;
 			item.UseSound = SoundID.Item1;
-			item.autoReuse = true;
+			item.autoReuse = false;
 		}
 
 		public override void AddRecipes() 
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.HallowedBar, 10);
-			recipe.AddIngredient(ItemID.CopperShortsword, 1);
-			recipe.AddIngredient(ItemID.SoulofLight, 6);
-			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.AddIngredient(ItemID.Gernade, 10);
+			recipe.AddIngredient(ItemID.GlowStick, 6);
+			recipe.AddTile(TileID.CraftingBench);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
