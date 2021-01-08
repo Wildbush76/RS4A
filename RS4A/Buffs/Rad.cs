@@ -19,7 +19,7 @@ namespace RS4A.Buffs
             player.poisoned = true;
             player.lifeRegen -= 200;
             player.moveSpeed -= .7f;
-            player.allDamage += 80;
+            player.allDamage += 5;
         }
         // idk how tf to do this
         //ill add stuf later for now it does nothing
