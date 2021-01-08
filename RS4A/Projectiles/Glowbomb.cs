@@ -11,11 +11,11 @@ public class GlowG : ModProjectile
 			public override void SetDefaults()
 			{
 			
-				projectile.width = 60;   //This defines the hitbox width
-				projectile.height = 45;    //This defines the hitbox height
+				projectile.width = 5;   //This defines the hitbox width
+				projectile.height = 5;    //This defines the hitbox height
 				projectile.aiStyle = 16;  //How the projectile works, 16 is the aistyle Used for: Grenades, Dynamite, Bombs, Sticky Bomb.
 				projectile.friendly = true; //Tells the game whether it is friendly to players/friendly npcs or not
-			  projectile.damage = 0;
+			        projectile.damage = 0;
 				projectile.penetrate = -1; //Tells the game how many enemies it can hit before being destroyed
 				projectile.timeLeft = 120; //The amount of time the projectile is alive for
 				
