@@ -16,12 +16,11 @@ namespace RS4A.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.poisoned = true;
+            //player.poisoned = true;
             player.lifeRegen -= 200;
-            player.moveSpeed -= .7f;
+            player.moveSpeed -= .5f;
             player.allDamage += 5;
         }
-        // idk how tf to do this
-        //ill add stuf later for now it does nothing
+        
     }
 }
