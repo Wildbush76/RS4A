@@ -30,16 +30,7 @@ namespace RS4A.Items
 	recipe.SetResult(this,1);
 	recipe.AddRecipe();
        }
-        public override void AddRecipes()
-	   {
-	ModRecipe recipe = new ModRecipe(mod);
-	recipe.AddIngredient(null,"Uranium_bar",3);
-	recipe.AddIngredient(ItemID.IronBar,3);
-	recipe.AddIngredient(ItemID.Wire,10);
-	recipe.AddTile(TileID.MythrilAnvil);
-	recipe.SetResult(this,1);
-	recipe.AddRecipe();
-       }
+        
     
     }
 }
