@@ -1,9 +1,9 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+ing Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Threading;
 
 namespace RS4A.Tiles
 {
@@ -16,6 +16,9 @@ public class Uranium : ModTile
             Main.tileLavaDeath[Type] = false;
             Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
+            Main.tileLighted[Type] = true;
+            Main.tileShine2[Type] = true;
+            
 
             drop = mod.ItemType("Uranium_or");
 
@@ -28,6 +31,18 @@ public class Uranium : ModTile
             mineResist = 10f;
 
         }
-
+        public override void FloorVisuals(Player player)
+        {
+            
+            player.AddBuff(mod.BuffType("Rad"),300);
+        }
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+            r = 0f;
+            g = 255f;
+            b = 100f;
+           
+        }
     }
 }
+
