@@ -14,10 +14,10 @@ public class Uranium : ModTile
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileLavaDeath[Type] = false;
-            Main.tileBlockLight[Type] = true;
-            Main.tileSpelunker[Type] = true;
             Main.tileLighted[Type] = true;
-            Main.tileShine2[Type] = true;
+           // Main.tileBlockLight[Type] = true;
+           //Main.tileSpelunker[Type] = true;
+           // Main.tileShine2[Type] = false;
             
 
             drop = mod.ItemType("Uranium_or");
@@ -28,7 +28,7 @@ public class Uranium : ModTile
             AddMapEntry(new Color(0, 255, 120),name);
 
             minPick = 200;
-            mineResist = 10f;
+            mineResist = 5f;
 
         }
         public override void FloorVisuals(Player player)
