@@ -16,7 +16,7 @@ namespace RS4A.Items
 			item.damage = 60;
 			item.ranged = true;
                         item.consumable = true;
-			item.shoot = mod.ProjectileType("G");
+			item.shoot = mod.ProjectileType("GlowG");
 			item.width = 5;
 			item.height = 5;
 			item.useTime = 7;
