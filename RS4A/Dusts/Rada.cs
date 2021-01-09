@@ -1,11 +1,10 @@
- 
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace ExampleMod.Dusts
+namespace RS4A.Dusts
 {
-	public class Bubble : ModDust
+	public class Rada : ModDust
 	{
 		public override void OnSpawn(Dust dust) {
 			dust.noGravity = true;
