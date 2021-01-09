@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using RS4A.Tiles;
 namespace RS4A.Projectiles
 {
 	public class Nukep : ModProjectile
@@ -21,17 +22,19 @@ namespace RS4A.Projectiles
 			projectile.ranged = true;
 			projectile.width = 10;
 			projectile.height = 10;
-			projectile.aiStyle = 1;
+			projectile.aiStyle = 34;
 			projectile.penetrate = 1;
 			
 		}
 		public override void Kill(int timeLeft)
 		{
+			bool f = false;
 			Vector2 position = projectile.Center;
-				Main.PlaySound(SoundID.Item14, (int)position.X, (int)position.Y);
-			   
-				int radius = 10;
-
+			Main.PlaySound(SoundID.Item14, (int)position.X, (int)position.Y);
+			Random q = new Random();
+			int radius = 10;
+			for (int k = 0; k < 2; k++)
+			{
 				for (int x = -radius; x <= radius; x++)
 				{
 					for (int y = -radius; y <= radius; y++)
@@ -39,14 +42,30 @@ namespace RS4A.Projectiles
 						int xPosition = (int)(x + position.X / 16.0f);
 						int yPosition = (int)(y + position.Y / 16.0f);
 
-						if (Math.Sqrt(x * x + y * y) <= radius + 0.5)   //this make so the explosion radius is a circle
+						if (Math.Sqrt(x * x + y * y) <= radius + 0.5)
 						{
-											
-							WorldGen.KillTile(xPosition, yPosition, false, false, false);  //this make the explosion destroy tiles  
-							Dust.NewDust(position, 22, 22, DustID.Smoke, 0.0f, 0.0f, 120, new Color(), 1f);  //this is the dust that will spawn after the explosion
+							if (f == true && Framing.GetTileSafely(xPosition, yPosition).active())
+							{
+								
+								int a = q.Next(1,5);
+								if (a == 2)
+								{
+									//testing thingy
+									WorldGen.KillTile(xPosition, yPosition, false, false, false);
+									WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<Radstone>(), true);
+								}
+							}
+							if (f == false)
+							{
+								WorldGen.KillTile(xPosition, yPosition, false, false, false);
+								Dust.NewDust(position, 22, 22, DustID.Smoke, 0.0f, 0.0f, 120, new Color(), 1f);
+							}
 						}
 					}
 				}
+				f = true;
+				radius += 4;
+			}
 		}
 
 
