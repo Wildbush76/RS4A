@@ -12,7 +12,7 @@ namespace RS4A.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Nuke");
-            Tooltip.SetDefault("shootable nuke");
+            Tooltip.SetDefault("shootable nuke (bullet)");
         }
         public override void SetDefaults()
         {
@@ -26,7 +26,7 @@ namespace RS4A.Items
 			item.rare = ItemRarityID.Blue;
 			item.shoot = mod.ProjectileType("Nukep");
 			item.shootSpeed = 8.5f;
-			item.ammo = AmmoID.Rocket;
+			item.ammo = AmmoID.Bullet;
         }
       
        public override void AddRecipes()
