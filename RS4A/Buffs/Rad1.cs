@@ -1,12 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RS4A.Buffs
 {
-    class Class1
+    public class Rad1 : ModBuff
     {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Radatiom");
+            Description.SetDefault("Radation is not fun, lose much heath you do");
+        }
+        public override void Update(Player player, ref int buffIndex)
+        {
+            //player.poisoned = true;
+            player.lifeRegen -= 25;//i like to damage player you just do negitive regen.
+           
+        }
+
     }
 }
+
