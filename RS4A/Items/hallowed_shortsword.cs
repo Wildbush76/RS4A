@@ -20,13 +20,14 @@ namespace RS4A.Items
 			item.height = 50;
 			item.useTime = 7;
 			item.useAnimation = 7;
-			item.useStyle = 3;
+			item.useStyle = ItemUseStyleID.Stabbing;
 			item.knockBack = 6;
 			item.value = 100000;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.crit = 45;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
+			
 		}
 
 		public override void AddRecipes() 
