@@ -19,7 +19,7 @@ namespace RS4A.Buffs
             //player.poisoned = true;
             player.lifeRegen -= 200;//i like to damage player you just do negitive regen.
             player.moveSpeed -= .5f;
-            player.allDamage += 2;
+            player.allDamage += 1;
         }
         
     }
