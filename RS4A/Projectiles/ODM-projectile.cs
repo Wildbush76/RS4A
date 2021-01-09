@@ -1,4 +1,4 @@
-using System;
+ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -14,7 +14,7 @@ namespace RS4A.Projectiles
             projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
         }
 
-        // Use this hook for hooks that can have multiple hooks midflight: Dual Hook, Web Slinger, Fish Hook, Static Hook, Lunar Hook
+     
         public override bool? CanUseGrapple(Player player)
         {
             int hooksOut = 0;
@@ -25,21 +25,14 @@ namespace RS4A.Projectiles
                     hooksOut++;
                 }
             }
-            if (hooksOut > 2) // This hook can have 4 hooks out.
+            if (hooksOut > 2)
             {
                 return false;
             }
             return true;
         }
 
-        // Return true if it is like: Hook, CandyCaneHook, BatHook, GemHooks
-        //public override bool? SingleGrappleHook(Player player)
-        //{
-        //  return true;
-        //}
-
-        // Use this to kill oldest hook. For hooks that kill the oldest when shot, not when the newest latches on: Like SkeletronHand
-        // You can also change the projectile likr: Dual Hook, Lunar Hook
+      
        public override void UseGrapple(Player player, ref int type)
         {
           int hooksOut = 0;
@@ -62,11 +55,22 @@ namespace RS4A.Projectiles
              Main.projectile[oldestHookIndex].Kill();
           }
         }
+        public override void PostAI()
 
-        // Amethyst Hook is 300, Static Hook is 600
+        {
+            if (Vector2.Distance(Main.player[projectile.owner].position, projectile.position) < 30 && projectile.velocity == Vector2.Zero)
+            {
+                projectile.Kill();
+            }
+                
+
+            
+        }
+
+
         public override float GrappleRange()
         {
-            return 700f;       //this is the grappling hook range
+            return 900f;      
             
         }
 
@@ -76,19 +80,19 @@ namespace RS4A.Projectiles
         }
         public override void GrapplePullSpeed(Player player,ref float speed)
         {
-        speed = 30f;//speed it pulls you
+        speed = 30f;
         }
-        // default is 11, Lunar is 24
+       
         public override void GrappleRetreatSpeed(Player player, ref float speed)
         {
-            speed = 50f;   //this is the grappling hook retire speed
-            // the speed that it comes back to u if you miss.
+            speed = 50f;  
+           
         }
 
         public override void PostDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModContent.GetTexture("RS4A/Projectiles/ODM_chain");    //this where the chain of grappling hook is drawn 
-                                                                                                       //change YourModName with ur mod name/ and CustomHookPr_Chain with the name of ur one
+            Texture2D texture = ModContent.GetTexture("RS4A/Projectiles/ODM_chain");   
+                                                                                                       
             Vector2 position = projectile.Center;
             Vector2 mountedCenter = Main.player[projectile.owner].MountedCenter;
             Microsoft.Xna.Framework.Rectangle? sourceRectangle = new Microsoft.Xna.Framework.Rectangle?();
