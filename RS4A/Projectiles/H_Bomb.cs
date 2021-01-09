@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -46,6 +46,7 @@ namespace RS4A.Projectiles
 						{
 							if (f == true && Framing.GetTileSafely(xPosition, yPosition).active())
 							{
+								
 								WorldGen.KillTile(xPosition, yPosition, false, false, false);
 								WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<Radstone>(), true);
 
@@ -64,6 +65,10 @@ namespace RS4A.Projectiles
 
 		}
 
+
+
+	}
+}
 
 
 	}
