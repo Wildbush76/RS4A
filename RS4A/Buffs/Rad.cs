@@ -24,4 +24,3 @@ namespace RS4A.Buffs
         
     }
 }
- 
