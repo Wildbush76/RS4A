@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -29,6 +29,7 @@ namespace RS4A.Tiles
             minPick = 200;
             mineResist = 5f;
             
+            
             dustType = ModContent.DustType<Rada>();
             dustType = ModContent.DustType<Rada>();
             dustType = ModContent.DustType<Rada>();
@@ -36,10 +37,12 @@ namespace RS4A.Tiles
         public override void FloorVisuals(Player player)
         {
 
-            player.AddBuff(mod.BuffType("Rad"), 300);
+            player.AddBuff(mod.BuffType("Rad1"), 300);
         }
-     
-       
+        public override void NumDust(int i, int j, bool fail, ref int num)
+        {
+           num = fail ? 1 : 3;
+        }
+
     }
 }
-
