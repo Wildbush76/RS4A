@@ -16,15 +16,15 @@ namespace RS4A.Items
 		}
         public override void SetDefaults()
 		{
-				
+			item.shoot = mod.ProjectileType("H_Bomb");
 			item.width = 32;
 			item.height = 32;
 			item.consumable = true;
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useTime = 20;
 			item.useAnimation = 20;
-			item.createTile = mod.TileType("H_Bomb");
-			item.maxStack = 1;
+			item.consumable = true;
+			item.maxStack = 5;
 			item.autoReuse = false;
 			item.scale = 1f;
 		}
