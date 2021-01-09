@@ -20,7 +20,7 @@ namespace RS4A.Items
 			item.width = 8;
 			item.height = 8;
 			item.consumable = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useTime = 10;
 			item.useAnimation = 10;
 			item.createTile = mod.TileType("Uranium");
