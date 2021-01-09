@@ -19,9 +19,9 @@ namespace RS4A.Projectiles
 			projectile.damage = 150;
 			projectile.friendly = false;
 			projectile.ranged = true;
-			projectile.width = 14;
-			projectile.height = 32;
-			projectile.aiStyle = 34;
+			projectile.width = 10;
+			projectile.height = 10;
+			projectile.aiStyle = 1;
 			projectile.penetrate = 1;
 			
 		}
