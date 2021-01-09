@@ -1,0 +1,45 @@
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System.Threading;
+using RS4A.Dusts;
+namespace RS4A.Tiles
+{
+    public class Radstone : ModTile
+    {
+        public override void SetDefaults()
+        {
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
+            Main.tileLavaDeath[Type] = false;
+            Main.tileLighted[Type] = true;
+            //Main.tileBlockLight[Type] = true;
+            Main.tileSpelunker[Type] = true;
+            // Main.tileShine2[Type] = false;
+
+
+           //drop = mod.ItemType("Uranium_or");
+
+            soundType = SoundID.Dig;
+           
+            AddMapEntry(new Color(0, 255, 156));
+            minPick = 200;
+            mineResist = 5f;
+            
+            dustType = ModContent.DustType<Rada>();
+            dustType = ModContent.DustType<Rada>();
+            dustType = ModContent.DustType<Rada>();
+        }
+        public override void FloorVisuals(Player player)
+        {
+
+            player.AddBuff(mod.BuffType("Rad"), 300);
+        }
+     
+       
+    }
+}
+
