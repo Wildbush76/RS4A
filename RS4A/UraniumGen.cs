@@ -8,8 +8,6 @@ using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
-using System.Collections.Generic;
-using Terraria.GameContent.Generation;
 using static Terraria.ModLoader.ModContent;
 
 namespace TMMCWorld
