@@ -16,11 +16,13 @@ namespace RS4A.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            //player.poisoned = true;
             player.lifeRegen -= 200;//i like to damage player you just do negitive regen.
             player.moveSpeed -= .5f;
             player.allDamage += 1;
         }
-        
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.lifeRegen -= 200;
+        }
     }
 }
