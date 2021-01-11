@@ -31,7 +31,7 @@ namespace RS4A.Projectiles
 			bool f = false;
 			Vector2 position = projectile.Center;
 			Main.PlaySound(SoundID.Item14, (int)position.X, (int)position.Y);
-
+			Random crat = new Random();
 			int radius = 60;
 			for (int k = 0; k < 2; k++)
 			{
@@ -46,9 +46,33 @@ namespace RS4A.Projectiles
 						{
 							if (f == true && Framing.GetTileSafely(xPosition, yPosition).active())
 							{
+								int xadd = crat.Next(1,7);
+								int yadd = crat.Next(1,7);
+								int xsub = crat.Next(1, 7);
+								int ysub = crat.Next(1, 7);
+								int fill = crat.Next(1, 11);
+								if(yadd < 5)
+                                {
+									yPosition++;
+                                }
+								if (xadd  < 5)
+								{
+									xPosition++;
+								}
+								if(xsub < 5)
+                                {
+									xPosition--;
+                                }
+								if(ysub < 5)
+                                {
+									yPosition--;
+                                }
+								if(fill < 9)
+							    {
+									WorldGen.KillTile(xPosition, yPosition, false, false, false);
+								}  
+									WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<Radstone>(), true);
 								
-								WorldGen.KillTile(xPosition, yPosition, false, false, false);
-								WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<Radstone>(), true);
 
 							}
 							if (f == false)
