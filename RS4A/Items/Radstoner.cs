@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace RS4A.Items
 {
-   public class radstoner : ModItem
+   public class Radstoner : ModItem
   {
         public override void SetStaticDefaults()
         {
