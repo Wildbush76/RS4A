@@ -84,7 +84,7 @@ namespace RS4A.Projectiles
 					}
 				}
 				f = true;
-				radius += 4;
+				radius += 5;
 			}
 
 		}
