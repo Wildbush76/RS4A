@@ -27,6 +27,7 @@ namespace RS4A.Items
 			item.maxStack = 5;
 			item.autoReuse = false;
 			item.scale = 1f;
+			item.shootSpeed = 2f;
 		}
 		public override void AddRecipes()
 	   {
