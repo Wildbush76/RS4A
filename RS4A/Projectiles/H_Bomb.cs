@@ -53,19 +53,19 @@ namespace RS4A.Projectiles
 								int fill = crat.Next(1, 11);
 								if(yadd < 5)
                                 {
-									//yPosition++;
+									yPosition++;
                                 }
 								if (xadd  < 5)
 								{
-									//xPosition++;
+									xPosition++;
 								}
 								if(xsub < 5)
                                 {
-									//xPosition--;
+									xPosition--;
                                 }
 								if(ysub < 5)
                                 {
-									//yPosition--;
+									yPosition--;
                                 }
 								if(fill < 9)
 							        {
