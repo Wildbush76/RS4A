@@ -32,7 +32,7 @@ namespace RS4A.Projectiles
 			Vector2 position = projectile.Center;
 			Main.PlaySound(SoundID.Item14, (int)position.X, (int)position.Y);
 			Random crat = new Random();
-			int radius = 60;
+			int radius = 150;
 			for (int k = 0; k < 2; k++)
 			{
 				for (int x = -radius; x <= radius; x++)
@@ -53,22 +53,22 @@ namespace RS4A.Projectiles
 								int fill = crat.Next(1, 11);
 								if(yadd < 5)
                                 {
-									yPosition++;
+									//yPosition++;
                                 }
 								if (xadd  < 5)
 								{
-									xPosition++;
+									//xPosition++;
 								}
 								if(xsub < 5)
                                 {
-									xPosition--;
+									//xPosition--;
                                 }
 								if(ysub < 5)
                                 {
-									yPosition--;
+									//yPosition--;
                                 }
 								if(fill < 9)
-							    {
+							        {
 									WorldGen.KillTile(xPosition, yPosition, false, false, false);
 								}  
 									WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<Radstone>(), true);
