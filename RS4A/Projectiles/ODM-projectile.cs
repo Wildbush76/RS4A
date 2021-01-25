@@ -58,9 +58,9 @@ namespace RS4A.Projectiles
         public override void PostAI()
 
         {
-            if (Vector2.Distance(Main.player[projectile.owner].position, projectile.position) < 30 && projectile.velocity == Vector2.Zero)
+            if (Vector2.Distance(Main.player[projectile.owner].position, projectile.position) < 60 && projectile.velocity == Vector2.Zero)
             {
-                projectile.Kill();
+                projectile.Kill();//kills hook when player near 
             }
                 
 
@@ -70,8 +70,7 @@ namespace RS4A.Projectiles
 
         public override float GrappleRange()
         {
-            return 900f;      
-            
+            return 850f;        
         }
 
         public override void NumGrappleHooks(Player player, ref int numHooks)
@@ -86,7 +85,6 @@ namespace RS4A.Projectiles
         public override void GrappleRetreatSpeed(Player player, ref float speed)
         {
             speed = 50f;  
-           
         }
 
         public override void PostDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Color lightColor)
