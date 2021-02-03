@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Buffs
 {
-    public class Rad : ModBuff
+    public class gay : ModBuff
     {
         public override void SetDefaults()
         {
