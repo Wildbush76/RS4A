@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-	public class hallowed_shortsword : ModItem
+	public class gayo : ModItem
 	{
 		public override void SetStaticDefaults() 
 		{
