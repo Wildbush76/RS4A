@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -12,11 +10,12 @@ namespace RS4A.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Gay");
-            Description.SetDefault("your gay now");
+            Description.SetDefault("your gay now, deal with it");
+            
         }
         public override void Update(Player player, ref int buffIndex)
         {
-        
+        //add something 
         }
         
     }
