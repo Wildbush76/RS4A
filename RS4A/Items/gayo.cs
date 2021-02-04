@@ -13,6 +13,8 @@ namespace RS4A.Items
 
 		public override void SetDefaults() 
 		{
+		
+		        //item.shoot =  //add gayp here
 			item.damage = 100;
 			item.magic = true;
 			//item.scale = 1.25f;
