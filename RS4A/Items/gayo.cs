@@ -7,7 +7,7 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Hallowed Shortsword"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			DisplayName.SetDefault("Gay Inator"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
 			Tooltip.SetDefault("The real deal.");
 		}
 
@@ -25,7 +25,7 @@ namespace RS4A.Items
 			//item.useStyle = ItemUseStyleID.Stabbing;
 			item.knockBack = 6;
 			item.value = 100000;
-			item.rare = ItemRarityID.Pink;
+			item.rare = ItemRarityID.Rainbow;
 			item.crit = 45;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = false;
@@ -44,5 +44,6 @@ namespace RS4A.Items
 			recipe.AddRecipe();
       */
 		}
+		
 	}
 }
