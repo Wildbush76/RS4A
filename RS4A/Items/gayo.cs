@@ -1,5 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
+using RS4A.buffs;
 
 namespace RS4A.Items
 {
@@ -7,7 +8,7 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Gay-Inator Mk1"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			DisplayName.SetDefault("Gay-Inator Mk1");
 			Tooltip.SetDefault("The real deal.");
 		}
 
