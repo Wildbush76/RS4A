@@ -20,13 +20,18 @@ namespace RS4A.Items
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-           
+        var gays = 10;
+          if(gays < 100)
+          {
+          var jj = 100 - gays;
+          jj = jj/10;
+          }
         }
         public override void AddRecipes()
         {
         /*
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Gel, 100);
+            ModRecipe recipe = new ModRecipe(mod);//sounds good
+            recipe.AddIngredient(ItemID.Gel, 100);//The wall of flesh mudaleuns and all of the souls(not moded) 
             recipe.AddIngredient(ItemID.LeadBar, 7);
             recipe.AddIngredient(ItemID.HallowedBar,7);
             recipe.AddTile(TileID.MythrilAnvil);
