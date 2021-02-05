@@ -4,12 +4,12 @@ using Terraria.ID;
 using RS4A.Buffs;
 namespace RS4A.Items
 {
-    class Hazmat : ModItem
+    class Lee : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Leroy Jenkins");
-            Tooltip.SetDefault("Less defense is good");
+            Tooltip.SetDefault("Who needs denfense anyway???");
         }
         public override void SetDefaults()
         {
