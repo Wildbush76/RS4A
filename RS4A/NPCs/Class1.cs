@@ -12,9 +12,9 @@ namespace RS4A.NPCs
 {
    public class npc : GlobalNPC
     {
+    static int rng = 0;
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
-		static int rng = 0;
 
 			if (type == NPCID.WitchDoctor)
 			{
