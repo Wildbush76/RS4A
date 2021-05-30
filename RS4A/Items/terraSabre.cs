@@ -13,7 +13,7 @@ namespace RS4A.Items
 			if (today.Month == 6 && today.Day == 2)
 			{
 				DisplayName.SetDefault("Terra Sabre");
-				Tooltip.SetDefault("Must be your lucky day!™");
+				Tooltip.SetDefault("Must be your lucky day!");
 			} else
             {
 				DisplayName.SetDefault("Foam Terra Sabre");
