@@ -14,10 +14,16 @@ namespace RS4A.NPCs
     {
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
+		static int rng = 0;
 
 			if (type == NPCID.WitchDoctor)
 			{
 				shop.item[nextSlot].SetDefaults(ItemID.Bottle);
+				nextSlot++;
+			} else if (type == NPCID.SkeletonMerchant)
+			{
+				shop.item[nextSlot].SetDefaults(ItemID.BoneKey);
+				shop.item[nextSlot].shopCustomPrice = 500000; //in copper, of course
 				nextSlot++;
 			}
 			DateTime today = DateTime.Today;
@@ -53,6 +59,26 @@ namespace RS4A.NPCs
 						break;
 
 				}
+			}
+			if (npc.type == NPCID.SkeletonMerchant)
+			{
+				rng = Main.rand.Next(10);
+				if (rng == 0)
+				{
+					chat = "I did your mother, " + Main.LocalPlayer.name.ToString() + ".";
+
+				}
+			}
+		}
+		
+		public override bool PreChatButtonClicked(NPC npc, bool firstButton)
+		{
+			if (npc.type == NPCID.SkeletonMerchant && rng == 0)
+			{
+				return false;
+			} else
+            {
+				return true;
 			}
 		}
 
