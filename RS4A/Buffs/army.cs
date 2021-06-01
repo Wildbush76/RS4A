@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace death.Buffs
+namespace RS4A.Buffs
 {
     public class army : ModBuff
     {
