@@ -5,7 +5,7 @@ using death.Projectiles;
 
 
 
-namespace death.Items
+namespace RS4A.Items
 {
 	public class hand : ModItem
 	{
