@@ -37,5 +37,15 @@ namespace RS4A.Items
 			item.thrown = true;
 			item.shoot = ModContent.ProjectileType<handT>();
 		}
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.StoneBlock, 100);
+			recipe.AddIngredient(ItemID.FlaskofVenom, 15);
+			recipe.AddIngredient(ItemID.TitanGlove, 1);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
 	}
 }
