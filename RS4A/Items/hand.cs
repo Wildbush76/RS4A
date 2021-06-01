@@ -18,7 +18,7 @@ namespace RS4A.Items
 		public override void SetDefaults()
 		{
 			item.shootSpeed = 20f;
-			item.damage = 30;
+			item.damage = 90;
 			item.scale = 1f;
 			item.width = 30;
 			item.height = 24;
