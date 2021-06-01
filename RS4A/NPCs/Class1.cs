@@ -20,6 +20,10 @@ namespace RS4A.NPCs
 			{
 				shop.item[nextSlot].SetDefaults(ItemID.Bottle);
 				nextSlot++;
+				
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<armyPot>());
+				shop.item[nextSlot].shopCustomPrice = 50000000; //in copper, of course
+				nextSlot++;
 			} else if (type == NPCID.SkeletonMerchant)
 			{
 				shop.item[nextSlot].SetDefaults(ItemID.BoneKey);
