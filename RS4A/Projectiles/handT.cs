@@ -17,7 +17,7 @@ namespace RS4A.Projectiles
 		public override void SetDefaults()
 		{
 			projectile.scale = 1;
-			projectile.damage = 30;
+			projectile.damage = 60;
 			projectile.friendly = true;
 			projectile.ranged = true;
 			projectile.width = 30;
