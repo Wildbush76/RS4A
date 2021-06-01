@@ -85,6 +85,13 @@ namespace RS4A.NPCs
 				return true;
 			}
 		}
+		public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			if (npc.HasBuff(BuffID.Chilled) && projectile.type == ModContent.ProjectileType<handT>())
+			{
+				crit = true;
+			}
+		}
 
 	}
 }
