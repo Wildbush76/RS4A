@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace death.Items
+namespace RS4A.Items
 {
     public class armyPot : ModItem
     {
