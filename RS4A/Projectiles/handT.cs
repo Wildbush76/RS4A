@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-namespace death.Projectiles
+namespace RS4A.Projectiles
 {
 	public class handT : ModProjectile
 	{
