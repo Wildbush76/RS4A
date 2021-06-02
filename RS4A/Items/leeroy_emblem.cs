@@ -41,6 +41,7 @@ namespace RS4A.Items
 			recipe.AddIngredient(ItemID.SoulofMight, 5);
 			recipe.AddIngredient(ItemID.SoulofNight, 5);
 			recipe.AddIngredient(ItemID.SoulofSight, 5);
+			recipe.AddIngredient(ItemID.LunarBar, 50);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
