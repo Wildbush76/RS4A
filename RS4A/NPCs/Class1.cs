@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using RS4A.Items;
+using RS4A.Projectiles;
 
 namespace RS4A.NPCs
 {
@@ -22,12 +24,12 @@ namespace RS4A.NPCs
 				nextSlot++;
 				
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<armyPot>());
-				shop.item[nextSlot].shopCustomPrice = 50000000; //in copper, of course
+				shop.item[nextSlot].shopCustomPrice = 80000000; //in copper, of course
 				nextSlot++;
 			} else if (type == NPCID.SkeletonMerchant)
 			{
 				shop.item[nextSlot].SetDefaults(ItemID.BoneKey);
-				shop.item[nextSlot].shopCustomPrice = 500000; //in copper, of course
+				shop.item[nextSlot].shopCustomPrice = 500000; 
 				nextSlot++;
 			}
 			DateTime today = DateTime.Today;
@@ -37,6 +39,7 @@ namespace RS4A.NPCs
                 {
 					shop.item[nextSlot].SetDefaults(ModContent.ItemType<Tnurse>());
 					shop.item[nextSlot].shopCustomPrice = 100;
+					nextSlot++;
                 }
 				for (int a = 0; a<shop.item.Length;a++)
                 {
@@ -57,6 +60,12 @@ namespace RS4A.NPCs
 						break;
 					case 1:
 						chat = "congrats your on year closer to death";
+						break;
+					case 2:
+						chat = "oh happy birthday my boy, half off prices for ye";
+						break;
+					case 3:
+						chat = "your gettting old u sure u can still fight them bosses";
 						break;
 					default:
 						chat = "HAPPY BIRTHDAY";
