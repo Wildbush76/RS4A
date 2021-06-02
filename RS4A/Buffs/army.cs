@@ -15,7 +15,7 @@ namespace RS4A.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.maxMinions += 100;
+            player.maxMinions += 10;
         }
     }
 }
