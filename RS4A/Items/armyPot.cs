@@ -32,20 +32,13 @@ namespace RS4A.Items
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Fireblossom, 999);
-            recipe.AddIngredient(ItemID.Shiverthorn, 999);
-            recipe.AddIngredient(ItemID.Waterleaf, 999);
-            recipe.AddIngredient(ItemID.Deathweed, 999);
+            recipe.AddIngredient(ItemID.Fireblossom, 10);
+            recipe.AddIngredient(ItemID.Shiverthorn, 10);
+            recipe.AddIngredient(ItemID.Waterleaf, 10);
+            recipe.AddIngredient(ItemID.Deathweed, 10);
 
-            recipe.AddIngredient(ItemID.PapyrusScarab, 1);
-            recipe.AddIngredient(ItemID.HerculesBeetle, 1);
             recipe.AddIngredient(ItemID.PygmyNecklace, 1);
-            recipe.AddIngredient(ItemID.NecromanticScroll, 1);
-            recipe.AddIngredient(ItemID.PygmyStaff, 1);
             recipe.AddIngredient(ItemID.SummonerEmblem, 1);
-            recipe.AddIngredient(ItemID.StardustCellStaff, 1);
-            recipe.AddIngredient(ItemID.StardustDragonStaff, 1);
-            recipe.AddIngredient(ItemID.RainbowCrystalStaff, 1);
 
             recipe.AddIngredient(ItemID.BottledHoney, 1);
 
