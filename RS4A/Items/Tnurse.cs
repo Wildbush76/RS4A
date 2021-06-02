@@ -1,0 +1,50 @@
+﻿using RS4A.Buffs;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using RS4A.Projectiles;
+
+namespace RS4A.Items
+{
+	public class Tnurse : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Throwing Nurses");
+			Tooltip.SetDefault("But why????");
+		}
+
+		public override void SetDefaults()
+		{
+			item.maxStack = 999;
+			item.shootSpeed = 10f;
+			item.damage = 40;
+			item.scale = 0.5f;
+			item.width = 10;
+			item.height = 10;
+			item.useTime = 8;
+			item.useAnimation = 8;
+			item.useStyle = ItemUseStyleID.SwingThrow;
+			item.knockBack = 1;
+			item.value = 1000;
+			item.rare = ItemRarityID.Lime;
+			item.crit = 20;
+			item.UseSound = SoundID.Item1;
+			item.autoReuse = true;
+			item.consumable = true;
+			item.ranged = true;
+			item.shoot = ModContent.ProjectileType<Throwing_nurse>();
+		}
+		/*
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.ThrowingKnife,40);
+			recipe.AddIngredient(ItemID.LifeCrystal,1);
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.SetResult(this,40);
+			recipe.AddRecipe();
+		}
+		*/
+	}
+}
