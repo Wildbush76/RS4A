@@ -1,0 +1,50 @@
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+namespace RS4A.Projectiles
+{
+	public class sonicDartP : ModProjectile
+	{
+        int speed = 0;
+		public override void SetStaticDefaults()
+		{
+
+			DisplayName.SetDefault("hand");
+
+        }
+        public override void SetDefaults()
+        {
+            projectile.scale = 0.5f;
+            projectile.damage = 10;
+            projectile.friendly = true;
+            projectile.ranged = true;
+            projectile.width = 30;
+            projectile.height = 9;
+            projectile.aiStyle = 1;
+            projectile.tileCollide = true;
+            projectile.velocity *= 1.9f;
+        }
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+            speed = Math.Abs((int)Math.Round(Main.LocalPlayer.velocity.X + Main.LocalPlayer.velocity.Y));
+            damage = projectile.damage + speed*3;
+            if (speed > 20)
+            {
+                crit = true;
+                if (speed > 30)
+                {
+                    target.AddBuff(BuffID.Ichor, 600);
+                    target.AddBuff(BuffID.CursedInferno, 240);
+
+                }
+            }
+		}
+		public override void Kill(int timeLeft)
+		{
+			Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
+		}
+	}
+}
