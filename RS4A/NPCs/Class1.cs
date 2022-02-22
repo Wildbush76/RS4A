@@ -9,7 +9,6 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using RS4A.Items;
 using RS4A.Projectiles;
-
 namespace RS4A.NPCs
 {
    public class Npc : GlobalNPC
@@ -17,7 +16,7 @@ namespace RS4A.NPCs
     static int rng = 0;
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
-
+		
 			if (type == NPCID.WitchDoctor)
 			{
 				shop.item[nextSlot].SetDefaults(ItemID.Bottle);
@@ -49,6 +48,10 @@ namespace RS4A.NPCs
 		}
 		public override void GetChat(NPC npc, ref string chat)
 		{
+		if (type == NPID.Nurse && Main.LocalPlayer.name.ToString() == "something") {
+		chat = "you're one hot boy"
+		}
+
 			DateTime today = DateTime.Today;
 			if (today.Day == 2 && today.Month == 6)
 			{
@@ -83,6 +86,12 @@ namespace RS4A.NPCs
 		
 		public override bool PreChatButtonClicked(NPC npc, bool firstButton)
 		{
+		if(npc.type == NPCID.Nurse) {
+		return false;
+		}
+		else {
+		return true
+		}
 			if (npc.type == NPCID.SkeletonMerchant && rng == 0)
 			{
 				return false;
