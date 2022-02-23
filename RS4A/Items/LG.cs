@@ -33,6 +33,7 @@ namespace RS4A.Items
         public override void OnHitPvp(Player player, Player target, int damage, bool crit)
         {
 			target.Male = !target.Male;
+
         }
 
         public override void AddRecipes()
