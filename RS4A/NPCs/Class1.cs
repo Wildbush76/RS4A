@@ -48,7 +48,7 @@ namespace RS4A.NPCs
 		}
 		public override void GetChat(NPC npc, ref string chat)
 		{
-		if (type == NPID.Nurse && Main.LocalPlayer.name.ToString() == "something") {
+		if (type == NPID.Nurse && Main.LocalPlayer.name.ToString() == "Something") {
 		chat = "you're one hot boy"
 		}
 
