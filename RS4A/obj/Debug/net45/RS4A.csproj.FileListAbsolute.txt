@@ -1,4 +1,0 @@
-C:\Users\super\Documents\My Games\Terraria\ModLoader\Mod Sources\RS4A\obj\Debug\net45\RS4A.csproj.AssemblyReference.cache
-C:\Users\super\Documents\My Games\Terraria\ModLoader\Mod Sources\RS4A\obj\Debug\net45\RS4A.AssemblyInfoInputs.cache
-C:\Users\super\Documents\My Games\Terraria\ModLoader\Mod Sources\RS4A\obj\Debug\net45\RS4A.AssemblyInfo.cs
-C:\Users\super\Documents\My Games\Terraria\ModLoader\Mod Sources\RS4A\obj\Debug\net45\RS4A.csproj.CoreCompileInputs.cache
