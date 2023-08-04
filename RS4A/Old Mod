@@ -1,0 +1,249 @@
+//Wild's Old Mod
+//dont try to run on tmod wont work
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace E.Items
+{
+	//tiles
+	public class Bomb : ModTile//bomb is name of item
+	{
+        public override void SetDefaults()
+        {
+			Main.tileSolid[Type] = true;
+			Main.tileMergeDirt[Type] = false;
+			Main.tileLighted[Type] = true;
+			drop = ItemID.AlphabetStatueD;
+			Main.tileLavaDeath[Type] = false;
+			AddMapEntry(new Color(100, 150, 200));
+			minPick = 200;
+        }
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+			r = 0.5f;
+			g = 0.75f;
+			b = 1f;
+        }
+        public override void HitWire(int i, int j)
+        {
+			
+		}
+    }
+	public class Bom : ModItem
+	{
+        public override void SetStaticDefaults()
+        {
+			DisplayName.SetDefault("Big bomb block");
+
+        }
+        public override void SetDefaults()
+        {
+			item.consumable = true;
+			item.useStyle = ItemUseStyleID.SwingThrow;
+			item.useTime = 10;
+			item.useAnimation = 10;
+			item.createTile = mod.TileType("Bomb");
+			item.autoReuse = true;
+        }
+    }
+	//ammos
+	public class Ammo : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Healing arrows");
+		}
+		public override void SetDefaults()
+		{
+			item.damage = 10;
+			item.ranged = true;
+			item.width = 7;
+			item.height = 13;
+			item.maxStack = 999;
+			item.consumable = true;
+			item.knockBack = 1.2f;
+			item.rare = ItemRarityID.Blue;
+			item.shoot = mod.ProjectileType("Ar");
+			item.shootSpeed = 8.5f;
+			item.ammo = AmmoID.Arrow;
+			
+
+		}
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.LifeCrystal, 1);
+			recipe.AddIngredient(ItemID.WoodenArrow,10);
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.SetResult(this, 10);
+			recipe.AddRecipe();
+
+		}
+	}
+	// weapons
+	public class Gnir : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Gnir Lleb");
+			Tooltip.SetDefault("gnir lleb on top");
+		}
+		public override void SetDefaults()
+		{
+			item.rare = ItemRarityID.Red;
+			item.damage = 63;
+			item.useTime = 20;
+			item.useAnimation = 20;
+			item.magic = true;
+			item.width = 7;//hitbox not size
+			item.height = 16;//^
+			item.maxStack = 1;
+			item.consumable = false;
+			item.mana = 20;
+			item.knockBack = 1.2f;
+			item.rare = ItemRarityID.Blue;
+			item.autoReuse = false;
+			item.shoot = mod.ProjectileType("Boom");
+			item.shootSpeed = 0;
+			item.useStyle = ItemUseStyleID.HoldingUp;
+			
+
+		}
+        public override void AddRecipes()
+        {
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.Bell, 1);
+			recipe.AddIngredient(ItemID.PixieDust,20);
+			recipe.AddIngredient(ItemID.Dynamite, 5);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(this);//for it to make more than 1 u would do recipe.SetResult(this, 2). 2 is number thats it makes
+			recipe.AddRecipe();
+		}
+    }
+		public class EF : ModItem
+		{
+			public override void SetStaticDefaults()
+			{
+
+				DisplayName.SetDefault("glowstick machine gun");
+				Tooltip.SetDefault("Magic glowstick gun.... what could go wrong");
+
+
+			}
+			public override void SetDefaults()
+			{
+				item.damage = 10;
+				item.magic = true;
+				item.width = 14;
+				item.height = 32;
+				item.useTime = 7;
+				item.useAnimation = 7;
+				item.useStyle = ItemUseStyleID.HoldingOut;
+				item.knockBack = 12;
+				item.value = 10000;
+				item.mana = 6;
+				item.rare = ItemRarityID.Blue;
+				item.shoot = 50;
+				item.shootSpeed = 8;
+				item.UseSound = SoundID.Item1;
+				item.autoReuse = true;
+
+
+			}
+			public override void AddRecipes()
+			{
+				ModRecipe recipe = new ModRecipe(mod);
+				recipe.AddIngredient(ItemID.Glowstick, 999);
+				recipe.AddIngredient(ItemID.FallenStar, 10);
+				recipe.AddIngredient(ItemID.PixieDust, 30);
+				recipe.AddTile(TileID.WorkBenches);
+				recipe.SetResult(this);
+				recipe.AddRecipe();
+			}
+		}
+		//projectiles
+		public class Boom : ModProjectile
+		{
+			public override void SetDefaults()
+			{
+			projectile.position.X = Main.mouseX;
+			projectile.position.Y = Main.mouseY;//tried to make it exsplode at mouse, didnt work
+				projectile.width = 60;   //This defines the hitbox width
+				projectile.height = 45;    //This defines the hitbox height
+				projectile.aiStyle = 16;  //How the projectile works, 16 is the aistyle Used for: Grenades, Dynamite, Bombs, Sticky Bomb.
+				projectile.friendly = true; //Tells the game whether it is friendly to players/friendly npcs or not
+			    projectile.damage = 0;
+				projectile.penetrate = -1; //Tells the game how many enemies it can hit before being destroyed
+				projectile.timeLeft = 0; //The amount of time the projectile is alive for
+				
+			}
+
+
+
+			public override void Kill(int timeLeft)
+			{
+
+				Vector2 position = projectile.Center;
+				Main.PlaySound(SoundID.Item14, (int)position.X, (int)position.Y);
+			   Random rand = new Random();
+			    int kaboom = rand.Next(10, 21);
+			   int ss = rand.Next(1, 101);
+			    if (ss == 100)
+			    {
+				kaboom = rand.Next(50, 201);
+			    }
+				int radius = kaboom;     //this is the explosion radius, the highter is the value the bigger is the explosion
+
+				for (int x = -radius; x <= radius; x++)
+				{
+					for (int y = -radius; y <= radius; y++)
+					{
+						int xPosition = (int)(x + position.X / 16.0f);
+						int yPosition = (int)(y + position.Y / 16.0f);
+
+						if (Math.Sqrt(x * x + y * y) <= radius + 0.5)   //this make so the explosion radius is a circle
+						{
+						
+							WorldGen.KillTile(xPosition, yPosition, false, false, false);  //this make the explosion destroy tiles  
+							Dust.NewDust(position, 22, 22, DustID.Smoke, 0.0f, 0.0f, 120, new Color(), 1f);  //this is the dust that will spawn after the explosion
+						}
+					}
+				}
+			}
+
+		}
+
+		public class Ar : ModProjectile
+		{
+			public override void SetStaticDefaults()
+			{
+
+				DisplayName.SetDefault("Heal arrows");
+
+			}
+			public override void SetDefaults()
+			{
+				projectile.damage = 10;
+				projectile.friendly = true;
+				projectile.ranged = true;
+				projectile.width = 14;
+				projectile.height = 32;
+				projectile.aiStyle = 1;
+				projectile.penetrate = 1;
+				projectile.arrow = true;
+
+			}
+			public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+			{
+
+				//Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 0, ProjectileID.StickyDynamite, 100, 0, projectile.whoAmI);
+				Item.NewItem(projectile.getRect(), ItemID.Heart);
+			}
+
+
+		}
+}
