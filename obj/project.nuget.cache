@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "fQXneJPHBu/a8udRfaHxOJTsXgBGaiin5iExLDJmxDvHVEVHSYIWAGSpmH/dNlF6WE0YtKZH6RKGVquFBL7a2A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\super\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\super\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}

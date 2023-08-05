@@ -1,0 +1,141 @@
+Tiles.Uranium.MapEntry: Uranium
+
+Buffs: {
+	army: {
+		DisplayName: army
+		Description: Mods.RS4A.Buffs.army.Description
+	}
+
+	Gay: {
+		DisplayName: Gay
+		Description: Mods.RS4A.Buffs.Gay.Description
+	}
+
+	Rad: {
+		DisplayName: Rad
+		Description: Mods.RS4A.Buffs.Rad.Description
+	}
+
+	Rad1: {
+		DisplayName: Rad1
+		Description: Mods.RS4A.Buffs.Rad1.Description
+	}
+}
+
+Items: {
+	armyPot: {
+		DisplayName: army Pot
+		Tooltip: ""
+	}
+
+	Gayo: {
+		DisplayName: Gayo
+		Tooltip: ""
+	}
+
+	hallowed_shortsword: {
+		DisplayName: hallowed_shortsword
+		Tooltip: ""
+	}
+
+	hand: {
+		DisplayName: hand
+		Tooltip: ""
+	}
+
+	Hazmat: {
+		DisplayName: Hazmat
+		Tooltip: ""
+	}
+
+	Hbomb: {
+		DisplayName: Hbomb
+		Tooltip: ""
+	}
+
+	Leadwater: {
+		DisplayName: Leadwater
+		Tooltip: ""
+	}
+
+	leeroy_emblem: {
+		DisplayName: leeroy_emblem
+		Tooltip: ""
+	}
+
+	LG: {
+		DisplayName: L G
+		Tooltip: ""
+	}
+
+	Nfuel: {
+		DisplayName: Nfuel
+		Tooltip: ""
+	}
+
+	Nuke: {
+		DisplayName: Nuke
+		Tooltip: ""
+	}
+
+	Nurse: {
+		DisplayName: Nurse
+		Tooltip: ""
+	}
+
+	ODM: {
+		DisplayName: O D M
+		Tooltip: ""
+	}
+
+	radiological_stick: {
+		DisplayName: radiological_stick
+		Tooltip: ""
+	}
+
+	Radstoner: {
+		DisplayName: Radstoner
+		Tooltip: ""
+	}
+
+	sonicDart: {
+		DisplayName: sonic Dart
+		Tooltip: ""
+	}
+
+	terraSabre: {
+		DisplayName: terra Sabre
+		Tooltip: ""
+	}
+
+	Tnurse: {
+		DisplayName: Tnurse
+		Tooltip: ""
+	}
+
+	Ubullet: {
+		DisplayName: Ubullet
+		Tooltip: ""
+	}
+
+	Uranium_bar: {
+		DisplayName: Uranium_bar
+		Tooltip: ""
+	}
+
+	Uranium_or: {
+		DisplayName: Uranium_or
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	Gayp.DisplayName: Gayp
+	H_Bomb.DisplayName: H_ Bomb
+	handT.DisplayName: hand T
+	Nukep.DisplayName: Nukep
+	ODM.DisplayName: O D M
+	sonicDartP.DisplayName: sonic Dart P
+	Throwing_nurse.DisplayName: Throwing_nurse
+	UrBullet.DisplayName: Ur Bullet
+}

@@ -1,0 +1,46 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace RS4A.Items
+{
+   public class Hbomb : ModItem
+  {
+        public override void SetStaticDefaults()
+        {
+			DisplayName.SetDefault("Hydrogen Bomb");
+			Tooltip.SetDefault("its a very large bomb");
+		}
+        public override void SetDefaults()
+		{
+			Item.shoot = Mod.Find<ModProjectile>("H_Bomb").Type;
+			Item.width = 32;
+			Item.height = 32;
+			Item.consumable = true;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTime = 20;
+			Item.useAnimation = 20;
+			Item.consumable = true;
+			Item.maxStack = 5;
+			Item.autoReuse = false;
+			Item.scale = 1f;
+			Item.shootSpeed = 2f;
+		}
+		public override void AddRecipes()
+	   {
+	Recipe recipe = CreateRecipe(1);
+	recipe.AddIngredient(null,"Nfuel",3);
+	recipe.AddIngredient(ItemID.Wire,200);
+	recipe.AddIngredient(ItemID.Explosives,5);
+	recipe.AddIngredient(ItemID.IronBar,20);
+	recipe.AddTile(TileID.MythrilAnvil);
+	recipe.Register();
+       }
+      
+         
+   }
+
+}
