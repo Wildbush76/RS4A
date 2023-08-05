@@ -1,0 +1,37 @@
+﻿using System;
+using Microsoft.Xna.Framework;
+
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+namespace RS4A.Projectiles
+{
+	public class UrBullet : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+
+			DisplayName.SetDefault("Uranium Bullet");
+
+		}
+		public override void SetDefaults()
+		{
+			projectile.damage = 10;
+			projectile.friendly = true;
+			projectile.ranged = true;
+			projectile.width = 10;
+			projectile.height = 10;
+			projectile.aiStyle = 0;
+			projectile.penetrate = 2;
+
+		}
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+			target.AddBuff(mod.BuffType("Rad"), 120);
+        }
+
+
+
+
+    }
+}
