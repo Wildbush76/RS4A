@@ -24,12 +24,7 @@ namespace RS4A.Items
         }
         public override void UpdateEquip(Player player)
         {
-            if (player.statDefense < 100 && player.endurance < 0.50f)
-            { //100 is the range
-                player.GetDamage(DamageClass.Generic) += player.statDefense; //this equation is dogshit
-                //player.GetDamage(DamageClass.Generic) += 2 * ((100 - player.statDefense) / 100) * ((0.50f - player.)*2); //maximum of 200% damage (no defense, hard to do at post-moonlord as armor and accessories start giving the good stuff)
-
-            }
+            player.GetModPlayer<PlayerStuff.PlayerStuffy>().leeroyActive = true;
         }
         public override void AddRecipes()
         {
