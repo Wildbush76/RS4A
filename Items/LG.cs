@@ -8,8 +8,9 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("TRANS sword"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-            // Tooltip.SetDefault("C:");
+            //
+            //DisplayName.SetDefault("TRANS sword"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+            //Tooltip.SetDefault("C:");
         }
 
         public override void SetDefaults()

@@ -8,8 +8,8 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Not-Gay License");
-            // Tooltip.SetDefault("Makes you immune to gay");
+            //DisplayName.SetDefault("Not-Gay License");
+            //Tooltip.SetDefault("Makes you immune to gay");
 
         }
         public override void SetDefaults()

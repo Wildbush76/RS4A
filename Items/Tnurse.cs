@@ -10,8 +10,8 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Throwing Nurse");
-			// Tooltip.SetDefault("But why????");
+			//DisplayName.SetDefault("Throwing Nurse");
+			//Tooltip.SetDefault("But why????");
 		}
 
 		public override void SetDefaults()

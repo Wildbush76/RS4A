@@ -2,140 +2,145 @@ Tiles.Uranium.MapEntry: Uranium
 
 Buffs: {
 	army: {
-		DisplayName: army
-		Description: Mods.RS4A.Buffs.army.Description
+		DisplayName: Army Recruiter
+		Description: You can recruit many more men to your cause!
 	}
 
 	Gay: {
 		DisplayName: Gay
-		Description: Mods.RS4A.Buffs.Gay.Description
+		Description: your gay now, deal with it
 	}
 
 	Rad: {
-		DisplayName: Rad
-		Description: Mods.RS4A.Buffs.Rad.Description
+		DisplayName: Extreme Radiation
+		Description: Hope you have good health insurance
 	}
 
 	Rad1: {
-		DisplayName: Rad1
-		Description: Mods.RS4A.Buffs.Rad1.Description
+		DisplayName: Weak Radiation
+		Description: Radation is not fun, lose much heath you do
 	}
 }
 
 Items: {
 	armyPot: {
-		DisplayName: army Pot
-		Tooltip: ""
+		DisplayName: Army Potion
+		Tooltip: Makes you an army recruiter.
 	}
 
 	Gayo: {
-		DisplayName: Gayo
-		Tooltip: ""
+		DisplayName: Gay-Inator Mk1
+		Tooltip: Become the gay
 	}
 
 	hallowed_shortsword: {
-		DisplayName: hallowed_shortsword
-		Tooltip: ""
+		DisplayName: Hallowed Shortsword
+		Tooltip: The real deal.
 	}
 
 	hand: {
-		DisplayName: hand
-		Tooltip: ""
+		DisplayName: The Hand
+		Tooltip: Botttom Text
 	}
 
 	Hazmat: {
-		DisplayName: Hazmat
-		Tooltip: ""
+		DisplayName: Not-Gay License
+		Tooltip: Makes you immune to gay
 	}
 
 	Hbomb: {
-		DisplayName: Hbomb
-		Tooltip: ""
+		DisplayName: Hydrogen Bomb
+		Tooltip: its a very large bomb
 	}
 
 	Leadwater: {
-		DisplayName: Leadwater
-		Tooltip: ""
+		DisplayName: Lead Water
+		Tooltip: MMMMMMMMMM flavor
 	}
 
 	leeroy_emblem: {
-		DisplayName: leeroy_emblem
-		Tooltip: ""
+		DisplayName: Leeroy Emblem
+		Tooltip:
+			'''
+			glass cannon.mp4
+			Scales damage based on defense and damage reduction
+			Doesn't work with 100 defense/50% damage reduction or more
+			'''
 	}
 
 	LG: {
-		DisplayName: L G
-		Tooltip: ""
+		DisplayName: TRANS sword
+		Tooltip: C:
 	}
 
 	Nfuel: {
-		DisplayName: Nfuel
-		Tooltip: ""
+		DisplayName: Nuclear fuel cell
+		Tooltip: It's an oversized glow stick
 	}
 
 	Nuke: {
 		DisplayName: Nuke
-		Tooltip: ""
+		Tooltip: This is a great idea!
 	}
 
 	Nurse: {
-		DisplayName: Nurse
-		Tooltip: ""
+		DisplayName: Nurse sword
+		Tooltip: The Nurse's soul is stuck in here
 	}
 
 	ODM: {
-		DisplayName: O D M
+		DisplayName: ODM gear
 		Tooltip: ""
 	}
 
 	radiological_stick: {
-		DisplayName: radiological_stick
-		Tooltip: ""
+		DisplayName: Radiological Stick
+		Tooltip: Don't burn yourself.
 	}
 
 	Radstoner: {
-		DisplayName: Radstoner
+		DisplayName: Radioactive stone
 		Tooltip: ""
 	}
 
 	sonicDart: {
-		DisplayName: sonic Dart
-		Tooltip: ""
+		DisplayName: Sonic Dart
+		Tooltip: A.K.A The Ranged Lance�
 	}
 
 	terraSabre: {
-		DisplayName: terra Sabre
-		Tooltip: ""
+		DisplayName: Terra Sabre
+		Tooltip: Maybe one day it'll be good...
 	}
 
 	Tnurse: {
-		DisplayName: Tnurse
-		Tooltip: ""
+		DisplayName: Throwing Nurse
+		Tooltip: But why????
 	}
 
 	Ubullet: {
-		DisplayName: Ubullet
+		DisplayName: Uranium Bullet
 		Tooltip: ""
 	}
 
 	Uranium_bar: {
-		DisplayName: Uranium_bar
-		Tooltip: ""
+		DisplayName: Uranium Bar
+		Tooltip: Tastes good
 	}
 
 	Uranium_or: {
-		DisplayName: Uranium_or
-		Tooltip: ""
+		DisplayName: Uranium ore
+		Tooltip: Glowing green rock
 	}
 }
 
 Projectiles: {
-	Gayp.DisplayName: Gayp
-	H_Bomb.DisplayName: H_ Bomb
-	handT.DisplayName: hand T
-	Nukep.DisplayName: Nukep
-	ODM.DisplayName: O D M
-	sonicDartP.DisplayName: sonic Dart P
-	Throwing_nurse.DisplayName: Throwing_nurse
-	UrBullet.DisplayName: Ur Bullet
+	Gayp.DisplayName: Gay juice
+	H_Bomb.DisplayName: Hydrogen Bomb
+	handT.DisplayName: hand
+	Nukep.DisplayName: Nuke
+	ODM.DisplayName: ODM
+	sonicDartP.DisplayName: Sonic Dart
+	Throwing_nurse.DisplayName: Throwing nurse
+	UrBullet.DisplayName: Uranium Bullet
 }

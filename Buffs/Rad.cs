@@ -9,10 +9,10 @@ namespace RS4A.Buffs
 {
     public class Rad : ModBuff
     {
-        //this is for npcs
+        //this is what happens if you touch uranium. rad stone is weaker
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Radatiom");
+            // DisplayName.SetDefault("Weak Radation");
             // Description.SetDefault("Radation is not fun, lose much heath you do");
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
 

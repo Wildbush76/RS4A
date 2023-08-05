@@ -9,8 +9,8 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Leeroy Emblem"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-            // Tooltip.SetDefault("glass cannon.mp4\nScales damage based on defense and damage reduction\nDoesn't work with 100 defense/50% damage reduction or more"); //i think new lines work?
+            //DisplayName.SetDefault("Leeroy Emblem"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+            //Tooltip.SetDefault("glass cannon.mp4\nScales damage based on defense and damage reduction\nDoesn't work with 100 defense/50% damage reduction or more"); //i think new lines work?
         }
 
         public override void SetDefaults()
@@ -24,10 +24,10 @@ namespace RS4A.Items
         }
         public override void UpdateEquip(Player player)
         {
-            if (player.statDefense < 100 && player.endurance < 0.50)
+            if (player.statDefense < 100 && player.endurance < 0.50f)
             { //100 is the range
-              //player.GetDamage(DamageClass.Generic) += (10 - player.statDefense / 10); //this equation is dogshit
-                player.GetDamage(DamageClass.Generic) += 2 * (1 - player.statDefense / 100) * player.endurance; //maximum of 200% damage (no defense, hard to do at post-moonlord as armor and accessories start giving the good stuff)
+                player.GetDamage(DamageClass.Generic) += player.statDefense; //this equation is dogshit
+                //player.GetDamage(DamageClass.Generic) += 2 * ((100 - player.statDefense) / 100) * ((0.50f - player.)*2); //maximum of 200% damage (no defense, hard to do at post-moonlord as armor and accessories start giving the good stuff)
 
             }
         }

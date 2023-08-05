@@ -11,7 +11,7 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Uranium Bullet");
+			//DisplayName.SetDefault("Uranium Bullet");
 			
 		}
 		public override void SetDefaults()

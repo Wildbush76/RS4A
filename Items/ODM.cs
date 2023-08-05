@@ -11,7 +11,7 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("ODM gear");
+            //DisplayName.SetDefault("ODM gear");
         }
         public override void SetDefaults()
         {

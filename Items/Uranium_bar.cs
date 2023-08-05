@@ -11,8 +11,8 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Uranium Bar");
-            // Tooltip.SetDefault("Tastes good");
+            //DisplayName.SetDefault("Uranium Bar");
+            //Tooltip.SetDefault("Tastes good");
         }
         public override void SetDefaults()
         {

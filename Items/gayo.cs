@@ -9,8 +9,8 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults() 
 		{
-			// DisplayName.SetDefault("Gay-Inator Mk1");
-			// Tooltip.SetDefault("Become the gay");
+			//DisplayName.SetDefault("Gay-Inator Mk1");
+			//Tooltip.SetDefault("Become the gay");
 		}
 
 		public override void SetDefaults() 

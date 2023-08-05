@@ -13,12 +13,12 @@ namespace RS4A.Items
 			DateTime today = DateTime.Today;
 			if (today.Month == 6 && today.Day == 2)
 			{
-				// DisplayName.SetDefault("Terra Sabre");
-				// Tooltip.SetDefault("Must be your lucky day!");
+				//DisplayName.SetDefault("Terra Sabre");
+				//Tooltip.SetDefault("Must be your lucky day!");
 			} else
             {
-				// DisplayName.SetDefault("Foam Terra Sabre");
-				// Tooltip.SetDefault("Straight out of TerraMart!");
+				//DisplayName.SetDefault("Foam Terra Sabre");
+				//Tooltip.SetDefault("Straight out of TerraMart!");
 			}
 		}
 

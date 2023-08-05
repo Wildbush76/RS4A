@@ -11,8 +11,8 @@ namespace RS4A.Buffs
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Radatiom");
-            // Description.SetDefault("Radation is not fun, lose much heath you do");
+            // DisplayName.SetDefault("Extreme Radation");
+            // Description.SetDefault("Hope you got good health insurance");
             Main.debuff[Type] = true; //you're TELLIN ME
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }

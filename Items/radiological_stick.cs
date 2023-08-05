@@ -9,8 +9,8 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults() 
 		{
-			// DisplayName.SetDefault("Radiological Stick"); 
-			// Tooltip.SetDefault("Don't burn yourself.");
+			//DisplayName.SetDefault("Radiological Stick"); 
+			//Tooltip.SetDefault("Don't burn yourself.");
 		}
 
 		public override void SetDefaults() 

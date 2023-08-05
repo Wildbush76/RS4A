@@ -9,20 +9,20 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Army Potion");
-            // Tooltip.SetDefault("Makes you an army recruiter.");
+            //DisplayName.SetDefault("Army Potion");
+            //Tooltip.SetDefault("Makes you an army recruiter.");
         }
 
         public override void SetDefaults()
         {
             Item.width = 20;
             Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 15;
             Item.useTime = 15;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
-            Item.maxStack = 30;
+            Item.maxStack = 29;
             Item.consumable = true;
             Item.rare = ItemRarityID.Expert;
             Item.value = Item.buyPrice(platinum: 2);
