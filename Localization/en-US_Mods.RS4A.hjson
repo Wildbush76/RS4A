@@ -20,6 +20,11 @@ Buffs: {
 		DisplayName: Rad1
 		Description: Mods.RS4A.Buffs.Rad1.Description
 	}
+
+	OrbitalStrike: {
+		DisplayName: Orbital Strike
+		Description: you are about to be obliterated
+	}
 }
 
 Items: {
