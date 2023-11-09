@@ -64,7 +64,7 @@ Items: {
 	}
 
 	leeroy_emblem: {
-		DisplayName: leeroy_emblem
+		DisplayName: leeroy emblem
 		Tooltip: ""
 	}
 
@@ -94,7 +94,7 @@ Items: {
 	}
 
 	radiological_stick: {
-		DisplayName: radiological_stick
+		DisplayName: radiological stick
 		Tooltip: ""
 	}
 
@@ -114,23 +114,27 @@ Items: {
 	}
 
 	Tnurse: {
-		DisplayName: Tnurse
+		DisplayName: Throwing nurse
 		Tooltip: ""
 	}
 
 	Ubullet: {
-		DisplayName: Ubullet
+		DisplayName: Uranium bullet
 		Tooltip: ""
 	}
 
 	Uranium_bar: {
-		DisplayName: Uranium_bar
+		DisplayName: Uranium bar
 		Tooltip: ""
 	}
 
 	Uranium_or: {
-		DisplayName: Uranium_or
+		DisplayName: Uranium ore
 		Tooltip: ""
+	}
+	OrbitalTargeter: {
+		DisplayName: Orbital Targeter
+		Tooltip: vaporize your enemies
 	}
 }
 

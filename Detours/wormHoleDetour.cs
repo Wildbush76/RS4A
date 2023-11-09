@@ -22,7 +22,7 @@ namespace RS4A.Detours
 
         private void On_Player_UnityTeleport(On_Player.orig_UnityTeleport orig, Player self, Microsoft.Xna.Framework.Vector2 telePos)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.Nuke>()))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalTargeter>()))
             {
                 //find the player
                 double closest = double.MaxValue;
@@ -53,7 +53,7 @@ namespace RS4A.Detours
 
         private void On_Player_TakeUnityPotion(On_Player.orig_TakeUnityPotion orig, Player self)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.Nuke>()))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalTargeter>()))
             {
                 return;
             }
@@ -65,7 +65,7 @@ namespace RS4A.Detours
 
         private bool On_Player_HasUnityPotion(On_Player.orig_HasUnityPotion orig, Player self)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.Nuke>()))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalTargeter>()))
             {
                 return true;
             }
