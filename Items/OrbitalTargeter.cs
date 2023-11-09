@@ -13,9 +13,13 @@ namespace RS4A.Items
     {
         public override void SetDefaults()
         {
-            Item.useStyle = ItemUseStyleID.None;
+            Item.useStyle = ItemUseStyleID.EatFood;
             Item.rare = ItemRarityID.Expert;
             Item.consumable = false;
+
+            //testing
+            Item.buffTime = 300;
+            Item.buffType = ModContent.BuffType<Buffs.OrbitalStrike>();
             
         }
 

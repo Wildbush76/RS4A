@@ -132,6 +132,7 @@ Items: {
 		DisplayName: Uranium ore
 		Tooltip: ""
 	}
+
 	OrbitalTargeter: {
 		DisplayName: Orbital Targeter
 		Tooltip: vaporize your enemies
