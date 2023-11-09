@@ -11,8 +11,8 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Nuclear fuel cell");
-            //Tooltip.SetDefault("It's an oversized glow stick");
+            // DisplayName.SetDefault("Nuclear fuel cell");
+            // Tooltip.SetDefault("It's an oversized glow stick");
         }
         public override void SetDefaults()
         {

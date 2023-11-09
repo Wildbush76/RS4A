@@ -9,8 +9,8 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Lead Water");
-            //Tooltip.SetDefault("MMMMMMMMMM flavor");
+            // DisplayName.SetDefault("Lead Water");
+            // Tooltip.SetDefault("MMMMMMMMMM flavor");
         }
 
         public override void SetDefaults()

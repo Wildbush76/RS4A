@@ -11,8 +11,8 @@ namespace RS4A.Items
   {
         public override void SetStaticDefaults()
         {
-			//DisplayName.SetDefault("Hydrogen Bomb");
-			//Tooltip.SetDefault("its a very large bomb");
+			// DisplayName.SetDefault("Hydrogen Bomb");
+			// Tooltip.SetDefault("its a very large bomb");
 		}
         public override void SetDefaults()
 		{

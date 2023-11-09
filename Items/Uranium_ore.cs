@@ -11,8 +11,8 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Uranium ore");
-            //Tooltip.SetDefault("Glowing green rock");
+            // DisplayName.SetDefault("Uranium ore");
+            // Tooltip.SetDefault("Glowing green rock");
         }
         public override void SetDefaults()
         {

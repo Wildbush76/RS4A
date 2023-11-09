@@ -11,8 +11,8 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("The Hand");
-			//Tooltip.SetDefault("Botttom Text");
+			// DisplayName.SetDefault("The Hand");
+			// Tooltip.SetDefault("Botttom Text");
 		}
 
 		public override void SetDefaults()

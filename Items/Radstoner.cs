@@ -11,8 +11,8 @@ namespace RS4A.Items
   {
         public override void SetStaticDefaults()
         {
-			//DisplayName.SetDefault("Radioactive stone");
-			//Tooltip.SetDefault("  ");
+			// DisplayName.SetDefault("Radioactive stone");
+		//	Tooltip.SetDefault("  ");
 		}
         public override void SetDefaults()
 		{

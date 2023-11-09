@@ -11,8 +11,8 @@ namespace RS4A.Items
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Nuke");
-            //Tooltip.SetDefault("This is a great idea!");
+            // DisplayName.SetDefault("Nuke");
+            // Tooltip.SetDefault("This is a great idea!");
         }
         public override void SetDefaults()
         {

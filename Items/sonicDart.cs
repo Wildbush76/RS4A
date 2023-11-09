@@ -11,8 +11,8 @@ namespace RS4A.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Sonic Dart");
-			//Tooltip.SetDefault("A.K.A The Ranged Lance™");
+			// DisplayName.SetDefault("Sonic Dart");
+			// Tooltip.SetDefault("A.K.A The Ranged Lance™");
 		}
 
 		public override void SetDefaults()

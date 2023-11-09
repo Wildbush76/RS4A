@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\super\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {}
+    "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {}
   },
   "projects": {
-    "C:\\Users\\super\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {
+    "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\super\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
+        "projectUniqueName": "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
         "projectName": "RS4A",
-        "projectPath": "C:\\Users\\super\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
-        "packagesPath": "C:\\Users\\super\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\super\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\obj\\",
+        "projectPath": "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
+        "packagesPath": "C:\\Users\\wildb\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\super\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wildb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
