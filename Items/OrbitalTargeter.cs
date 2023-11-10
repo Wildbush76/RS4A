@@ -18,7 +18,7 @@ namespace RS4A.Items
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                Projectile.NewProjectile(player.GetSource_FromAI(), player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0);
+                Projectile.NewProjectile(player.GetSource_FromAI(), player.Center + new Vector2(Main.screenWidth, Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0);
             }
             return true;
         }

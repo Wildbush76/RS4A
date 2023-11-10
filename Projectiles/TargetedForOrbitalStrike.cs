@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -9,6 +10,7 @@ namespace RS4A.Projectiles
     {
         private Player target;
         private bool targetLocked;
+        private float minLockOnDistance = 8;
         public override void SetDefaults()
         {
             Projectile.width = 50;
@@ -16,7 +18,6 @@ namespace RS4A.Projectiles
             Projectile.penetrate = 1;
             Projectile.damage = 1;
             Projectile.friendly = false;
-            Projectile.timeLeft = 300;
             Projectile.tileCollide = false;
         }
 
@@ -39,8 +40,27 @@ namespace RS4A.Projectiles
 
         public override void AI()
         {
+            if (targetLocked)
+            {
+                Projectile.Center = target.Center;
+            }
+            else
+            {
+                float dist = Vector2.Distance(Projectile.Center, target.Center);
+                float speedModifer = MathF.Pow(dist/60f,2);
+                speedModifer = MathF.Max(speedModifer,1);
+                float angle = MathF.Atan2(target.Center.Y - Projectile.Center.Y, target.Center.X - Projectile.Center.X);
+                Projectile.velocity.X = speedModifer * MathF.Cos(angle);
+                Projectile.velocity.Y = speedModifer * MathF.Sin(angle);
+                Projectile.position += Projectile.velocity;//maybe?
+
+                if (dist <= minLockOnDistance) {
+                    Projectile.timeLeft = 300;
+                    targetLocked = true;
+                }
+            }
             //TODO improve this 
-            Projectile.Center = Main.player[Projectile.owner].Center;
+            
             Projectile.rotation += MathHelper.ToRadians(6);
         }
     }
