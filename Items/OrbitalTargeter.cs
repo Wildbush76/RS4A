@@ -18,7 +18,7 @@ namespace RS4A.Items
             Item.consumable = false;
 
             //testing
-            Item.buffTime = 300;
+            SItem.buffTime = 300;
             Item.buffType = ModContent.BuffType<Buffs.OrbitalStrike>();
             
         }

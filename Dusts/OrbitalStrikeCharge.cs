@@ -22,7 +22,7 @@ namespace RS4A.Dusts
             dust.noLight = false;
         }
            
-
+        
         public override bool Update(Dust dust)
         {
             dust.scale -= shrinkRate;
