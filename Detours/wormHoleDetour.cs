@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
+using Microsoft.CodeAnalysis;
+using Terraria.ID;
 
 namespace RS4A.Detours
 {
@@ -20,7 +22,7 @@ namespace RS4A.Detours
             On_Player.UnityTeleport += On_Player_UnityTeleport;
         }
 
-        private void On_Player_UnityTeleport(On_Player.orig_UnityTeleport orig, Player self, Microsoft.Xna.Framework.Vector2 telePos)
+        private void On_Player_UnityTeleport(On_Player.orig_UnityTeleport orig, Player self, Vector2 telePos)
         {
             if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalTargeter>()))
             {
@@ -29,8 +31,8 @@ namespace RS4A.Detours
                 Player closestPlayer = null;
                 for (int i = 0; i < Main.maxPlayers; i++) {
                     Player player = Main.player[i];
-                    if (player.active) {
-                        double dist = Vector2.Distance(new Vector2(telePos.X,telePos.Y), new Vector2(player.Center.X, player.Center.Y));
+                    if (player.active && !player.dead) {
+                        double dist = Vector2.Distance(telePos, player.Center);
                         if (dist < closest) {
                             closest = dist;
                             closestPlayer = player;
@@ -43,7 +45,7 @@ namespace RS4A.Detours
                 }
                 else
                 {
-                    closestPlayer.AddBuff(ModContent.BuffType<Buffs.OrbitalStrike>(), 5);
+                    closestPlayer.AddBuff(ModContent.BuffType<Buffs.OrbitalStrike>(), 200,false);
                 }
             }
             else {
