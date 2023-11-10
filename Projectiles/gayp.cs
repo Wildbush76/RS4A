@@ -9,12 +9,6 @@ namespace RS4A.Projectiles
 {
 	public class Gayp : ModProjectile
 	{
-		public override void SetStaticDefaults()
-		{
-
-			// DisplayName.SetDefault("Gay juice");
-
-		}
 		public override void SetDefaults()
 		{
 			Projectile.damage = 100;

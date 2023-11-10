@@ -32,7 +32,7 @@ namespace RS4A.Projectiles
 			bool f = false;
 			Vector2 position = Projectile.Center;
 			SoundEngine.PlaySound(SoundID.Item14, position);
-			Random q = new Random();
+			Random q =  new();
 			int radius = 10;
 			for (int k = 0; k < 2; k++)
 			{

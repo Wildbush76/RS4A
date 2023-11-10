@@ -148,4 +148,5 @@ Projectiles: {
 	sonicDartP.DisplayName: Sonic Dart
 	Throwing_nurse.DisplayName: Throwing nurse
 	UrBullet.DisplayName: Uranium Bullet
+	OrbitalStrikeProjectile.DisplayName: Orbital Strike Projectile
 }
