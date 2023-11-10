@@ -149,4 +149,5 @@ Projectiles: {
 	Throwing_nurse.DisplayName: Throwing nurse
 	UrBullet.DisplayName: Uranium Bullet
 	OrbitalStrikeProjectile.DisplayName: Orbital Strike Projectile
+	Targeting.DisplayName: Targeting
 }

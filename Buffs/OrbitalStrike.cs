@@ -25,7 +25,7 @@ namespace RS4A.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             if (player.buffTime[buffIndex] == 1) {
-                Projectile.NewProjectile(player.GetSource_FromAI(), new Vector2(player.position.X, player.position.Y - Main.screenHeight), new Vector2(0, 30),ModContent.ProjectileType<Projectiles.OrbitalStrikeProjectile>(),3000,2);
+                Projectile.NewProjectile(player.GetSource_FromAI(), new Vector2(player.position.X - 50, player.position.Y - 50), new Vector2(0, 0),ModContent.ProjectileType<Projectiles.Targeting>(),1,1);
             }
        
         }

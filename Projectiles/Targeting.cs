@@ -13,19 +13,28 @@ namespace RS4A.Projectiles
     {
         public override void SetDefaults()
         {
-            Projectile.aiStyle = 11;
             Projectile.width = 22;
             Projectile.height = 22;
+            Projectile.penetrate = 1;
+            Projectile.damage = 1;
+            Projectile.friendly = false;
+            Projectile.timeLeft = 300;
+            Projectile.tileCollide = false;
+           
         }
 
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+
+        public override void OnKill(int timeLeft)
         {
-            //something
+            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.position - new Vector2(0, Main.screenHeight), new Vector2(0, 30), ModContent.ProjectileType<Projectiles.OrbitalStrikeProjectile>(), 200, 1);
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        public override void AI()
         {
-            return false;
+            Projectile.position = Main.player[Projectile.owner].Center;
+            Projectile.rotation += MathHelper.ToRadians(6);
+            
+           
         }
     }
 }
