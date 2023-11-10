@@ -44,7 +44,7 @@ Items: {
 	}
 
 	hand: {
-		DisplayName: hand
+		DisplayName: The HAND
 		Tooltip: big slappy
 	}
 
@@ -130,7 +130,7 @@ Items: {
 
 	Uranium_or: {
 		DisplayName: Uranium Ore
-		Tooltip: 
+		Tooltip: ""
 	}
 
 	OrbitalTargeter: {
