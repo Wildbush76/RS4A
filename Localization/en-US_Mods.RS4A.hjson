@@ -75,7 +75,7 @@ Items: {
 
 	Nfuel: {
 		DisplayName: Nuclear Fuel Cell
-		Tooltip: 
+		Tooltip: ""
 	}
 
 	Nuke: {
