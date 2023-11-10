@@ -2,8 +2,8 @@ Tiles.Uranium.MapEntry: Uranium
 
 Buffs: {
 	army: {
-		DisplayName: army
-		Description: Mods.RS4A.Buffs.army.Description
+		DisplayName: Army Recruiter
+		Description: 
 	}
 
 	Gay: {
@@ -29,23 +29,23 @@ Buffs: {
 
 Items: {
 	armyPot: {
-		DisplayName: army Pot
-		Tooltip: ""
+		DisplayName: Army Potion
+		Tooltip: Makes you an army recruiter
 	}
 
 	Gayo: {
-		DisplayName: Gayo
-		Tooltip: ""
+		DisplayName: Gay-Inator Mk1
+		Tooltip: Become the gay
 	}
 
 	hallowed_shortsword: {
 		DisplayName: hallowed_shortsword
-		Tooltip: ""
+		Tooltip: not copied from clamty i swear
 	}
 
 	hand: {
 		DisplayName: hand
-		Tooltip: ""
+		Tooltip: big slappy
 	}
 
 	Hazmat: {
@@ -60,12 +60,12 @@ Items: {
 
 	Leadwater: {
 		DisplayName: Leadwater
-		Tooltip: ""
+		Tooltip: mmm tasty
 	}
 
 	leeroy_emblem: {
-		DisplayName: leeroy emblem
-		Tooltip: ""
+		DisplayName: Leeroy Emblem
+		Tooltip: Gives more damage the lower defense and damage reduction you have
 	}
 
 	LG: {
@@ -84,18 +84,18 @@ Items: {
 	}
 
 	Nurse: {
-		DisplayName: Nurse
-		Tooltip: ""
+		DisplayName: Nurse Sword
+		Tooltip: Her soul is trapped in it
 	}
 
 	ODM: {
-		DisplayName: O D M
-		Tooltip: ""
+		DisplayName: ODM Gear
+		Tooltip: only for the low low price of 10 wood!
 	}
 
 	radiological_stick: {
-		DisplayName: radiological stick
-		Tooltip: ""
+		DisplayName: Radiological Stick
+		Tooltip: Don't get burnt
 	}
 
 	Radstoner: {
@@ -104,33 +104,33 @@ Items: {
 	}
 
 	sonicDart: {
-		DisplayName: sonic Dart
-		Tooltip: ""
+		DisplayName: Sonic Dart
+		Tooltip: Does more damage the faster you're going
 	}
 
 	terraSabre: {
-		DisplayName: terra Sabre
-		Tooltip: ""
+		DisplayName: TerraSabre
+		Tooltip: Looks like it's made out of foam
 	}
 
 	Tnurse: {
-		DisplayName: Throwing nurse
-		Tooltip: ""
+		DisplayName: Throwing Nurse
+		Tooltip: but why?
 	}
 
 	Ubullet: {
-		DisplayName: Uranium bullet
+		DisplayName: Uranium Bullet
 		Tooltip: ""
 	}
 
 	Uranium_bar: {
-		DisplayName: Uranium bar
+		DisplayName: Uranium Bar
 		Tooltip: ""
 	}
 
 	Uranium_or: {
-		DisplayName: Uranium ore
-		Tooltip: ""
+		DisplayName: Uranium Ore
+		Tooltip: 
 	}
 
 	OrbitalTargeter: {
@@ -140,12 +140,12 @@ Items: {
 }
 
 Projectiles: {
-	Gayp.DisplayName: Gayp
-	H_Bomb.DisplayName: H_ Bomb
-	handT.DisplayName: hand T
-	Nukep.DisplayName: Nukep
-	ODM.DisplayName: O D M
-	sonicDartP.DisplayName: sonic Dart P
-	Throwing_nurse.DisplayName: Throwing_nurse
-	UrBullet.DisplayName: Ur Bullet
+	Gayp.DisplayName: Gay Porn!!!!!!!
+	H_Bomb.DisplayName: Hydrogen Bomb
+	handT.DisplayName: Hand
+	Nukep.DisplayName: Nuke
+	ODM.DisplayName: ODM
+	sonicDartP.DisplayName: Sonic Dart
+	Throwing_nurse.DisplayName: Throwing nurse
+	UrBullet.DisplayName: Uranium Bullet
 }
