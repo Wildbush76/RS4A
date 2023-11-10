@@ -11,6 +11,7 @@ namespace RS4A.Projectiles
         private Player target;
         private bool targetLocked;
         private float minLockOnDistance = 8;
+        private float timeSpeedModifer = 0f;
         public override void SetDefaults()
         {
             Projectile.width = 50;
@@ -46,16 +47,17 @@ namespace RS4A.Projectiles
             }
             else
             {
+                timeSpeedModifer += 0.03f;
                 float dist = Vector2.Distance(Projectile.Center, target.Center);
-                float speedModifer = MathF.Pow(dist/60f,2);
-                speedModifer = MathF.Max(speedModifer,1);
+                float speedModifer = dist/60f + timeSpeedModifer;
+                speedModifer = Math.Clamp(speedModifer,1,20);
                 float angle = MathF.Atan2(target.Center.Y - Projectile.Center.Y, target.Center.X - Projectile.Center.X);
                 Projectile.velocity.X = speedModifer * MathF.Cos(angle);
                 Projectile.velocity.Y = speedModifer * MathF.Sin(angle);
                 Projectile.position += Projectile.velocity;//maybe?
 
                 if (dist <= minLockOnDistance) {
-                    Projectile.timeLeft = 300;
+                    Projectile.timeLeft = 200;
                     targetLocked = true;
                 }
             }
