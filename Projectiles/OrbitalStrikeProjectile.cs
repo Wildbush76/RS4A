@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-
 using Terraria.DataStructures;
-using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
 {
@@ -17,7 +11,7 @@ namespace RS4A.Projectiles
     {
         private const int blastRadius = 20;//includes the burnt block radius
         private const int burntBlockLayers = 6;
-        private const float playerDamageRadius = 100 * 8;
+        private const float playerDamageRadius = 50 * 8;
         private const int maxDamge = 20000;
         public override void SetDefaults()
         {
@@ -74,8 +68,24 @@ namespace RS4A.Projectiles
                     if (dist < playerDamageRadius)
                     {
                         int damage = (int)(playerDamageRadius / (playerDamageRadius - dist) * maxDamge);
+                        String deathMessage = "";
+                        switch (random.Next(0, 3))
+                        {
+                            case 0:
+                                deathMessage = " was reduced to sub-atomic particles";
+                                break;
+                            case 1:
+                                deathMessage = " was turned into radiactive ash";
+                                break;
+                            case 2:
+                                deathMessage = " was obliterated";
+                                break;
+                            case 3:
+                                deathMessage = " was annilaited by " + Main.player[Projectile.owner].name;
+                                break;
+                        }
                         //apply calulated damage to the target player here
-                        targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + " was reduced to sub-atomic particles"), damage, 1, dodgeable: false);
+                        targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessage), damage, 1, dodgeable: false);
                     }
                 }
             }
