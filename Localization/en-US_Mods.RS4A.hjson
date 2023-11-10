@@ -3,7 +3,7 @@ Tiles.Uranium.MapEntry: Uranium
 Buffs: {
 	army: {
 		DisplayName: Army Recruiter
-		Description: 
+		Description: You are now an army recruiter
 	}
 
 	Gay: {
@@ -39,7 +39,7 @@ Items: {
 	}
 
 	hallowed_shortsword: {
-		DisplayName: hallowed_shortsword
+		DisplayName: Hallowed Shortsword
 		Tooltip: not copied from clamty i swear
 	}
 
@@ -49,17 +49,17 @@ Items: {
 	}
 
 	Hazmat: {
-		DisplayName: Hazmat
+		DisplayName: Hazmat Suit
 		Tooltip: ""
 	}
 
 	Hbomb: {
-		DisplayName: Hbomb
+		DisplayName: Hydrogen Bomb
 		Tooltip: ""
 	}
 
 	Leadwater: {
-		DisplayName: Leadwater
+		DisplayName: Lead Water
 		Tooltip: mmm tasty
 	}
 
@@ -69,13 +69,13 @@ Items: {
 	}
 
 	LG: {
-		DisplayName: L G
-		Tooltip: ""
+		DisplayName: TRANS sword
+		Tooltip: C:
 	}
 
 	Nfuel: {
-		DisplayName: Nfuel
-		Tooltip: ""
+		DisplayName: Nuclear Fuel Cell
+		Tooltip: 
 	}
 
 	Nuke: {
