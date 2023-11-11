@@ -26,11 +26,9 @@ Buffs: {
 		Description: you are about to be obliterated
 	}
 }
-NPCs: {
-	StupidBossBody: {
-		DisplayName: Stupid Boss
-	}
-}
+
+NPCs.StupidBossBody.DisplayName: Stupid Boss
+
 Items: {
 	armyPot: {
 		DisplayName: Army Potion
