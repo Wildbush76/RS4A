@@ -8,6 +8,13 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="NPCs\StupidBoss\MinionBossBody_Back.png" />
+    <None Remove="NPCs\StupidBoss\MinionBossBody_Front.png" />
+    <None Remove="NPCs\StupidBoss\StupidBossBody.png" />
+    <None Remove="NPCs\StupidBoss\StupidBossBody_Head_Boss.png" />
+    <None Remove="NPCs\StupidBoss\StupidBossBody_Head_Boss_SecondStage.png" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
 </Project>
