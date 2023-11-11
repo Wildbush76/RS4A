@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Detours
 {
-    internal class wormHoleDetour : ModSystem
+    internal class WormHoleDetour : ModSystem
     {
         public override void Load()
         {
@@ -39,7 +39,7 @@ namespace RS4A.Detours
                 }
                 else
                 {
-                    Projectile.NewProjectile(closestPlayer.GetSource_FromThis(), closestPlayer.Center + new Vector2(Main.screenWidth,Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0);
+                    Projectile.NewProjectile(closestPlayer.GetSource_FromThis(), closestPlayer.Center + new Vector2(Main.screenWidth,Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0,ai0:closestPlayer.whoAmI);
                 }
             }
             else

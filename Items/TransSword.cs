@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-    public class LG : ModItem
+    public class TransSword : ModItem
     {
         public override void SetStaticDefaults()
         {

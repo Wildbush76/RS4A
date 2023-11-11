@@ -5,7 +5,7 @@ using RS4A.Buffs;
 
 namespace RS4A.Items
 {
-	public class Gayo : ModItem
+	public class Gayinator : ModItem
 	{
 		public override void SetStaticDefaults() 
 		{
