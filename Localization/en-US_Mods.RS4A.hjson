@@ -26,7 +26,11 @@ Buffs: {
 		Description: you are about to be obliterated
 	}
 }
-
+NPCs: {
+	StupidBossBody: {
+		DisplayName: Stupid Boss
+	}
+}
 Items: {
 	armyPot: {
 		DisplayName: Army Potion
@@ -153,5 +157,3 @@ Projectiles: {
 	TargetedForOrbitalStrike.DisplayName: Targeted For Orbital Strike
 	weirdProjectile.DisplayName: weird Projectile
 }
-
-NPCs.StupidBossBody.DisplayName: Stupid Boss
