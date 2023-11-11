@@ -4,7 +4,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RS4A.Projectiles
+namespace RS4A.Projectiles.StupidBossProjectiles
 {
     public class weirdProjectile : ModProjectile
     {

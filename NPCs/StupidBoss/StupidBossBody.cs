@@ -48,7 +48,7 @@ namespace RS4A.NPCs.StupidBoss
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 6;
+            Main.npcFrameCount[Type] = 8;
 
             // Add this in for bosses that have a summon item, requires corresponding code in the item (See MinionBossSummonItem.cs)
             NPCID.Sets.MPAllowedEnemies[Type] = true;
@@ -278,14 +278,14 @@ namespace RS4A.NPCs.StupidBoss
         private void DoFirstStage(Player player)
         {
             // its as shrimple as that
-            Vector2 fromPlayer = NPC.Center - player.Center;
+            Vector2 fromPlayer = player.Center - NPC.Center;
             float angle = fromPlayer.ToRotation();
             NPC.velocity = angle.ToRotationVector2() * speed;
         }
 
         private void DoSecondStage(Player player)
         {
-            Vector2 fromPlayer = NPC.Center - player.Center;
+            Vector2 fromPlayer = player.Center - NPC.Center;
             float angle = fromPlayer.ToRotation();
             NPC.velocity = angle.ToRotationVector2() * speed;
         }

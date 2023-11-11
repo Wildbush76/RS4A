@@ -151,4 +151,7 @@ Projectiles: {
 	OrbitalStrikeProjectile.DisplayName: Orbital Strike Projectile
 	Targeting.DisplayName: Targeting
 	TargetedForOrbitalStrike.DisplayName: Targeted For Orbital Strike
+	weirdProjectile.DisplayName: weird Projectile
 }
+
+NPCs.StupidBossBody.DisplayName: Stupid Boss

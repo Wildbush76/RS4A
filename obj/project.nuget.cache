@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wtRqJr7evLbhdYGfv1o4h64ARc3tDw2171/7fVIAk1o+YoaIGf3pvswJtAnIp6B35wBWaFBbuOi0wwyFVcUarQ==",
+  "dgSpecHash": "pDEPabju6B8CzS9kYefmtOb2wWHoutbGYHJwxevvC5wcbELvamwoMg9nepsetcNbFFjBvqH7f5HtiWIVK2w9nw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
+  "projectFilePath": "C:\\Users\\Derek Lin\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\wildb\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+    "C:\\Users\\Derek Lin\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {}
+    "C:\\Users\\Derek Lin\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {
+    "C:\\Users\\Derek Lin\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
+        "projectUniqueName": "C:\\Users\\Derek Lin\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
         "projectName": "RS4A",
-        "projectPath": "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
-        "packagesPath": "C:\\Users\\wildb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wildb\\OneDrive\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\obj\\",
+        "projectPath": "C:\\Users\\Derek Lin\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\RS4A.csproj",
+        "packagesPath": "C:\\Users\\Derek Lin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Derek Lin\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\RS4A\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\wildb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Derek Lin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
