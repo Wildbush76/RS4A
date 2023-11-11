@@ -27,6 +27,8 @@ namespace RS4A.Projectiles
         }
         public override void OnKill(int timeleft)
         {
+
+            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion, 0, 0);
             Random random = new();
             for (int x = -blastRadius; x <= blastRadius; x++)
             {
