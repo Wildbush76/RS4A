@@ -71,7 +71,7 @@ namespace RS4A.Projectiles
                     {
                         int damage = (int)(playerDamageRadius / (playerDamageRadius - dist) * maxDamge);
                         String deathMessage = "";
-                        switch (random.Next(0, 3))
+                        switch (random.Next(0, 4))
                         {
                             case 0:
                                 deathMessage = " was reduced to sub-atomic particles";

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Chat;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
@@ -32,9 +34,14 @@ namespace RS4A.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
+
             if (source is EntitySource_Parent parent && parent.Entity is Player player)
             {
                 target = player;
+                ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Can find the target"), Color.Green, Main.myPlayer);
+            }
+            else {
+                ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Cant find the target"),Color.Red,Main.myPlayer);
             }
             base.OnSpawn(source);
         }
