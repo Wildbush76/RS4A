@@ -1,6 +1,9 @@
+using Microsoft.Xna.Framework;
 using RS4A.Buffs;
 using Terraria;
+using Terraria.Chat;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RS4A.Items
@@ -28,6 +31,7 @@ namespace RS4A.Items
             { //100 is the range
               //player.GetDamage(DamageClass.Generic) += (10 - player.statDefense / 10); //this equation is dogshit
                 player.GetDamage(DamageClass.Generic) += 2 * (1 - player.statDefense / 100) * player.endurance; //maximum of 200% damage (no defense, hard to do at post-moonlord as armor and accessories start giving the good stuff)
+                ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("it is doing things"), Color.Green, Main.myPlayer);
 
             }
         }

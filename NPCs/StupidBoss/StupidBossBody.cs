@@ -224,15 +224,25 @@ namespace RS4A.NPCs.StupidBoss
 
         public override void AI()
         {
-            // This should almost always be the first code in AI() as it is responsible for finding the proper player target
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            //get very close guy
+            double closest = 1300;
+            Player closestPlayer = null;
+
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
-                NPC.TargetClosest();
+                Player player = Main.player[i];
+                if (player.active && !player.dead)
+                {
+                    double dist = Vector2.Distance(NPC.Center, player.Center);
+                    if (dist < closest)
+                    {
+                        closest = dist;
+                        closestPlayer = player;
+                    }
+                }
             }
 
-            Player player = Main.player[NPC.target];
-
-            if (player.dead)
+            if (closestPlayer == null)
             {
                 // If the targeted player is dead, flee
                 NPC.velocity.Y -= 0.04f;
@@ -246,11 +256,11 @@ namespace RS4A.NPCs.StupidBoss
 
             if (SecondStage)
             {
-                DoSecondStage(player);
+                DoSecondStage(closestPlayer);
             }
             else
             {
-                DoFirstStage(player);
+                DoFirstStage(closestPlayer);
             }
         }
 
