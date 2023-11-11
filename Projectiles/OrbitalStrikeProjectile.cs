@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-
 using Terraria.DataStructures;
-
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
 {
@@ -17,23 +11,23 @@ namespace RS4A.Projectiles
     {
         private const int blastRadius = 20;//includes the burnt block radius
         private const int burntBlockLayers = 6;
-        private const int playerDamageRadius = 20;
+        private const float playerDamageRadius = 50 * 8;
         private const int maxDamge = 20000;
         public override void SetDefaults()
         {
-            Projectile.damage = 2000;
+            Projectile.damage = 1;
             Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.width = 10;
             Projectile.height = 10;
             Projectile.aiStyle = 0;
             Projectile.penetrate = 1;
-            
+
 
         }
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        public override void OnKill(int timeleft)
         {
-            Random random =  new();
+            Random random = new();
             for (int x = -blastRadius; x <= blastRadius; x++)
             {
                 for (int y = -blastRadius; y <= blastRadius; y++)
@@ -55,27 +49,46 @@ namespace RS4A.Projectiles
                                 WorldGen.PlaceTile(xPosition, yPosition, TileID.Obsidian, true);
                             }
                         }
-                        else {
+                        else
+                        {
                             WorldGen.KillTile(xPosition, yPosition, false, false, true);
                             WorldGen.KillWall(xPosition, yPosition);
                         }
                         Dust.NewDust(new Vector2(xPosition, yPosition), 22, 22, DustID.FlameBurst, 0.0f, 0.0f, 120, new Color(), 1f);
                     }
                 }
-              
+
             }
-            for (int player = 0; player < Main.maxPlayers; player++) { 
+            for (int player = 0; player < Main.maxPlayers; player++)
+            {
                 Player targetPlayer = Main.player[player];
-                if (targetPlayer.active && !targetPlayer.dead) {
+                if (targetPlayer.active && !targetPlayer.dead)
+                {
                     float dist = Vector2.Distance(Projectile.Center, targetPlayer.Center);
-                    if ( dist < playerDamageRadius) {
+                    if (dist < playerDamageRadius)
+                    {
                         int damage = (int)(playerDamageRadius / (playerDamageRadius - dist) * maxDamge);
+                        String deathMessage = "";
+                        switch (random.Next(0, 3))
+                        {
+                            case 0:
+                                deathMessage = " was reduced to sub-atomic particles";
+                                break;
+                            case 1:
+                                deathMessage = " was turned into radiactive ash";
+                                break;
+                            case 2:
+                                deathMessage = " was obliterated";
+                                break;
+                            case 3:
+                                deathMessage = " was annilaited by " + Main.player[Projectile.owner].name;
+                                break;
+                        }
                         //apply calulated damage to the target player here
-                        targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + " was reduced to sub-atomic particles"),damage,1,dodgeable:false);
+                        targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessage), damage, 1, dodgeable: false);
                     }
                 }
             }
-            return true;
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
@@ -13,14 +9,18 @@ namespace RS4A.Items
     {
         public override void SetDefaults()
         {
-            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.useStyle = ItemUseStyleID.Thrust;
             Item.rare = ItemRarityID.Expert;
             Item.consumable = false;
+        }
 
-            //testing
-            Item.buffTime = 300;
-            Item.buffType = ModContent.BuffType<Buffs.OrbitalStrike>();
-            
+        public override bool? UseItem(Player player)
+        {
+            if (player.whoAmI == Main.myPlayer)
+            {
+                Projectile.NewProjectile(player.GetSource_FromAI(), player.Center + new Vector2(Main.screenWidth, Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0);
+            }
+            return true;
         }
 
         public override void AddRecipes()
