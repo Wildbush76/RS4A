@@ -7,13 +7,8 @@ using RS4A.Projectiles;
 
 namespace RS4A.Items
 {
-	public class sonicDart : ModItem
+	public class SonicDart : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Sonic Dart");
-			// Tooltip.SetDefault("A.K.A The Ranged Lance™");
-		}
 
 		public override void SetDefaults()
 		{
@@ -35,7 +30,7 @@ namespace RS4A.Items
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Throwing;
-			Item.shoot = ModContent.ProjectileType<sonicDartP>();
+			Item.shoot = ModContent.ProjectileType<SonicDartProjectile>();
 		}
 		public override void AddRecipes()
 		{

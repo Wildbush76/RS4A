@@ -1,39 +1,32 @@
-using System;
 using Microsoft.Xna.Framework;
+using RS4A.Tiles;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RS4A.Tiles;
 namespace RS4A.Projectiles
 {
-    public class H_Bomb : ModProjectile
+    public class NukeProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-
-            // DisplayName.SetDefault("Nuke");
-
-        }
         public override void SetDefaults()
         {
-            Projectile.damage = 500;
+            Projectile.damage = 150;
             Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Ranged;
-            Projectile.width = 8;
-            Projectile.height = 8;
-            Projectile.aiStyle = 16;
+            Projectile.width = 10;
+            Projectile.height = 10;
+            Projectile.aiStyle = 34;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 180;
-        }
-        public override void Kill(int timeLeft)
-        {
 
+        }
+        public override void OnKill(int timeLeft)
+        {
             bool f = false;
             Vector2 position = Projectile.Center;
             SoundEngine.PlaySound(SoundID.Item14, position);
-            Random crat = new Random();
-            int radius = 150;
+            Random q = new();
+            int radius = 10;
             for (int k = 0; k < 2; k++)
             {
                 for (int x = -radius; x <= radius; x++)
@@ -47,34 +40,14 @@ namespace RS4A.Projectiles
                         {
                             if (f == true && Framing.GetTileSafely(xPosition, yPosition).HasTile)
                             {
-                                int xadd = crat.Next(1, 7);
-                                int yadd = crat.Next(1, 7);
-                                int xsub = crat.Next(1, 7);
-                                int ysub = crat.Next(1, 7);
-                                int fill = crat.Next(1, 11);
-                                if (yadd < 5)
+
+                                int a = q.Next(1, 5);
+                                if (a == 2)
                                 {
-                                    yPosition++;
-                                }
-                                if (xadd < 5)
-                                {
-                                    xPosition++;
-                                }
-                                if (xsub < 5)
-                                {
-                                    xPosition--;
-                                }
-                                if (ysub < 5)
-                                {
-                                    yPosition--;
-                                }
-                                if (fill < 9)
-                                {
+                                    //testing thingy
                                     WorldGen.KillTile(xPosition, yPosition, false, false, false);
+                                    WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<RadioactiveStone>(), true);
                                 }
-                                WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<Radstone>(), true);
-
-
                             }
                             if (f == false)
                             {
@@ -85,9 +58,8 @@ namespace RS4A.Projectiles
                     }
                 }
                 f = true;
-                radius += 5;
+                radius += 4;
             }
-
         }
 
 

@@ -1,17 +1,11 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using RS4A.Buffs;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 namespace RS4A.Items
 {
-    class Hazmat : ModItem
+    class NotGayLicense : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Not-Gay License");
-            // Tooltip.SetDefault("Makes you immune to gay");
-
-        }
         public override void SetDefaults()
         {
             Item.accessory = true;

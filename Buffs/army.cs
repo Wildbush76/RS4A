@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Buffs
 {
-    public class army : ModBuff
+    public class Army : ModBuff
     {
         public override void SetStaticDefaults()
         {

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-    internal class OrbitalTargeter : ModItem
+    internal class OrbitalStrike : ModItem
     {
         public override void SetDefaults()
         {

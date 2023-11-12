@@ -18,7 +18,7 @@ namespace RS4A.Items
             Item.CloneDefaults(ItemID.AmethystHook);
           
             Item.shootSpeed = 40f;
-            Item.shoot = Mod.Find<ModProjectile>("ODM").Type;
+            Item.shoot = ModContent.ProjectileType<Projectiles.ODM>();
         }
         public override void AddRecipes() 
         {

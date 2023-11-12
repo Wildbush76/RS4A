@@ -1,20 +1,11 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
+﻿using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
-    public class handT : ModProjectile
+    public class HandProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-
-            // DisplayName.SetDefault("hand");
-
-        }
         public override void SetDefaults()
         {
             Projectile.scale = 1;
@@ -35,7 +26,7 @@ namespace RS4A.Projectiles
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
         }

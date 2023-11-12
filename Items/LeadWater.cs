@@ -5,14 +5,8 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-    public class Leadwater : ModItem
+    public class LeadWater : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Lead Water");
-            // Tooltip.SetDefault("MMMMMMMMMM flavor");
-        }
-
         public override void SetDefaults()
         {
             Item.width = 20;

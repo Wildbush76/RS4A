@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 using RS4A.Tiles;
 namespace RS4A.Projectiles
 {
-	public class Gayp : ModProjectile
+	public class GayProjectile : ModProjectile
 	{
 		public override void SetDefaults()
 		{
@@ -24,7 +24,7 @@ namespace RS4A.Projectiles
 		}
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-			target.AddBuff(Mod.Find<ModBuff>("Gay").Type, 36000); //lmao box
+			target.AddBuff(ModContent.BuffType<Buffs.Gay>(), 36000); //lmao box
 		}
     }
 }

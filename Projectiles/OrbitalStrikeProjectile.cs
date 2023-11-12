@@ -11,8 +11,9 @@ namespace RS4A.Projectiles
     {
         private const int blastRadius = 20;//includes the burnt block radius
         private const int burntBlockLayers = 6;
-        private const float playerDamageRadius = 50 * 8;
+        private const float playerDamageRadius = 100 * 8;
         private const int maxDamge = 20000;
+        private ushort[] craterTiles = {TileID.Obsidian,TileID.Ash,TileID.Meteorite};
         public override void SetDefaults()
         {
             Projectile.damage = 1;
@@ -22,8 +23,6 @@ namespace RS4A.Projectiles
             Projectile.height = 10;
             Projectile.aiStyle = 0;
             Projectile.penetrate = 1;
-
-
         }
         public override void OnKill(int timeleft)
         {
@@ -48,7 +47,7 @@ namespace RS4A.Projectiles
                             {
                                 WorldGen.KillTile(xPosition, yPosition, false, false, true);
                                 WorldGen.KillWall(xPosition, yPosition);
-                                WorldGen.PlaceTile(xPosition, yPosition, TileID.Obsidian, true);
+                                WorldGen.PlaceTile(xPosition, yPosition, craterTiles[random.Next(0,craterTiles.Length)], true);
                             }
                         }
                         else
@@ -69,7 +68,7 @@ namespace RS4A.Projectiles
                     float dist = Vector2.Distance(Projectile.Center, targetPlayer.Center);
                     if (dist < playerDamageRadius)
                     {
-                        int damage = (int)(playerDamageRadius / (playerDamageRadius - dist) * maxDamge);
+                        int damage = (int)((playerDamageRadius - dist) / playerDamageRadius * maxDamge);
                         String deathMessage = "";
                         switch (random.Next(0, 4))
                         {
@@ -87,6 +86,7 @@ namespace RS4A.Projectiles
                                 break;
                         }
                         //apply calulated damage to the target player here
+
                         targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessage), damage, 1, dodgeable: false);
                     }
                 }

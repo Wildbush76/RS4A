@@ -1,7 +1,10 @@
-Tiles.Uranium.MapEntry: Uranium
+Tiles: {
+	Uranium.MapEntry: Uranium
+	UraniumOre.MapEntry: Uranium Ore
+}
 
 Buffs: {
-	army: {
+	Army: {
 		DisplayName: Army Recruiter
 		Description: You are now an army recruiter
 	}
@@ -11,69 +14,69 @@ Buffs: {
 		Description: Mods.RS4A.Buffs.Gay.Description
 	}
 
-	Rad: {
+	Radiation: {
 		DisplayName: Rad
 		Description: Mods.RS4A.Buffs.Rad.Description
 	}
 
-	Rad1: {
+	Radation2: {
 		DisplayName: Rad1
 		Description: Mods.RS4A.Buffs.Rad1.Description
 	}
 
-	OrbitalStrike: {
-		DisplayName: Orbital Strike
-		Description: you are about to be obliterated
+	Radiation2: {
+		DisplayName: Radiation2
+		Description: Mods.RS4A.Buffs.Radiation2.Description
 	}
 }
 
 Items: {
-	armyPot: {
+	ArmyPotion: {
 		DisplayName: Army Potion
 		Tooltip: Makes you an army recruiter
 	}
 
-	Gayo: {
+	Gayinator: {
 		DisplayName: Gay-Inator Mk1
 		Tooltip: Become the gay
 	}
 
-	hallowed_shortsword: {
+	HallowedShortsword: {
 		DisplayName: Hallowed Shortsword
 		Tooltip: not copied from clamty i swear
 	}
 
-	hand: {
+	Hand: {
 		DisplayName: The HAND
 		Tooltip: big slappy
 	}
 
-	Hazmat: {
-		DisplayName: Hazmat Suit
-		Tooltip: ""
-	}
-
-	Hbomb: {
+	HydrogenBomb: {
 		DisplayName: Hydrogen Bomb
 		Tooltip: ""
 	}
 
-	Leadwater: {
+	LeadWater: {
 		DisplayName: Lead Water
 		Tooltip: mmm tasty
 	}
 
-	leeroy_emblem: {
+	LeeroyEmblem: {
 		DisplayName: Leeroy Emblem
 		Tooltip: Gives more damage the lower defense and damage reduction you have
 	}
 
-	LG: {
+	TransgenderSword: {
 		DisplayName: TRANS sword
 		Tooltip: C:
 	}
 
-	Nfuel: {
+	NotGayLicense: {
+		DisplayName: Not Gay Licenese
+		Tooltip: certified not gay
+	}
+
+	NuclearFuelRod: {
 		DisplayName: Nuclear Fuel Cell
 		Tooltip: ""
 	}
@@ -93,7 +96,7 @@ Items: {
 		Tooltip: only for the low low price of 10 wood!
 	}
 
-	radiological_stick: {
+	RadiologicalStick: {
 		DisplayName: Radiological Stick
 		Tooltip: Don't get burnt
 	}
@@ -103,32 +106,32 @@ Items: {
 		Tooltip: ""
 	}
 
-	sonicDart: {
+	SonicDart: {
 		DisplayName: Sonic Dart
 		Tooltip: Does more damage the faster you're going
 	}
 
-	terraSabre: {
+	TerraSabre: {
 		DisplayName: TerraSabre
 		Tooltip: Looks like it's made out of foam
 	}
 
-	Tnurse: {
+	ThrowingNurse: {
 		DisplayName: Throwing Nurse
 		Tooltip: but why?
 	}
 
-	Ubullet: {
+	UraniumBullet: {
 		DisplayName: Uranium Bullet
 		Tooltip: ""
 	}
 
-	Uranium_bar: {
+	UraniumBar: {
 		DisplayName: Uranium Bar
 		Tooltip: ""
 	}
 
-	Uranium_or: {
+	UraniumOre: {
 		DisplayName: Uranium Ore
 		Tooltip: ""
 	}
@@ -137,21 +140,26 @@ Items: {
 		DisplayName: Orbital Targeter
 		Tooltip: vaporize your enemies
 	}
+
+	OrbitalStrike: {
+		DisplayName: Orbital Strike
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
-	Gayp.DisplayName: Gay Porn!!!!!!!
-	H_Bomb.DisplayName: Hydrogen Bomb
-	handT.DisplayName: Hand
-	Nukep.DisplayName: Nuke
+	GayProjectile.DisplayName: Gay Porn!!!!!!!
+	HydrogenBombProjectile.DisplayName: Hydrogen Bomb
+	HandProjectile.DisplayName: Hand
+	NukeProjectile.DisplayName: Nuke
 	ODM.DisplayName: ODM
-	sonicDartP.DisplayName: Sonic Dart
-	Throwing_nurse.DisplayName: Throwing nurse
-	UrBullet.DisplayName: Uranium Bullet
+	SonicDartProjectile.DisplayName: Sonic Dart
+	ThrowingNurseProjectile.DisplayName: Throwing nurse
+	UraniumBullet.DisplayName: Uranium Bullet
 	OrbitalStrikeProjectile.DisplayName: Orbital Strike Projectile
-	Targeting.DisplayName: Targeting
 	TargetedForOrbitalStrike.DisplayName: Targeted For Orbital Strike
 	weirdProjectile.DisplayName: weird Projectile
+	WeirdProjectile.DisplayName: Weird Projectile
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss
