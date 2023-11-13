@@ -13,13 +13,7 @@ namespace RS4A.Tiles
             Main.tileMergeDirt[Type] = true;
             Main.tileLavaDeath[Type] = false;
             Main.tileLighted[Type] = true;
-            //Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
-            // Main.tileShine2[Type] = false;
-
-
-            //drop = mod.ItemType("Uranium_or");
-
             HitSound = SoundID.Dig;
 
             AddMapEntry(new Color(0, 255, 156));

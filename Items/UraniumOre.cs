@@ -14,7 +14,7 @@ namespace RS4A.Items
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 10;
             Item.useAnimation = 10;
-            Item.createTile = ModContent.TileType<Tiles.RadioactiveStone>();
+            Item.createTile = ModContent.TileType<Tiles.UraniumOre>();
             Item.maxStack = 999;
             Item.autoReuse = true;
         }

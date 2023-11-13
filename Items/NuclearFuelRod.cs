@@ -9,6 +9,8 @@ namespace RS4A.Items
         public override void SetDefaults()
         {
             Item.maxStack = 99;
+            Item.material = true;
+            Item.notAmmo = false;
         }
 
 

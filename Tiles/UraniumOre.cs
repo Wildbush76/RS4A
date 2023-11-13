@@ -13,9 +13,9 @@ namespace RS4A.Tiles
             Main.tileMergeDirt[Type] = true;
             Main.tileLavaDeath[Type] = false;
             Main.tileLighted[Type] = true;
-            //Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
-            // Main.tileShine2[Type] = false;
+            TileID.Sets.Ore[Type] = true;
+            Main.tileSpelunker[Type] = true;
 
             HitSound = SoundID.Tink;
             // name.SetDefault("Uranium");

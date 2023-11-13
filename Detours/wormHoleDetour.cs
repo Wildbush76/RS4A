@@ -41,9 +41,31 @@ namespace RS4A.Detours
                 }
                 else if (closestPlayer.ZoneOverworldHeight)
                 {
-                    Projectile.NewProjectile(closestPlayer.GetSource_FromThis(), closestPlayer.Center + new Vector2(Main.screenWidth, Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0, ai0: closestPlayer.whoAmI);
+                    if (CheckForItemInInvetory(self, self.HeldItem.useAmmo))
+                    {
+                        //use the ammo
+                        for (int slot = 0; slot < Main.player[Main.myPlayer].inventory.Length; slot++)
+                        {
+                            Item item = Main.player[Main.myPlayer].inventory[slot];
+                            if (item.type == self.HeldItem.useAmmo)
+                            {
+                                item.stack -= 1;
+                                if (item.stack <= 0)
+                                {
+                                    item.TurnToAir();
+                                }
+                            }
+                        }
+                        Projectile.NewProjectile(closestPlayer.GetSource_FromThis(), closestPlayer.Center + new Vector2(Main.screenWidth, Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0, ai0: closestPlayer.whoAmI);
+                    }
+                    else
+                    {
+                        ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Insufficent nuclear fuel rods to use an Orbital Strike"), Color.Red, Main.myPlayer);
+                    }
                 }
-                else {
+
+                else
+                {
                     ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Orbital strikes can only occur to players on the surface layer"), Color.Red, Main.myPlayer);
                 }
             }
@@ -67,7 +89,7 @@ namespace RS4A.Detours
 
         private bool On_Player_HasUnityPotion(On_Player.orig_HasUnityPotion orig, Player self)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()) && CheckForItemInInvetory(self, self.HeldItem.useAmmo))
             {
                 return true;
             }
@@ -76,5 +98,18 @@ namespace RS4A.Detours
                 return orig(self);
             }
         }
+
+        private static bool CheckForItemInInvetory(Player self, int itemType)
+        {
+            foreach (Item item in self.inventory)
+            {
+                if (item.type == itemType)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

@@ -11,7 +11,6 @@ namespace RS4A.Items
             Item.maxStack = 99;
         }
 
-
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe(1);
