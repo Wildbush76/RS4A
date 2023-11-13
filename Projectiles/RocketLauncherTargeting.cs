@@ -7,7 +7,7 @@ namespace RS4A.Projectiles
 {
     internal class RocketLauncherTargeting : ModProjectile
     {
-        private readonly bool lockedOn;
+        private bool lockedOn = false;
         private NPC lockedOnNPC;
         private const double lockOnRadius = 5 * 8;
 
@@ -19,21 +19,26 @@ namespace RS4A.Projectiles
 
         public override void AI()
         {
-            if (Main.player[Projectile.owner].HeldItem.type == ModContent.ItemType<Items.LockOnRocketLauncher>()) {
+            if (Main.player[Projectile.owner].HeldItem.type != ModContent.ItemType<Items.LockOnRocketLauncher>()) {
                 Projectile.timeLeft = 0;
             }
             if (lockedOn)
             {
-               
+                Projectile.position = lockedOnNPC.position;
             }
             else
             {
                 Projectile.position = Main.MouseWorld;
-
+                NPC closest = FindClosestNPC();
+                if (Vector2.Distance(closest.position, Projectile.position) < lockOnRadius) {
+                    lockedOn = true;
+                    lockedOnNPC = closest;
+                }
             }
+            Projectile.rotation= MathHelper.ToRadians(3);
         }
 
-        private NPC findClosestNPC()
+        private NPC FindClosestNPC()
         {
             NPC closest = null;
             float closestDist = float.MaxValue;
