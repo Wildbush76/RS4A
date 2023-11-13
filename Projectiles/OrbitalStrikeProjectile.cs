@@ -19,8 +19,8 @@ namespace RS4A.Projectiles
             Projectile.damage = 1;
             Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Ranged;
-            Projectile.width = 10;
-            Projectile.height = 10;
+            Projectile.width = 42;
+            Projectile.height = 95;
             Projectile.aiStyle = 0;
             Projectile.penetrate = 1;
         }
