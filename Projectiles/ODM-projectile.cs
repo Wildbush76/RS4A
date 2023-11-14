@@ -62,16 +62,15 @@ namespace RS4A.Projectiles
         }
 
 
-        public override void PostAI()
-
+        public override bool PreAI()
         {
-            if (Vector2.Distance(Main.player[Projectile.owner].position, Projectile.position) < 70 && Projectile.velocity == Vector2.Zero)
+            Player owner = Main.player[Projectile.owner];
+            if (Vector2.Distance(owner.Center + owner.velocity, Projectile.Center) < 70 && Projectile.velocity == Vector2.Zero)
             {
                 Projectile.Kill();//kills hook when player near 
+                return false;
             }
-
-
-
+            return true;
         }
 
         // Use this to kill oldest hook. For hooks that kill the oldest when shot, not when the newest latches on: Like SkeletronHand

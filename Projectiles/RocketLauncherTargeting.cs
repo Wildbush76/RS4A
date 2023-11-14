@@ -14,7 +14,16 @@ namespace RS4A.Projectiles
         public override void SetDefaults()
         {
             Projectile.tileCollide = false;
+            Projectile.width = 50;
+            Projectile.height = 50;
+            Projectile.tileCollide = false;
+            Projectile.friendly = true;
+            Projectile.damage = 0;
+        }
 
+        public override bool? CanCutTiles()
+        {
+            return false;
         }
 
         public override void AI()
@@ -24,18 +33,21 @@ namespace RS4A.Projectiles
             }
             if (lockedOn)
             {
-                Projectile.position = lockedOnNPC.position;
+                Projectile.Center = lockedOnNPC.Center;
             }
             else
             {
-                Projectile.position = Main.MouseWorld;
+                Projectile.Center = Main.MouseWorld;
                 NPC closest = FindClosestNPC();
-                if (Vector2.Distance(closest.position, Projectile.position) < lockOnRadius) {
+                if (closest == null) {
+                    return;
+                }
+                if (Vector2.Distance(closest.Center, Projectile.Center) < lockOnRadius) {
                     lockedOn = true;
                     lockedOnNPC = closest;
                 }
             }
-            Projectile.rotation= MathHelper.ToRadians(3);
+            Projectile.rotation= MathHelper.ToRadians(6);
         }
 
         private NPC FindClosestNPC()
@@ -47,7 +59,7 @@ namespace RS4A.Projectiles
                 NPC target = Main.npc[k];
                 if (target.CanBeChasedBy())
                 {
-                    float dist = Vector2.Distance(target.position,Projectile.position);
+                    float dist = Vector2.Distance(target.position,Projectile.Center);
                     if (dist < closestDist) {
                         closest = target;
                         closestDist = dist;

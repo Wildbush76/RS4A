@@ -145,6 +145,11 @@ Items: {
 		DisplayName: Orbital Strike
 		Tooltip: ""
 	}
+
+	LockOnRocketLauncher: {
+		DisplayName: Lock On Rocket Launcher
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -160,6 +165,7 @@ Projectiles: {
 	TargetedForOrbitalStrike.DisplayName: Targeted For Orbital Strike
 	weirdProjectile.DisplayName: weird Projectile
 	WeirdProjectile.DisplayName: Weird Projectile
+	RocketLauncherTargeting.DisplayName: Rocket Launcher Targeting
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss
