@@ -5,18 +5,13 @@ using RS4A.Buffs;
 
 namespace RS4A.Items
 {
-	public class Gayo : ModItem
+	public class Gayinator : ModItem
 	{
-		public override void SetStaticDefaults() 
-		{
-			// DisplayName.SetDefault("Gay-Inator Mk1");
-			// Tooltip.SetDefault("Become the gay");
-		}
 
 		public override void SetDefaults() 
 		{
 			Item.shootSpeed = 10f;
-			Item.shoot = Mod.Find<ModProjectile>("Gayp").Type;  //add gayp here
+			Item.shoot = ModContent.ProjectileType<Projectiles.GayProjectile>();
 			Item.damage = 200;
 			Item.DamageType = DamageClass.Magic;
 			Item.mana = 20;
@@ -39,7 +34,7 @@ namespace RS4A.Items
                     
 			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.LivingRainbowDye,5);
-			recipe.AddIngredient(Mod.Find<ModItem>("Uranium_bar").Type,5);
+			recipe.AddIngredient(ModContent.ItemType<Items.UraniumBar>(),5);
 			recipe.AddIngredient(ItemID.RainbowRod,1);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.Register();

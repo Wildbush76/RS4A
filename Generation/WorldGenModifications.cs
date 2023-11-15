@@ -1,18 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.GameContent.Generation;
-using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.WorldBuilding;
 
 namespace RS4A.Generation
 {
-    public class UraniumGen : ModSystem
+    public class WorldGenModifications : ModSystem
     {
         //being honest, this class ain doin much
 
@@ -24,7 +16,7 @@ namespace RS4A.Generation
             {
                 // Next, we insert our pass directly after the original "Shinies" pass.
                 // ExampleOrePass is a class seen bellow
-                tasks.Insert(ShiniesIndex + 1, new UraniumPass("Uranium", 237.4298f));
+                tasks.Insert(ShiniesIndex + 1, new UraniumGeneration("Uranium", 237.4298f));
             }
         }
     }

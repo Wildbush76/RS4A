@@ -6,14 +6,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
-	public class UrBullet : ModProjectile
+	public class UraniumBullet : ModProjectile
 	{
-		public override void SetStaticDefaults()
-		{
-
-			// DisplayName.SetDefault("Uranium Bullet");
-
-		}
 		public override void SetDefaults()
 		{
 			Projectile.damage = 10;
@@ -27,7 +21,7 @@ namespace RS4A.Projectiles
 		}
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-			target.AddBuff(Mod.Find<ModBuff>("Rad").Type, 120);
+			target.AddBuff(ModContent.BuffType<Buffs.Radiation2>(), 120);
         }
 
 

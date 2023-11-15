@@ -1,8 +1,6 @@
-﻿using RS4A.Systems;
+﻿using Microsoft.Xna.Framework;
 using RS4A.BossBars;
-using RS4A.Items;
-using RS4A.Projectiles;
-using Microsoft.Xna.Framework;
+using RS4A.Systems;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -61,7 +59,7 @@ namespace RS4A.NPCs.StupidBoss
             // This boss also becomes immune to OnFire and all buffs that inherit OnFire immunity during the second half of the fight. See the ApplySecondStageBuffImmunities method.
 
             // Influences how the NPC looks in the Bestiary
-            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
             {
                 CustomTexturePath = "RS4A/NPCs/StupidBoss/Bestiary/StupidBossBestiary",
                 PortraitScale = 0.6f, // Portrait refers to the full picture when clicking on the icon in the bestiary
@@ -116,7 +114,7 @@ namespace RS4A.NPCs.StupidBoss
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             // will drop leeroy emblem as a test
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.leeroy_emblem>()));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.LeeroyEmblem>()));
         }
 
         public override void OnKill()
@@ -175,7 +173,7 @@ namespace RS4A.NPCs.StupidBoss
             if (blinking)
             {
                 NPC.frameCounter = 0;
-                NPC.frame.Y += frameHeight*blinkingDir;
+                NPC.frame.Y += frameHeight * blinkingDir;
                 if (NPC.frame.Y > finalFrame * frameHeight)
                 {
                     NPC.frame.Y = finalFrame * frameHeight;
@@ -203,7 +201,7 @@ namespace RS4A.NPCs.StupidBoss
             if (NPC.life <= 0)
             {
                 // These gores work by simply existing as a texture inside any folder which path contains "Gores/"
-                int backGoreType = Mod.Find<ModGore>("MinionBossBody_Back").Type;
+                int backGoreType = Mod.Find<ModGore>("MinionBossBody_Back").Type;//hey nerd you can use modContent rather than Mod.find
                 int frontGoreType = Mod.Find<ModGore>("MinionBossBody_Front").Type;
 
                 var entitySource = NPC.GetSource_Death();
@@ -217,7 +215,7 @@ namespace RS4A.NPCs.StupidBoss
                 SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
 
                 // This adds a screen shake (screenshake) similar to Deerclops
-                PunchCameraModifier modifier = new PunchCameraModifier(NPC.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, FullName);
+                PunchCameraModifier modifier = new(NPC.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, FullName);
                 Main.instance.CameraModifiers.Add(modifier);
             }
         }
@@ -273,7 +271,8 @@ namespace RS4A.NPCs.StupidBoss
                 return;
             }
 
-            if (NPC.life<NPC.lifeMax/2) {
+            if (NPC.life < NPC.lifeMax / 2)
+            {
                 // If we have no shields (aka "no minions alive"), we initiate the second stage, and notify other players that this NPC has reached its second stage
                 // by setting NPC.netUpdate to true in this tick. It will send important data like position, velocity and the NPC.ai[] array to all connected clients
 

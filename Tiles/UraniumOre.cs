@@ -1,25 +1,21 @@
-using Microsoft.Xna.Framework.Graphics;
-using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System.Threading;
 
 namespace RS4A.Tiles
 {
-public class Uranium : ModTile
-{
+    public class UraniumOre : ModTile
+    {
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileLavaDeath[Type] = false;
             Main.tileLighted[Type] = true;
-            //Main.tileBlockLight[Type] = true;
-           Main.tileSpelunker[Type] = true;
-           // Main.tileShine2[Type] = false;
+            Main.tileSpelunker[Type] = true;
+            TileID.Sets.Ore[Type] = true;
+            Main.tileSpelunker[Type] = true;
 
             HitSound = SoundID.Tink;
             // name.SetDefault("Uranium");
@@ -29,8 +25,8 @@ public class Uranium : ModTile
         }
         public override void FloorVisuals(Player player)
         {
-            
-            player.AddBuff(Mod.Find<ModBuff>("Rad").Type,300);
+
+            player.AddBuff(ModContent.BuffType<Buffs.Radiation>(), 300);
         }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

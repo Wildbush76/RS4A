@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using RS4A.Buffs;
 using Terraria;
 using Terraria.Chat;
 using Terraria.ID;
@@ -8,13 +7,8 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-    public class leeroy_emblem : ModItem
+    public class LeeroyEmblem : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Leeroy Emblem"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
-            // Tooltip.SetDefault("glass cannon.mp4\nScales damage based on defense and damage reduction\nDoesn't work with 100 defense/50% damage reduction or more"); //i think new lines work?
-        }
 
         public override void SetDefaults()
         {

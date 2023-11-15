@@ -5,13 +5,8 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-    public class armyPot : ModItem
+    public class ArmyPotion : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Army Potion");
-            // Tooltip.SetDefault("Makes you an army recruiter.");
-        }
 
         public override void SetDefaults()
         {
@@ -26,7 +21,7 @@ namespace RS4A.Items
             Item.consumable = true;
             Item.rare = ItemRarityID.Expert;
             Item.value = Item.buyPrice(platinum: 2);
-            Item.buffType = ModContent.BuffType<Buffs.army>(); //Specify an existing buff to be applied when used.
+            Item.buffType = ModContent.BuffType<Buffs.Army>(); //Specify an existing buff to be applied when used.
             Item.buffTime = 36000; //The amount of time the buff declared in item.buffType will last in ticks. 5400 / 60 is 90, so this buff will last 90 seconds.
         }
         public override void AddRecipes()

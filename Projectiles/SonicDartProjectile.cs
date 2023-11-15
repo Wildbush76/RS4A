@@ -1,20 +1,12 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
-    public class sonicDartP : ModProjectile
+    public class SonicDartProjectile : ModProjectile
     {
         int speed = 0;
-        public override void SetStaticDefaults()
-        {
-
-            // DisplayName.SetDefault("hand");
-
-        }
         public override void SetDefaults()
         {
             Projectile.scale = 0.5f;
@@ -42,7 +34,7 @@ namespace RS4A.Projectiles
                 }
             }
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
         }

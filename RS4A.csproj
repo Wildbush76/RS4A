@@ -6,9 +6,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="NPCs\StupidBoss\Bestiary\StupidBossBestiary.png" />
+    <None Remove="Items\LockOnRocketLauncher.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Back.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Front.png" />
     <None Remove="NPCs\StupidBoss\StupidBossBody.png" />

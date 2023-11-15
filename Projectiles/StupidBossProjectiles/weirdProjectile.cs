@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Projectiles.StupidBossProjectiles
 {
-    public class weirdProjectile : ModProjectile
+    public class WeirdProjectile : ModProjectile
     {
         public bool FadedIn
         {

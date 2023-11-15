@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Chat;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RS4A.Detours
 {
-    internal class wormHoleDetour : ModSystem
+    internal class WormHoleDetour : ModSystem
     {
         public override void Load()
         {
@@ -15,7 +17,7 @@ namespace RS4A.Detours
 
         private void On_Player_UnityTeleport(On_Player.orig_UnityTeleport orig, Player self, Vector2 telePos)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalTargeter>()))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()))
             {
                 //find the player
                 double closest = double.MaxValue;
@@ -37,9 +39,34 @@ namespace RS4A.Detours
                 {
                     return;
                 }
+                else if (closestPlayer.ZoneOverworldHeight)
+                {
+                    if (CheckForItemInInvetory(self, self.HeldItem.useAmmo))
+                    {
+                        //use the ammo
+                        for (int slot = 0; slot < Main.player[Main.myPlayer].inventory.Length; slot++)
+                        {
+                            Item item = Main.player[Main.myPlayer].inventory[slot];
+                            if (item.type == self.HeldItem.useAmmo)
+                            {
+                                item.stack -= 1;
+                                if (item.stack <= 0)
+                                {
+                                    item.TurnToAir();
+                                }
+                            }
+                        }
+                        Projectile.NewProjectile(closestPlayer.GetSource_FromThis(), closestPlayer.Center + new Vector2(Main.screenWidth, Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0, ai0: closestPlayer.whoAmI);
+                    }
+                    else
+                    {
+                        ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Insufficent nuclear fuel rods to use an Orbital Strike"), Color.Red, Main.myPlayer);
+                    }
+                }
+
                 else
                 {
-                    Projectile.NewProjectile(closestPlayer.GetSource_FromThis(), closestPlayer.Center + new Vector2(Main.screenWidth,Main.screenHeight), Vector2.Zero, ModContent.ProjectileType<Projectiles.TargetedForOrbitalStrike>(), 0, 0);
+                    ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Orbital strikes can only occur to players on the surface layer"), Color.Red, Main.myPlayer);
                 }
             }
             else
@@ -50,7 +77,7 @@ namespace RS4A.Detours
 
         private void On_Player_TakeUnityPotion(On_Player.orig_TakeUnityPotion orig, Player self)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalTargeter>()))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()))
             {
                 return;
             }
@@ -62,7 +89,7 @@ namespace RS4A.Detours
 
         private bool On_Player_HasUnityPotion(On_Player.orig_HasUnityPotion orig, Player self)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalTargeter>()))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()) && CheckForItemInInvetory(self, self.HeldItem.useAmmo))
             {
                 return true;
             }
@@ -71,5 +98,18 @@ namespace RS4A.Detours
                 return orig(self);
             }
         }
+
+        private static bool CheckForItemInInvetory(Player self, int itemType)
+        {
+            foreach (Item item in self.inventory)
+            {
+                if (item.type == itemType)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

@@ -21,7 +21,7 @@ namespace RS4A.NPCs
             {
                 shop.Add(ItemID.Bottle);
 
-                shop.Add(new Item(ModContent.ItemType<armyPot>())
+                shop.Add(new Item(ModContent.ItemType<ArmyPotion>())
                 {
                     shopCustomPrice = 80000000 //in copper
                 });
@@ -31,7 +31,7 @@ namespace RS4A.NPCs
             {
                 if (shop.NpcType == NPCID.PartyGirl)
                 {
-                    shop.Add(new Item(ModContent.ItemType<Tnurse>())
+                    shop.Add(new Item(ModContent.ItemType<ThrowingNurse>())
                     {
                         shopCustomPrice = 100 //in copper
                     });
@@ -92,7 +92,7 @@ namespace RS4A.NPCs
         }
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
-            if (npc.HasBuff(BuffID.Venom) && projectile.type == ModContent.ProjectileType<handT>())
+            if (npc.HasBuff(BuffID.Venom) && projectile.type == ModContent.ProjectileType<HandProjectile>())
             {
                 modifiers.SetCrit(); //i think?
             }

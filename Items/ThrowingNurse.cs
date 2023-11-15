@@ -6,7 +6,7 @@ using RS4A.Projectiles;
 
 namespace RS4A.Items
 {
-	public class Tnurse : ModItem
+	public class ThrowingNurse : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -33,7 +33,7 @@ namespace RS4A.Items
 			Item.autoReuse = true;
 			Item.consumable = true;
 			Item.DamageType = DamageClass.Ranged;
-			Item.shoot = ModContent.ProjectileType<Throwing_nurse>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.ThrowingNurseProjectile>();
 		}
 		/*
 		public override void AddRecipes()

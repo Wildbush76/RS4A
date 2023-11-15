@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RS4A.Tiles;
 using Terraria;
-using Terraria.GameContent.Generation;
-using Terraria.ID;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.WorldBuilding;
 using Terraria.IO;
-using RS4A.Tiles;
+using Terraria.ModLoader;
+using Terraria.WorldBuilding;
 
 namespace RS4A.Generation
 {
-    public class UraniumPass : GenPass
+    public class UraniumGeneration : GenPass
     {
-        public UraniumPass(string name, float loadWeight) : base(name, loadWeight)
+        public UraniumGeneration(string name, float loadWeight) : base(name, loadWeight)
         {
             //this is where the actual stuff happens btw
         }
@@ -31,7 +23,7 @@ namespace RS4A.Generation
 
                 int y = WorldGen.genRand.Next((int)GenVars.rockLayer, Main.maxTilesY); //we could use other layers like rockLayerLow but that's up to you
 
-                WorldGen.TileRunner(x, y, WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6), ModContent.TileType<Uranium>());
+                WorldGen.TileRunner(x, y, WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6), ModContent.TileType<UraniumOre>());
 
             }
         }
