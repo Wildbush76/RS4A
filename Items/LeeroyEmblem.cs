@@ -26,7 +26,7 @@ namespace RS4A.Items
 
               //player.GetDamage(DamageClass.Generic) += (10 - player.statDefense / 10); //this equation is dogshit
                 player.GetDamage(DamageClass.Generic) += 2.0f * (1.0f - (float)player.statDefense / 100.0f) * (1f-player.endurance); //maximum of 200% damage (no defense, hard to do at post-moonlord as armor and accessories start giving the good stuff)
-                ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("it is doing things"), Color.Green, Main.myPlayer);
+                //ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("it is doing things"), Color.Green, Main.myPlayer);
 
             }
         }
