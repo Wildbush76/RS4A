@@ -8,6 +8,7 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="NPCs\StupidBoss\Bestiary\StupidBossBestiary.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Back.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Front.png" />
     <None Remove="NPCs\StupidBoss\StupidBossBody.png" />
