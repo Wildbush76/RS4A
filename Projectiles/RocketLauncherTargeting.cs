@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -12,6 +12,7 @@ namespace RS4A.Projectiles
         private const double lockOnRadius = 48;
         private int lockOnTimer = 0;
         private const int minLockOnTime = 120;
+        private const float movementSpeed = 10f;
 
         public override void SetDefaults()
         {
@@ -30,19 +31,33 @@ namespace RS4A.Projectiles
 
         public override void AI()
         {
-            if (Main.player[Projectile.owner].HeldItem.type != ModContent.ItemType<Items.LockOnRocketLauncher>()) {//make sure they are holding the item
+            if (Main.player[Projectile.owner].HeldItem.type != ModContent.ItemType<Items.LockOnRocketLauncher>())
+            {//make sure they are holding the item
                 Projectile.timeLeft = 0;
             }
 
+            Projectile.rotation += MathHelper.ToRadians(3);
             if (lockedOn)
             {
                 Projectile.Center = lockedOnNPC.Center;//maybe change this to have it chase them?
             }
             else
             {
-                Projectile.Center = Main.MouseWorld;
+                float angle = MathF.Atan2(Main.MouseWorld.Y - Projectile.Center.Y, Main.MouseWorld.X - Projectile.Center.X);
+                if (Vector2.Distance(Main.MouseWorld, Projectile.Center) <= movementSpeed)
+                {
+                    Projectile.Center = Main.MouseWorld;
+                }
+                else
+                {
+                    Projectile.velocity.X = movementSpeed * MathF.Cos(angle);
+                    Projectile.velocity.Y = movementSpeed * MathF.Sin(angle);
+                   // Projectile.Center += Projectile.velocity;
+                }
+
                 NPC closest = FindClosestNPC();
-                if (closest == null) {
+                if (closest == null)
+                {
                     return;
                 }
                 if (Vector2.Distance(closest.Center, Projectile.Center) < lockOnRadius)
@@ -57,11 +72,11 @@ namespace RS4A.Projectiles
                         lockedOnNPC = closest;
                     }
                 }
-                else {
+                else
+                {
                     lockOnTimer = 0;
                 }
             }
-            Projectile.rotation += MathHelper.ToRadians(3);
         }
 
         private NPC FindClosestNPC()
@@ -73,8 +88,9 @@ namespace RS4A.Projectiles
                 NPC target = Main.npc[k];
                 if (target.CanBeChasedBy())
                 {
-                    float dist = Vector2.Distance(target.position,Projectile.Center);
-                    if (dist < closestDist) {
+                    float dist = Vector2.Distance(target.position, Projectile.Center);
+                    if (dist < closestDist)
+                    {
                         closest = target;
                         closestDist = dist;
                     }

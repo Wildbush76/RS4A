@@ -9,6 +9,7 @@
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Items\LockOnRocketLauncher.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Back.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Front.png" />
     <None Remove="NPCs\StupidBoss\StupidBossBody.png" />
