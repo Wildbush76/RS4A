@@ -13,7 +13,7 @@ namespace RS4A.Projectiles
         private const int burntBlockLayers = 6;
         private const float playerDamageRadius = 100 * 8;
         private const int maxDamge = 20000;
-        private ushort[] craterTiles = {TileID.Obsidian,TileID.Ash,TileID.Meteorite};
+        private readonly ushort[] craterTiles = {TileID.Obsidian,TileID.Ash,TileID.Meteorite};
         public override void SetDefaults()
         {
             Projectile.damage = 1;

@@ -150,6 +150,11 @@ Items: {
 		DisplayName: Lock On Rocket Launcher
 		Tooltip: ""
 	}
+
+	PotionOfExploding: {
+		DisplayName: Potion Of Exploding
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -166,6 +171,7 @@ Projectiles: {
 	weirdProjectile.DisplayName: weird Projectile
 	WeirdProjectile.DisplayName: Weird Projectile
 	RocketLauncherTargeting.DisplayName: Rocket Launcher Targeting
+	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding Projectile
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss
