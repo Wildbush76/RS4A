@@ -61,7 +61,7 @@ namespace RS4A.NPCs.StupidBoss
             // Influences how the NPC looks in the Bestiary
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
             {
-                CustomTexturePath = "ExampleMod/Assets/Textures/Bestiary/MinionBoss_Preview",
+                CustomTexturePath = "RS4A/NPCs/StupidBoss/Bestiary/StupidBossBestiary",
                 PortraitScale = 0.6f, // Portrait refers to the full picture when clicking on the icon in the bestiary
                 PortraitPositionYOverride = 0f,
             };
@@ -106,8 +106,8 @@ namespace RS4A.NPCs.StupidBoss
         {
             // Sets the description of this NPC that is listed in the bestiary
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                new MoonLordPortraitBackgroundProviderBestiaryInfoElement(), // Plain black background
-				new FlavorTextBestiaryInfoElement("YOU WERE MISTAKEN YOU WERE MISTAKEN YOU WERE MISTAKEN YOU WERE MISTAKEN")
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+                new FlavorTextBestiaryInfoElement("YOU WERE MISTAKEN YOU WERE MISTAKEN YOU WERE MISTAKEN YOU WERE MISTAKEN")
             });
         }
 
