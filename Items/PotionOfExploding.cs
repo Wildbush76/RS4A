@@ -19,8 +19,6 @@ namespace RS4A.Items
             Item.rare = ItemRarityID.Green;
             Item.sellPrice(silver: 67);
             Item.UseSound = SoundID.Item3;
-            
-
         }
 
         public override bool? UseItem(Player player)

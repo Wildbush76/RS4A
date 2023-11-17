@@ -1,3 +1,4 @@
+
 Tiles: {
 	Uranium.MapEntry: Uranium
 	UraniumOre.MapEntry: Uranium Ore
@@ -15,12 +16,12 @@ Buffs: {
 	}
 
 	Radiation: {
-		DisplayName: Rad
+		DisplayName: Radation
 		Description: Mods.RS4A.Buffs.Rad.Description
 	}
 
 	Radation2: {
-		DisplayName: Rad1
+		DisplayName: Radiation 2
 		Description: Mods.RS4A.Buffs.Rad1.Description
 	}
 
