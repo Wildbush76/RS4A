@@ -1,4 +1,3 @@
-
 Tiles: {
 	Uranium.MapEntry: Uranium
 	UraniumOre.MapEntry: Uranium Ore
@@ -154,6 +153,11 @@ Items: {
 
 	PotionOfExploding: {
 		DisplayName: Potion Of Exploding
+		Tooltip: ""
+	}
+
+	RadioactiveStone: {
+		DisplayName: Radioactive Stone
 		Tooltip: ""
 	}
 }
