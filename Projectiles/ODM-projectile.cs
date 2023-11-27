@@ -72,33 +72,6 @@ namespace RS4A.Projectiles
             }
             return true;
         }
-
-        // Use this to kill oldest hook. For hooks that kill the oldest when shot, not when the newest latches on: Like SkeletronHand
-        // You can also change the projectile like: Dual Hook, Lunar Hook
-        // public override void UseGrapple(Player player, ref int type)
-        // {
-        //	int hooksOut = 0;
-        //	int oldestHookIndex = -1;
-        //	int oldestHookTimeLeft = 100000;
-        //	for (int i = 0; i < 1000; i++)
-        //	{
-        //		if (Main.projectile[i].active && Main.projectile[i].owner == projectile.whoAmI && Main.projectile[i].type == projectile.type)
-        //		{
-        //			hooksOut++;
-        //			if (Main.projectile[i].timeLeft < oldestHookTimeLeft)
-        //			{
-        //				oldestHookIndex = i;
-        //				oldestHookTimeLeft = Main.projectile[i].timeLeft;
-        //			}
-        //		}
-        //	}
-        //	if (hooksOut > 1)
-        //	{
-        //		Main.projectile[oldestHookIndex].Kill();
-        //	}
-        // }
-
-        // Amethyst Hook is 300, Static Hook is 600.
         public override float GrappleRange()
         {
             return 850f;

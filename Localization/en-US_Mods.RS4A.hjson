@@ -15,12 +15,12 @@ Buffs: {
 	}
 
 	Radiation: {
-		DisplayName: Rad
+		DisplayName: Radation
 		Description: Mods.RS4A.Buffs.Rad.Description
 	}
 
 	Radation2: {
-		DisplayName: Rad1
+		DisplayName: Radiation 2
 		Description: Mods.RS4A.Buffs.Rad1.Description
 	}
 
@@ -150,6 +150,16 @@ Items: {
 		DisplayName: Lock On Rocket Launcher
 		Tooltip: ""
 	}
+
+	PotionOfExploding: {
+		DisplayName: Potion Of Exploding
+		Tooltip: ""
+	}
+
+	RadioactiveStone: {
+		DisplayName: Radioactive Stone
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -166,6 +176,7 @@ Projectiles: {
 	weirdProjectile.DisplayName: weird Projectile
 	WeirdProjectile.DisplayName: Weird Projectile
 	RocketLauncherTargeting.DisplayName: Rocket Launcher Targeting
+	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding Projectile
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss

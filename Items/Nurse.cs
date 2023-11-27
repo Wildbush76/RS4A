@@ -6,12 +6,6 @@ namespace RS4A.Items
 {
 	public class Nurse : ModItem
 	{
-		public override void SetStaticDefaults() 
-		{
-			// DisplayName.SetDefault("Nurse sword"); 
-			// Tooltip.SetDefault("The Nurse's soul is stuck in here");
-		}
-
 		public override void SetDefaults() 
 		{
 			Item.damage = 1;

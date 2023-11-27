@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
-    public class Radstoner : ModItem
+    public class RadioactiveStone : ModItem
     {
         public override void SetDefaults()
         {
