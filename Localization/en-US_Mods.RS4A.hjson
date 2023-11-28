@@ -180,3 +180,15 @@ Projectiles: {
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss
+
+Biomes: {
+	BrazilSurfaceBiome: {
+		DisplayName: Brazil Surface Biome
+		TownNPCDialogueName: the Brazil Surface Biome
+	}
+
+	ExampleUndergroundBiome: {
+		DisplayName: Example Underground Biome
+		TownNPCDialogueName: the Example Underground Biome
+	}
+}

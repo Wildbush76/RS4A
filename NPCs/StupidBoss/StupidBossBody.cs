@@ -202,7 +202,7 @@ namespace RS4A.NPCs.StupidBoss
             {
                 // These gores work by simply existing as a texture inside any folder which path contains "Gores/"
                 int backGoreType = Mod.Find<ModGore>("MinionBossBody_Back").Type;//hey nerd you can use modContent rather than Mod.find
-                int frontGoreType = Mod.Find<ModGore>("MinionBossBody_Front").Type;
+                int frontGoreType = Mod.Find<ModGore>("MinionBossBody_Front").Type; //i copied it big guy, take it up with the tmod team lol
 
                 var entitySource = NPC.GetSource_Death();
 
