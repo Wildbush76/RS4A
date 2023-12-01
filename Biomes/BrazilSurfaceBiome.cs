@@ -7,6 +7,8 @@ using Terraria;
 using Terraria.Graphics.Capture;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Graphics.Effects;
+using Terraria.GameContent.RGB;
 
 namespace RS4A.Biomes
 {
@@ -43,5 +45,11 @@ namespace RS4A.Biomes
 
         // Declare biome priority. The default is BiomeLow so this is only necessary if it needs a higher priority.
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
+
+        public override void SpecialVisuals(Player player, bool isActive)
+        {
+            player.ManageSpecialBiomeVisuals("Corruption", isActive);
+
+        }
     }
 }
