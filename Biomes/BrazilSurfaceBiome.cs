@@ -45,11 +45,9 @@ namespace RS4A.Biomes
 
         // Declare biome priority. The default is BiomeLow so this is only necessary if it needs a higher priority.
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
-
         public override void SpecialVisuals(Player player, bool isActive)
         {
-            player.ManageSpecialBiomeVisuals("Corruption", isActive);
-
+            //player.ManageSpecialBiomeVisuals("Corruption", isActive);
         }
     }
 }
