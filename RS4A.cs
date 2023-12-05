@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
+using ReLogic.Content;
+using Terraria;
 
 namespace RS4A
 {
@@ -24,13 +24,10 @@ namespace RS4A
                 // You'll have to do this regardless of what kind of shader it is,
                 // and you'll have to do it for every shader file.
                 // This example assumes you have both armor and screen shaders.
-                
-                Ref<Effect> filterRef = new Ref<Effect>(this.Assets.Request<Effect>("Effects", AssetRequestMode.ImmediateLoad).Value);
 
-                // To bind a screen shader, use this.
-                // EffectPriority should be set to whatever you think is reasonable.   
-
-                Filters.Scene["FilterName"] = new Filter(new ScreenShaderData(filterRef, "PassName"), EffectPriority.High);
+                Ref<Effect> filterRef = new Ref<Effect>(this.Assets.Request<Effect>("Effects/Filters", AssetRequestMode.ImmediateLoad).Value);                // To bind a screen shader, use this.
+                // EffectPriority should be set to whatever you think is reasonable.
+                Filters.Scene["Radiation"] = new Filter(new ScreenShaderData(filterRef, "Radiation"), EffectPriority.High);
             }
         }
 

@@ -47,7 +47,7 @@ namespace RS4A.Biomes
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
         public override void SpecialVisuals(Player player, bool isActive)
         {
-            //player.ManageSpecialBiomeVisuals("Corruption", isActive);
+            player.ManageSpecialBiomeVisuals("RS4A:Radiation", isActive);
         }
     }
 }
