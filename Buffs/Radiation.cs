@@ -16,7 +16,7 @@ namespace RS4A.Buffs
         {
             player.lifeRegen -= 200;//i like to damage player you just do negitive regen.
             player.moveSpeed += 10f;
-            player.GetDamage(DamageClass.Generic) += 20;
+            player.GetDamage(DamageClass.Generic) += 20; //wait wait wait wait wait... you gain 2000% more damage from this???????????????????????????? lol im keeping that
         }
         public override void Update(NPC npc, ref int buffIndex)
         {

@@ -11,22 +11,22 @@ Buffs: {
 
 	Gay: {
 		DisplayName: Gay
-		Description: Mods.RS4A.Buffs.Gay.Description
+		Description: You've become gay
 	}
 
 	Radiation: {
-		DisplayName: Radation
-		Description: Mods.RS4A.Buffs.Rad.Description
-	}
-
-	Radation2: {
-		DisplayName: Radiation 2
-		Description: Mods.RS4A.Buffs.Rad1.Description
+		DisplayName: Heavily Irradiated
+		Description: No, you can't right-click to get rid of it
 	}
 
 	Radiation2: {
-		DisplayName: Radiation2
-		Description: Mods.RS4A.Buffs.Radiation2.Description
+		DisplayName: Irradiated
+		Description: Your DNA is being scrambled
+	}
+
+	REZ: {
+		DisplayName: Radioactive Exclusion Zone
+		Description: It's too radioactive to be here without protection
 	}
 }
 
@@ -190,5 +190,10 @@ Biomes: {
 	ExampleUndergroundBiome: {
 		DisplayName: Example Underground Biome
 		TownNPCDialogueName: the Example Underground Biome
+	}
+
+	BrazilUndergroundBiome: {
+		DisplayName: Brazil Underground Biome
+		TownNPCDialogueName: the Brazil Underground Biome
 	}
 }

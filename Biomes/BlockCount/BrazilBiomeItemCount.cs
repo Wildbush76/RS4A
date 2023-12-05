@@ -4,13 +4,13 @@ using Terraria.ModLoader;
 
 namespace RS4A.Biomes.BlockCount
 {
-    public class ExampleBiomeTileCount : ModSystem
+    public class BrazilBiomeTileCount : ModSystem
     {
-        public int exampleBlockCount;
+        public int brazilBlockCount;
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
-            exampleBlockCount = tileCounts[ModContent.TileType<RadioactiveStone>()]; //lol
+            brazilBlockCount = tileCounts[ModContent.TileType<RadioactiveStone>()]; //lol
         }
     }
 }

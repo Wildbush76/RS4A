@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace ExampleMod.Biomes //not sure why it was backgrounds for example mod lol
+namespace RS4A.Biomes //not sure why it was backgrounds for example mod lol
 {
     public class BrazilSurfaceBackgroundStyle : ModSurfaceBackgroundStyle
     {

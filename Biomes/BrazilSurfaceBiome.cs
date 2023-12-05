@@ -1,4 +1,4 @@
-﻿using ExampleMod.Biomes;
+﻿using RS4A.Biomes;
 //using ExampleMod.Content.Items.Placeable;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,6 +9,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Graphics.Effects;
 using Terraria.GameContent.RGB;
+using Terraria.Chat;
+using Terraria.Localization;
 
 namespace RS4A.Biomes
 {
@@ -18,7 +20,7 @@ namespace RS4A.Biomes
         // Select all the scenery
         public override ModWaterStyle WaterStyle => ModContent.GetInstance<BrazilWaterStyle>(); // Sets a water style for when inside this biome
         public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.GetInstance<BrazilSurfaceBackgroundStyle>();
-        public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Corrupt;
+        public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;
 
         // Select Music
         public override int Music => MusicLoader.GetMusicSlot("RS4A/Music/funkyTown");
@@ -36,7 +38,7 @@ namespace RS4A.Biomes
         public override bool IsBiomeActive(Player player)
         {
             // First, we will use the exampleBlockCount from our added ModSystem for our first custom condition
-            bool b1 = ModContent.GetInstance<ExampleBiomeTileCount>().exampleBlockCount >= 40;
+            bool b1 = ModContent.GetInstance<BrazilBiomeTileCount>().brazilBlockCount >= 40;
 
             // Finally, we will limit the height at which this biome can be active to above ground (ie sky and surface). Most (if not all) surface biomes will use this condition.
             bool b2 = player.ZoneSkyHeight || player.ZoneOverworldHeight;
@@ -44,10 +46,30 @@ namespace RS4A.Biomes
         }
 
         // Declare biome priority. The default is BiomeLow so this is only necessary if it needs a higher priority.
-        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+        private float opacity = 1.0f;
+        
         public override void SpecialVisuals(Player player, bool isActive)
-        {
-            player.ManageSpecialBiomeVisuals("RS4A:Radiation", isActive);
+        { //also compensates for underground (i think)
+            bool biomeActive = isActive || player.InModBiome<BrazilUndergroundBiome>();
+
+            if (SkyManager.Instance["Brazil"] == null)
+            {
+                ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("IT IS NULL! s"), Color.Green, Main.myPlayer);
+            }
+            if (SkyManager.Instance["Brazil"] != null && biomeActive != SkyManager.Instance["Brazil"].IsActive())
+            {
+                if (isActive)
+                {
+                    SkyManager.Instance.Activate("Brazil");
+                    player.AddBuff(ModContent.BuffType<Buffs.REZ>(),10);
+                }
+                else
+                {
+                    SkyManager.Instance.Deactivate("Brazil");
+                }
+            }
         }
+        
     }
 }

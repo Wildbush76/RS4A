@@ -20,16 +20,16 @@ float uSaturation;
 float4 uSourceRect;
 float2 uZoom;
 
-float4 FilterMyShader(float2 coords : TEXCOORD0) : COLOR0
+float4 Radiation(float2 coords : TEXCOORD0) : COLOR0
 {
-    float4 colour = tex2D(uImage0, coords) * float4(0.8,1.0,0.8,1.0);
-    return colour;
+    float4 color = tex2D(uImage0, coords);
+    return float4(color.r*0.8,color.g*1.0,color.b*0.8,color.a*1.0);
 }
 
 technique Technique1
 {
-    pass FilterMyShader
+    pass Radiation
     {
-        PixelShader = compile ps_2_0 FilterMyShader();
+        PixelShader = compile ps_2_0 Radiation();
     }
 }
