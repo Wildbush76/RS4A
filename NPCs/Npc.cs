@@ -92,7 +92,7 @@ namespace RS4A.NPCs
         }
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
-            if (npc.HasBuff(BuffID.Venom) && projectile.type == ModContent.ProjectileType<HandProjectile>())
+            if (npc.HasBuff(BuffID.Venom))
             {
                 modifiers.SetCrit(); //i think?
             }

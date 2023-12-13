@@ -1,0 +1,3 @@
+NOTE :
+
+maybe for the future, we should be doin it like ExampleMod, that is, having the content in a folder and the assets in another. idk tho im not that good at this stuff

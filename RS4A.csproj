@@ -9,6 +9,22 @@
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Biomes\Backgrounds\ExampleBiomeSurfaceClose.png" />
+    <None Remove="Biomes\Backgrounds\ExampleBiomeSurfaceFar.png" />
+    <None Remove="Biomes\Backgrounds\ExampleBiomeSurfaceMid.png" />
+    <None Remove="Biomes\Backgrounds\ExampleBiomeUnderground0.png" />
+    <None Remove="Biomes\Backgrounds\ExampleBiomeUnderground1.png" />
+    <None Remove="Biomes\Backgrounds\ExampleBiomeUnderground2.png" />
+    <None Remove="Biomes\Backgrounds\ExampleBiomeUnderground3.png" />
+    <None Remove="Biomes\BrazilRain.png" />
+    <None Remove="Biomes\BrazilSurfaceBiome_Background.png" />
+    <None Remove="Biomes\BrazilSurfaceBiome_Icon.png" />
+    <None Remove="Biomes\BrazilWaterfallStyle.png" />
+    <None Remove="Biomes\BrazilWaterStyle.png" />
+    <None Remove="Biomes\BrazilWaterStyle_Block.png" />
+    <None Remove="Biomes\BrazilWaterStyle_Slope.png" />
+    <None Remove="biomes\note.txt" />
+    <None Remove="Dusts\BrazilWater.png" />
     <None Remove="Items\LockOnRocketLauncher.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Back.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Front.png" />
