@@ -24,6 +24,7 @@
     <None Remove="Biomes\BrazilWaterStyle_Block.png" />
     <None Remove="Biomes\BrazilWaterStyle_Slope.png" />
     <None Remove="biomes\note.txt" />
+    <None Remove="Buffs\Radiation2.png" />
     <None Remove="Dusts\BrazilWater.png" />
     <None Remove="Items\LockOnRocketLauncher.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Back.png" />
@@ -32,6 +33,7 @@
     <None Remove="NPCs\StupidBoss\StupidBossBody_Head_Boss.png" />
     <None Remove="NPCs\StupidBoss\StupidBossBody_Head_Boss_SecondStage.png" />
     <None Remove="Projectiles\StupidBossProjectiles\weirdProjectile.png" />
+    <None Remove="Skies\Void.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
