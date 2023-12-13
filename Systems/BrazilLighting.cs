@@ -8,14 +8,16 @@ using Terraria.Graphics.Effects;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace CalamityMod.Systems
+namespace RS4A.Systems
 {
-    public class LightingStuff : ModSystem
+    public class BrazilLighting : ModSystem
     {
         //if this works...
         float strength = 0;
         float step = 0.02f;
         Color color = new Color(0, 255, 0);
+
+        //mfw the tmod discord tells me to do fuckin filters rather than this (i wasted so much time for nothing)
 
         public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
         {
@@ -29,6 +31,8 @@ namespace CalamityMod.Systems
             desiredStrength = Math.Min(desiredStrength, 1f);
             //ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral(desiredStrength.ToString()), Color.Green, Main.myPlayer);
 
+            //TODO chances are that theres already something to handle this buuuuuuuuuuut whatever. might make my own
+
             if (Math.Abs(strength-desiredStrength)<step)
             {
                 strength = desiredStrength;
@@ -40,10 +44,6 @@ namespace CalamityMod.Systems
                 strength -= step;
             }
 
-            int sunR = backgroundColor.R;
-            int sunG = backgroundColor.G;
-            int sunB = backgroundColor.B;
-            // Remove some green and more red.
 
             backgroundColor = Color.Lerp(backgroundColor, color, strength*0.6f);
             tileColor = Color.Lerp(tileColor, color, strength * 0.5f);

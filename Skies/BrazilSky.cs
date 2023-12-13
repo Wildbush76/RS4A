@@ -12,6 +12,9 @@ namespace RS4A.Skies
 {
     public class BrazilSky : CustomSky
     {
+        //OK so basically i found a better way to do this lol
+
+        //this still has a use, but will be unused for now
         private bool skyActive;
         public float intensity = 0f;
         private float intensityDesired = 0f;
@@ -45,7 +48,7 @@ namespace RS4A.Skies
         }
         public override Color OnTileColor(Color inColor)
         {
-            return new Color(Vector4.Lerp(new Vector4(0.2f, 1.0f, 0.2f, 1f), inColor.ToVector4(), 1f - intensity)); //YOU MEAN TO FUCKING TELL ME THAT I COULD'VE SKIPPED DOING *ALL* OF THAT FUCKING WORK FIGURING OUT FILTERS AND JUST STUCK TO THIS??????????????????????????? FUCK DUDE. mfw the tmod discord ends up sending me back in progress by a fucking mile. 
+            return new Color(Vector4.Lerp(new Vector4(0.2f, 1.0f, 0.2f, 1f), inColor.ToVector4(), 1f - intensity));
         }
         public override void Activate(Vector2 position, params object[] args)
         {
