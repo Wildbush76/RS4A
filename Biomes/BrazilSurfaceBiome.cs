@@ -23,7 +23,7 @@ namespace RS4A.Biomes
         public override CaptureBiome.TileColorStyle TileColorStyle => CaptureBiome.TileColorStyle.Normal;
 
         // Select Music
-        public override int Music => MusicLoader.GetMusicSlot("RS4A/Music/funkyTown");
+        public override int Music => MusicLoader.GetMusicSlot("RS4A/Music/IRRADIATE");
 
         public override int BiomeTorchItemType => ItemID.Torch; //maybe changle these later if i feel like it
         public override int BiomeCampfireItemType => ItemID.Campfire;

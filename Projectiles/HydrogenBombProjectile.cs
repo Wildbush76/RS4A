@@ -3,12 +3,18 @@ using RS4A.Tiles;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
     public class HydrogenBombProjectile : ModProjectile
     {
+        private const int blastRadius = 160;//includes the burnt block radius
+        private const int burntBlockLayers = 30;
+        private const float playerDamageRadius = 180 * 8;
+        private const int maxDamge = 9999999; //KILL
+        private readonly int[] craterTiles = {ModContent.TileType<RadioactiveStone>()};
         public override void SetDefaults()
         {
             Projectile.damage = 500;
@@ -26,60 +32,68 @@ namespace RS4A.Projectiles
             bool f = false;
             Vector2 position = Projectile.Center;
             SoundEngine.PlaySound(SoundID.Item14, position);
-            Random crat = new ();
-            int radius = 150;
-            for (int k = 0; k < 2; k++)
+            Random random = new();
+            for (int x = -blastRadius; x <= blastRadius; x++)
             {
-                for (int x = -radius; x <= radius; x++)
+                for (int y = -blastRadius; y <= blastRadius; y++)
                 {
-                    for (int y = -radius; y <= radius; y++)
+                    int xPosition = (int)(x + Projectile.Center.X / 16.0f);
+                    int yPosition = (int)(y + Projectile.Center.Y / 16.0f);
+                    double dist = Math.Sqrt(x * x + y * y);
+                    if (dist <= blastRadius && Framing.GetTileSafely(xPosition, yPosition).HasTile)
                     {
-                        int xPosition = (int)(x + position.X / 16.0f);
-                        int yPosition = (int)(y + position.Y / 16.0f);
 
-                        if (Math.Sqrt(x * x + y * y) <= radius + 0.5)
+                        if (dist > blastRadius - burntBlockLayers)
                         {
-                            if (f == true && Framing.GetTileSafely(xPosition, yPosition).HasTile)
-                            {
-                                int xadd = crat.Next(1, 7);
-                                int yadd = crat.Next(1, 7);
-                                int xsub = crat.Next(1, 7);
-                                int ysub = crat.Next(1, 7);
-                                int fill = crat.Next(1, 11);
-                                if (yadd < 5)
-                                {
-                                    yPosition++;
-                                }
-                                if (xadd < 5)
-                                {
-                                    xPosition++;
-                                }
-                                if (xsub < 5)
-                                {
-                                    xPosition--;
-                                }
-                                if (ysub < 5)
-                                {
-                                    yPosition--;
-                                }
-                                if (fill < 9)
-                                {
-                                    WorldGen.KillTile(xPosition, yPosition, false, false, false);
-                                }
-                                WorldGen.PlaceTile(xPosition, yPosition, ModContent.TileType<RadioactiveStone>(), true);
 
-
-                            }
-                            if (f == false)
+                            int replaceChance = (int)((dist - (blastRadius - burntBlockLayers)) / 2) + 1;
+                            if (random.Next(0, replaceChance) == 0)
                             {
-                                WorldGen.KillTile(xPosition, yPosition, false, false, false);
-                                Dust.NewDust(position, 22, 22, DustID.Smoke, 0.0f, 0.0f, 120, new Color(), 1f);
+                                WorldGen.KillTile(xPosition, yPosition, false, false, true);
+                                WorldGen.KillWall(xPosition, yPosition);
+                                WorldGen.PlaceTile(xPosition, yPosition, craterTiles[random.Next(0, craterTiles.Length)], true);
                             }
                         }
+                        else
+                        {
+                            WorldGen.KillTile(xPosition, yPosition, false, false, true);
+                            WorldGen.KillWall(xPosition, yPosition);
+                        }
+                        Dust.NewDust(new Vector2(xPosition, yPosition), 22, 22, DustID.FlameBurst, 0.0f, 0.0f, 120, new Color(), 1f);
                     }
                 }
-                f = true;
-                radius += 5;
+
+            }
+            for (int player = 0; player < Main.maxPlayers; player++)
+            {
+                Player targetPlayer = Main.player[player];
+                if (targetPlayer.active && !targetPlayer.dead)
+                {
+                    float dist = Vector2.Distance(Projectile.Center, targetPlayer.Center);
+                    if (dist < playerDamageRadius)
+                    {
+                        int damage = (int)((playerDamageRadius - dist) / playerDamageRadius * maxDamge);
+                        String deathMessage = "";
+                        switch (random.Next(0, 4))
+                        {
+                            case 0:
+                                deathMessage = " was reduced to sub-atomic particles";
+                                break;
+                            case 1:
+                                deathMessage = " was turned into radiactive ash";
+                                break;
+                            case 2:
+                                deathMessage = " was obliterated";
+                                break;
+                            case 3:
+                                deathMessage = " didn't get away in time";
+                                break;
+                        }
+                        //apply calulated damage to the target player here
+
+                        targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessage), damage, 1, dodgeable: false);
+                    }
+                }
             }
 
         }
