@@ -13,7 +13,7 @@ namespace RS4A.Tiles
             Main.tileMergeDirt[Type] = true;
             Main.tileLavaDeath[Type] = false;
             Main.tileLighted[Type] = true;
-            Main.tileSpelunker[Type] = true;
+            Main.tileSpelunker[Type] = true; //what?
             HitSound = SoundID.Dig;
 
             AddMapEntry(new Color(0, 255, 156));
@@ -29,6 +29,10 @@ namespace RS4A.Tiles
         {
 
             player.AddBuff(ModContent.BuffType<Buffs.Radiation>(), 300);
+        }
+        public override bool CanDrop(int i, int j)
+        {
+            return false;
         }
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
