@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Utilities;
 using RS4A.Items;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,6 +19,8 @@ namespace RS4A.Projectiles
         public const float MaxCharge = 180f;
         private const int NumAnimationFrames = 5;
 
+        private SlotId slot;
+
         private float FrameCounter
         {
             get => Projectile.ai[0];
@@ -26,6 +31,25 @@ namespace RS4A.Projectiles
             Main.projFrames[Projectile.type] = NumAnimationFrames;
             ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
         }
+        public override void OnSpawn(IEntitySource source)
+        {
+            slot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/FirstPrismBeam")
+            {
+                IsLooped = true,
+                Volume = 1
+            });
+        }
+
+        public override void OnKill(int timeLeft)
+        {
+            SoundEngine.TryGetActiveSound(slot, out ActiveSound sound);
+            if (sound != null)
+            {
+                sound.Stop();
+            }
+
+        }
+
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
@@ -34,10 +58,12 @@ namespace RS4A.Projectiles
             UpdateAnimation();
             UpdatePlayerVisuals(player, rrp);
             UpdateAim(rrp, player.HeldItem.shootSpeed);
-            if (!player.channel) {
+            if (!player.channel)
+            {
                 Projectile.Kill();
             }
             Projectile.timeLeft = 2;
+
         }
 
 
