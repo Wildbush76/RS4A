@@ -1,3 +1,4 @@
+using RS4A.PlayerStuff;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,11 +16,13 @@ namespace RS4A.Items
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.consumable = true;
             Item.maxStack = 5;
             Item.autoReuse = false;
             Item.scale = 1f;
             Item.shootSpeed = 2f;
+            Item.accessory = true; //the fact it can be both is really fucking funny
+            Item.rare = ItemRarityID.Lime;
+
         }
         public override void AddRecipes()
         {

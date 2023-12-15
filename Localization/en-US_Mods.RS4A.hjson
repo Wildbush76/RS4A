@@ -53,7 +53,11 @@ Items: {
 
 	HydrogenBomb: {
 		DisplayName: Hydrogen Bomb
-		Tooltip: ""
+		Tooltip:
+			'''
+			"Now I am become death, the destroyer of worlds."
+			!!! HIGHLY UNSTABLE !!!
+			'''
 	}
 
 	LeadWater: {
@@ -189,17 +193,12 @@ NPCs.StupidBossBody.DisplayName: Stupid Boss
 
 Biomes: {
 	BrazilSurfaceBiome: {
-		DisplayName: Brazil Surface Biome
-		TownNPCDialogueName: the Brazil Surface Biome
-	}
-
-	ExampleUndergroundBiome: {
-		DisplayName: Example Underground Biome
-		TownNPCDialogueName: the Example Underground Biome
+		DisplayName: Brazil Surface
+		TownNPCDialogueName: the Brazil Biome
 	}
 
 	BrazilUndergroundBiome: {
-		DisplayName: Brazil Underground Biome
-		TownNPCDialogueName: the Brazil Underground Biome
+		DisplayName: Brazil Underground
+		TownNPCDialogueName: the Brazil Biome
 	}
 }
