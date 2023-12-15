@@ -36,8 +36,9 @@ namespace RS4A.Projectiles
             slot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/FirstPrismBeam")
             {
                 IsLooped = true,
-                Volume = 1
-            });
+                Volume = 0.5f,
+                PitchVariance = 0.4f
+            }); 
         }
 
         public override void OnKill(int timeLeft)
@@ -63,7 +64,7 @@ namespace RS4A.Projectiles
                 Projectile.Kill();
             }
             Projectile.timeLeft = 2;
-
+            Lighting.AddLight(Projectile.position,new Vector3(0.831f, 0.824f, 0.361f));
         }
 
 
@@ -74,6 +75,7 @@ namespace RS4A.Projectiles
 
             // As the Prism charges up and focuses the beams, its animation plays faster.
             int framesPerAnimationUpdate = FrameCounter >= MaxCharge ? 2 : FrameCounter >= (MaxCharge * 0.66f) ? 3 : 4;
+
 
             // If necessary, change which specific frame of the animation is displayed.
             if (Projectile.frameCounter >= framesPerAnimationUpdate)
@@ -128,6 +130,7 @@ namespace RS4A.Projectiles
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             int spriteSheetOffset = frameHeight * Projectile.frame;
@@ -136,6 +139,7 @@ namespace RS4A.Projectiles
             // The Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
             // It is drawn in a non-white color to distinguish it from the vanilla Last Prism.
             Color drawColor = FirstPrism.OverrideColor;
+            
             Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
             return false;
         }

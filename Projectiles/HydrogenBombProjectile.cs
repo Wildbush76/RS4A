@@ -14,7 +14,7 @@ namespace RS4A.Projectiles
         private const int burntBlockLayers = 30;
         private const float playerDamageRadius = 180 * 8;
         private const int maxDamge = 9999999; //KILL
-        private readonly int[] craterTiles = {ModContent.TileType<RadioactiveStone>()};
+        private readonly int[] craterTiles = { ModContent.TileType<RadioactiveStone>() };
         public override void SetDefaults()
         {
             Projectile.damage = 500;
@@ -26,10 +26,10 @@ namespace RS4A.Projectiles
             Projectile.penetrate = 1;
             Projectile.timeLeft = 180;
         }
-        public override void OnKill(int timeLeft)//TODO update this to be not bad
+
+        public override void OnKill(int timeLeft)
         {
 
-            bool f = false;
             Vector2 position = Projectile.Center;
             SoundEngine.PlaySound(SoundID.Item14, position);
             Random random = new();
@@ -40,7 +40,8 @@ namespace RS4A.Projectiles
                     int xPosition = (int)(x + Projectile.Center.X / 16.0f);
                     int yPosition = (int)(y + Projectile.Center.Y / 16.0f);
                     double dist = Math.Sqrt(x * x + y * y);
-                    if (dist <= blastRadius && Framing.GetTileSafely(xPosition, yPosition).HasTile)
+                    Tile currentTile = Framing.GetTileSafely(xPosition, yPosition);
+                    if (dist > blastRadius)
                     {
 
                         if (dist > blastRadius - burntBlockLayers)
@@ -49,15 +50,26 @@ namespace RS4A.Projectiles
                             int replaceChance = (int)((dist - (blastRadius - burntBlockLayers)) / 2) + 1;
                             if (random.Next(0, replaceChance) == 0)
                             {
-                                WorldGen.KillTile(xPosition, yPosition, false, false, true);
-                                WorldGen.KillWall(xPosition, yPosition);
-                                WorldGen.PlaceTile(xPosition, yPosition, craterTiles[random.Next(0, craterTiles.Length)], true);
+                                if (currentTile.HasTile)
+                                {
+                                    WorldGen.KillTile(xPosition, yPosition, false, false, true);
+                                    WorldGen.PlaceTile(xPosition, yPosition, craterTiles[random.Next(0, craterTiles.Length)], true);
+                                }
+                                if (currentTile.WallType != 0) {
+                                    WorldGen.KillWall(xPosition, yPosition);
+                                }
                             }
                         }
                         else
                         {
-                            WorldGen.KillTile(xPosition, yPosition, false, false, true);
-                            WorldGen.KillWall(xPosition, yPosition);
+                            if (currentTile.HasTile)
+                            {
+                                WorldGen.KillTile(xPosition, yPosition, false, false, true);
+                            }
+                            if (currentTile.WallType != 0)
+                            {
+                                WorldGen.KillWall(xPosition, yPosition);
+                            }
                         }
                         Dust.NewDust(new Vector2(xPosition, yPosition), 22, 22, DustID.FlameBurst, 0.0f, 0.0f, 120, new Color(), 1f);
                     }
