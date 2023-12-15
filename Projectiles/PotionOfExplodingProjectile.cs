@@ -71,7 +71,7 @@ namespace RS4A.Projectiles
                 // These 2 methods handle actually mining the tiles and walls while honoring tile explosion conditions
                 bool explodeWalls = Projectile.ShouldWallExplode(Projectile.Center, explosionRadius, minTileX, maxTileX, minTileY, maxTileY);
                 Projectile.ExplodeTiles(Projectile.Center, explosionRadius, minTileX, maxTileX, minTileY, maxTileY, explodeWalls);
-                Main.player[Main.myPlayer].Hurt(PlayerDeathReason.ByCustomReason(Main.player[Main.myPlayer].name + " wanted to explode"), 600, 1, dodgeable: false);
+                Main.player[Main.myPlayer].Hurt(PlayerDeathReason.ByCustomReason(Main.player[Main.myPlayer].name + " was a dumbass"), 2000, 1, dodgeable: false);
             }
         }
     }

@@ -18,7 +18,7 @@ namespace RS4A.Items
             Item.rare = ItemRarityID.Blue;
             Item.shoot = ModContent.ProjectileType<Projectiles.NukeProjectile>();
             Item.shootSpeed = 8.5f;
-            Item.ammo = AmmoID.Bullet;
+            Item.ammo = AmmoID.Rocket;
         }
 
         public override void AddRecipes()
