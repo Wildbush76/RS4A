@@ -5,6 +5,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
+
+//TODO finish making the rocket launcher
 namespace RS4A.Items
 {
     internal class LockOnRocketLauncher : ModItem
@@ -22,21 +24,25 @@ namespace RS4A.Items
 
         public override void HoldItem(Player player)
         {
-         
+         /*
             if(targeting == null || !targeting.active)
             {
                 targeting = Projectile.NewProjectileDirect(player.GetSource_FromThis(),player.position,Vector2.Zero,ModContent.ProjectileType<Projectiles.RocketLauncherTargeting>(),0,0);
                 ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Spawning the targeting"), Color.Red, Main.myPlayer);
             }
+         */
         }
 
         public override bool? UseItem(Player player)
         {
+            /*
             if(player.whoAmI != Main.myPlayer) {
                 return null; 
             }
 
             //set target tracking
+            return null;
+            */
             return null;
         }
 

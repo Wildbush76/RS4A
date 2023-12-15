@@ -160,6 +160,11 @@ Items: {
 		DisplayName: Radioactive Stone
 		Tooltip: ""
 	}
+
+	FirstPrism: {
+		DisplayName: First Prism
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -177,6 +182,7 @@ Projectiles: {
 	WeirdProjectile.DisplayName: Weird Projectile
 	RocketLauncherTargeting.DisplayName: Rocket Launcher Targeting
 	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding Projectile
+	FirstPrismHoldout.DisplayName: First Prism Holdout
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss

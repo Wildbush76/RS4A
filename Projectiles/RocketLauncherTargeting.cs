@@ -3,6 +3,9 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
+//unused for now, keeping for the following logic
+//TODO delete this and replace with a drawing layer
+
 namespace RS4A.Projectiles
 {
     internal class RocketLauncherTargeting : ModProjectile
