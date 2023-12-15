@@ -21,10 +21,10 @@ namespace RS4A.Generation
 
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX);
 
-                int y = WorldGen.genRand.Next((int)GenVars.rockLayer, Main.maxTilesY); //we could use other layers like rockLayerLow but that's up to you
+                int y = WorldGen.genRand.Next((int)GenVars.rockLayerLow, Main.maxTilesY); //we could use other layers like rockLayerLow but that's up to you
 
                 WorldGen.TileRunner(x, y, WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6), ModContent.TileType<UraniumOre>());
-
+                
             }
         }
     }

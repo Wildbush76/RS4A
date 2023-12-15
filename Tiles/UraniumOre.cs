@@ -16,23 +16,23 @@ namespace RS4A.Tiles
             Main.tileSpelunker[Type] = true;
             TileID.Sets.Ore[Type] = true;
             Main.tileSpelunker[Type] = true;
+           
 
             HitSound = SoundID.Tink;
-            // name.SetDefault("Uranium");
+
             AddMapEntry(new Color(0, 255, 120), CreateMapEntryName());
             MinPick = 200;
             MineResist = 5f;
         }
         public override void FloorVisuals(Player player)
         {
-
             player.AddBuff(ModContent.BuffType<Buffs.Radiation>(), 300);
         }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = 0f;
-            g = .8f;
-            b = .6f;
+            g = 0.8f;
+            b = 0.6f;
         }
     }
 }
