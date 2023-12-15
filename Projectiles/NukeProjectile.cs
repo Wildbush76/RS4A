@@ -14,13 +14,13 @@ namespace RS4A.Projectiles
             Projectile.damage = 150;
             Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Ranged;
-            Projectile.width = 10;
-            Projectile.height = 10;
+            Projectile.width = 23;
+            Projectile.height = 36;
             Projectile.aiStyle = 34;
             Projectile.penetrate = 1;
 
         }
-        public override void OnKill(int timeLeft)
+        public override void OnKill(int timeLeft)//TODO fix this to be not trash, do on the hydrogenbomb too
         {
             bool f = false;
             Vector2 position = Projectile.Center;

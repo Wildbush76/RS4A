@@ -20,13 +20,13 @@ namespace RS4A.Projectiles
             Projectile.damage = 500;
             Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Ranged;
-            Projectile.width = 8;
-            Projectile.height = 8;
+            Projectile.width = 32;
+            Projectile.height = 16;
             Projectile.aiStyle = 16;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 180;
         }
-        public override void OnKill(int timeLeft)
+        public override void OnKill(int timeLeft)//TODO update this to be not bad
         {
 
             bool f = false;
