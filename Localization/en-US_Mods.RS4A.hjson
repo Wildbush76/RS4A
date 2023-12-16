@@ -167,7 +167,7 @@ Items: {
 
 	FirstPrism: {
 		DisplayName: First Prism
-		Tooltip: Worlds greatest flashlight
+		Tooltip: Prism Mk1
 	}
 }
 
@@ -187,6 +187,7 @@ Projectiles: {
 	RocketLauncherTargeting.DisplayName: Rocket Launcher Targeting
 	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding Projectile
 	FirstPrismHoldout.DisplayName: First Prism Holdout
+	FirstPrismSpray.DisplayName: First Prism Spray
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss

@@ -20,12 +20,12 @@ namespace RS4A.PlayerStuff
         public override void OnHurt(Player.HurtInfo info) 
         {
             base.OnHurt(info);
-            int hydrogenBombItem = ModContent.ItemType<HydrogenBomb>()
-            int hydrogenBombProjectile = ModContent.ProjectileType<HydrogenBombProjectile>()
+            int hydrogenBombItem = ModContent.ItemType<HydrogenBomb>();
+            int hydrogenBombProjectile = ModContent.ProjectileType<HydrogenBombProjectile>();
 
             if (Player.HasItem(hydrogenBombItem))
             {
-                Random russianRoulette = new Random();
+                Random russianRoulette = new();
                 int yes = russianRoulette.Next(1, 8);
                 if (yes==1)
                 { //you lose

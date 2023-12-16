@@ -13,7 +13,6 @@ namespace RS4A.Projectiles
 		{
 			Projectile.damage = 100;
 			Projectile.friendly = true;
-			Projectile.DamageType = DamageClass.Ranged;
 			Projectile.width = 15;
 			Projectile.height = 15;
 			Projectile.aiStyle = 0;
