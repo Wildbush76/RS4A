@@ -169,6 +169,11 @@ Items: {
 		DisplayName: First Prism
 		Tooltip: Prism Mk1
 	}
+
+	FakeSDMG: {
+		DisplayName: Fake S D M G
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -188,6 +193,7 @@ Projectiles: {
 	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding Projectile
 	FirstPrismHoldout.DisplayName: First Prism Holdout
 	FirstPrismSpray.DisplayName: First Prism Spray
+	ShootYourselfBullets.DisplayName: Shoot Yourself Bullets
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss

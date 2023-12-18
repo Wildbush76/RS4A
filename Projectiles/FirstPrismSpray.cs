@@ -7,7 +7,6 @@ namespace RS4A.Projectiles
 {
     public class FirstPrismSpray : ModProjectile
     {
-        //public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.RainbowRodBullet;
         private const float Gravity = 0.5f;
         private const float XVelocityDamping = 0.99f;
 

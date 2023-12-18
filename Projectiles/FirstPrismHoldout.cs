@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Utilities;
 using RS4A.Items;
-using Steamworks;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -10,7 +9,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 namespace RS4A.Projectiles
 {
@@ -38,12 +36,13 @@ namespace RS4A.Projectiles
         }
         public override void OnSpawn(IEntitySource source)
         {
-            slot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/FirstPrismBeam")
+            slot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/FirstPrismHumm")
             {
                 IsLooped = true,
-                Volume = 0.5f,
-                PitchVariance = 0.4f
-            }); 
+                Volume = 0.2f,
+                PitchVariance = 0.4f,
+                MaxInstances = 1
+            });
         }
 
         public override void OnKill(int timeLeft)
@@ -68,23 +67,26 @@ namespace RS4A.Projectiles
                 Projectile.Kill();
             }
             Projectile.timeLeft = 2;
-            Lighting.AddLight(Projectile.position,new Vector3(0.831f, 0.824f, 0.361f));
+            Lighting.AddLight(Projectile.position, new Vector3(0.831f, 0.824f, 0.361f));
         }
 
-        private void ShootProjectile() {
+        private void ShootProjectile()
+        {
             int delay;
             if (FrameCounter < MaxCharge)
             {
                 delay = (int)(FrameCounter / 180 * (MinShootDelay - MaxShootDelay) + MaxShootDelay);
             }
-            else {
+            else
+            {
                 delay = MinShootDelay;
             }
-            if(FrameCounter % delay == 0) {
+            if (FrameCounter % delay == 0)
+            {
                 Random rand = new();
-                float velocityX = MathF.Cos(Projectile.rotation - MathHelper.PiOver2) * DefaultSpeed + rand.Next(-2,2);
-                float velocityY = MathF.Sin(Projectile.rotation - MathHelper.PiOver2) * DefaultSpeed + rand.Next(-2,2);
-                Vector2 totalVelocity = new(velocityX,velocityY);
+                float velocityX = MathF.Cos(Projectile.rotation - MathHelper.PiOver2) * DefaultSpeed + rand.Next(-2, 2);
+                float velocityY = MathF.Sin(Projectile.rotation - MathHelper.PiOver2) * DefaultSpeed + rand.Next(-2, 2);
+                Vector2 totalVelocity = new(velocityX, velocityY);
 
                 //position calcs
                 Vector2 position = Projectile.Center;
@@ -93,8 +95,12 @@ namespace RS4A.Projectiles
                 position += prismDir * -17f;
 
                 //posotions calcs
-
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, totalVelocity,ModContent.ProjectileType<FirstPrismSpray>(),5,3);
+                SoundEngine.PlaySound(new SoundStyle("RS4A/Sounds/FirstPrismFire")
+                {
+                    Volume = 0.6f,
+                    MaxInstances = 0
+                });
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, totalVelocity, ModContent.ProjectileType<FirstPrismSpray>(), 5, 3);
             }
         }
 
@@ -160,7 +166,7 @@ namespace RS4A.Projectiles
         public override bool PreDraw(ref Color lightColor)
         {
             SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            
+
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             int spriteSheetOffset = frameHeight * Projectile.frame;
@@ -169,7 +175,7 @@ namespace RS4A.Projectiles
             // The Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
             // It is drawn in a non-white color to distinguish it from the vanilla Last Prism.
             Color drawColor = FirstPrism.OverrideColor;
-            
+
             Main.EntitySpriteDraw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
             return false;
         }
