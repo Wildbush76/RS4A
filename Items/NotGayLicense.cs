@@ -28,5 +28,10 @@ namespace RS4A.Items
             recipe.Register();
 
         }
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
+            return !player.HasBuff(ModContent.BuffType<Buffs.Gay>());
+            
+        }
     }
 }

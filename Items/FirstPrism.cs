@@ -7,7 +7,7 @@ namespace RS4A.Items
 {
     public class FirstPrism : ModItem
     {
-        public static Color OverrideColor = new(200, 200, 200);
+        public readonly static Color OverrideColor = new(200, 200, 200);
 
 
         public override void SetStaticDefaults()
