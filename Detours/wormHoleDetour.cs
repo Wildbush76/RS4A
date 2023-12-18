@@ -15,6 +15,8 @@ namespace RS4A.Detours
             On_Player.UnityTeleport += On_Player_UnityTeleport;
         }
 
+    
+
         private void On_Player_UnityTeleport(On_Player.orig_UnityTeleport orig, Player self, Vector2 telePos)
         {
             if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()))

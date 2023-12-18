@@ -16,14 +16,14 @@ namespace RS4A.Items
         public override string Texture => "Terraria/Images/Item_" + ItemID.Minishark;
         public override void SetDefaults()
         {
-            Item.DefaultToRangedWeapon(ModContent.ProjectileType<Projectiles.SonicDartProjectile>(),AmmoID.Bullet,2,30,true);
-            Item.damage = 30;
+            Item.DefaultToRangedWeapon(ModContent.ProjectileType<Projectiles.ShootYourselfBullets>(),AmmoID.Bullet,20,50,true);
+            Item.damage = 2;
            
         }
         
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile.NewProjectile(source,position,velocity, ModContent.ProjectileType<Projectiles.SonicDartProjectile>(), damage,knockback);
+            Projectile.NewProjectile(source,position,velocity, ModContent.ProjectileType<Projectiles.ShootYourselfBullets>(), damage,knockback);
             return false;
         }
         
