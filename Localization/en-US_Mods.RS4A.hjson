@@ -189,6 +189,11 @@ Items: {
 		DisplayName: Micro Shark
 		Tooltip: ""
 	}
+
+	HallowedBullet: {
+		DisplayName: Hallowed Bullet
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -210,6 +215,7 @@ Projectiles: {
 	FirstPrismSpray.DisplayName: First Prism Spray
 	ShootYourselfBullets.DisplayName: Shoot Yourself Bullets
 	MushuWhipProjectile.DisplayName: Mushu Whip Projectile
+	HallowedBullet.DisplayName: Hallowed Bullet
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss
