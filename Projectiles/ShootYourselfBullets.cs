@@ -33,8 +33,11 @@ namespace RS4A.Projectiles
         {
             return target.whoAmI == Projectile.owner;
         }
-        
-        
+        public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
+        {
+            target.SetImmuneTimeForAllTypes(0);            
+        }
+
         public override void AI()
         {
 

@@ -13,10 +13,9 @@ namespace RS4A.Items
 {
     public class MicroShark : ModItem
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.Minishark;
         public override void SetDefaults()
         {
-            Item.DefaultToRangedWeapon(ModContent.ProjectileType<Projectiles.ShootYourselfBullets>(),AmmoID.Bullet,20,50,true);
+            Item.DefaultToRangedWeapon(ModContent.ProjectileType<Projectiles.ShootYourselfBullets>(),AmmoID.Bullet,4,50,true);
             Item.damage = 2;
            
         }
