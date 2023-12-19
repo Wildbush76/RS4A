@@ -1,26 +1,26 @@
-﻿using System.CodeDom;
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria;
-using System;
 
 namespace RS4A.Projectiles
 {
     public class ShootYourselfBullets : ModProjectile
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ChlorophyteBullet;
-        private const float timeModifer = 0.3f;
-        private float speed = 1;
-        private const float maxVelocity = 40;
-        private bool tracking = false;
-
+        private int trackingDelay = 60;
+        private float trackingStrength = 1;
+        private const float trackingModifer = 0.1f;
+        private float speed = 0f;
+        private const float acceration = 0.1f;
+        private const float maxSpeed = 30f;
 
 
         public override void SetDefaults()
         {
             Projectile.damage = 2;
-            Projectile.hostile = true;
+            Projectile.hostile = false;
             Projectile.knockBack = 2;
             Projectile.penetrate = 1;
         }
@@ -33,32 +33,30 @@ namespace RS4A.Projectiles
         {
             return target.whoAmI == Projectile.owner;
         }
-        public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
-        {
-            target.SetImmuneTimeForAllTypes(0);            
-        }
 
+       
         public override void AI()
         {
-
-            if (tracking)
+            if (trackingDelay != 0)
             {
-                Player target = Main.player[Projectile.owner];
-                if (target is null || target.dead || !target.active) {
-                    Projectile.active = false;
-                }
-            
-                speed += timeModifer;
-                Math.Clamp(speed, 0, maxVelocity);
-                Projectile.velocity = Vector2.Normalize(target.Center - Projectile.Center) * speed;
-            }
-            else {
+                trackingDelay--;
                 Projectile.velocity *= 0.9f;
-                if (Projectile.velocity.Length() < 0.2f) {
-                    tracking = true;
-                }
+                speed = Projectile.velocity.Length();
+                return;
             }
+            Projectile.hostile = true;
+            Player targetPlayer = Main.player[Projectile.owner];
+            Vector2 target = Vector2.Normalize(targetPlayer.Center - Projectile.Center);
+
+            //trackingStrength += trackingModifer;
+            //trackingStrength = Math.Clamp(trackingStrength, 0f, 1f);
+
+            speed += acceration;
+            speed = Math.Clamp(speed, -maxSpeed, maxSpeed);
+            Projectile.velocity = Vector2.Lerp(Vector2.Normalize(Projectile.velocity), target, trackingStrength) * speed;
+
+
         }
-       
+
     }
 }
