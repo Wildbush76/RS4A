@@ -12,19 +12,19 @@ namespace RS4A.Items
             Item.DamageType = DamageClass.Ranged;
             Item.width = 7;
             Item.height = 13;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
             Item.knockBack = 1.2f;
             Item.rare = ItemRarityID.Blue;
             Item.shoot = ModContent.ProjectileType<Projectiles.NukeProjectile>();
-            Item.shootSpeed = 8.5f;
+            Item.shootSpeed = 15f;
             Item.ammo = AmmoID.Rocket;
         }
 
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe(10);
-            recipe.AddIngredient(ModContent.ItemType<Items.UraniumBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.NuclearFuelRod>(), 10);
             recipe.AddIngredient(ItemID.RocketIV, 10);
             recipe.AddIngredient(ItemID.Wire, 10);
             recipe.AddTile(TileID.MythrilAnvil);

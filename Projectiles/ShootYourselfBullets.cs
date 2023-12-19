@@ -10,8 +10,6 @@ namespace RS4A.Projectiles
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ChlorophyteBullet;
         private int trackingDelay = 60;
-        private float trackingStrength = 1;
-        private const float trackingModifer = 0.1f;
         private float speed = 0f;
         private const float acceration = 0.1f;
         private const float maxSpeed = 30f;
@@ -53,8 +51,8 @@ namespace RS4A.Projectiles
 
             speed += acceration;
             speed = Math.Clamp(speed, -maxSpeed, maxSpeed);
-            Projectile.velocity = Vector2.Lerp(Vector2.Normalize(Projectile.velocity), target, trackingStrength) * speed;
-
+            //Projectile.velocity = Vector2.Lerp(Vector2.Normalize(Projectile.velocity), target, trackingStrength) * speed;
+            Projectile.velocity = target * speed;
 
         }
 

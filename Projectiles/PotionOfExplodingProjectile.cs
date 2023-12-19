@@ -9,6 +9,7 @@ namespace RS4A.Projectiles
 {
     internal class PotionOfExplodingProjectile : ModProjectile
     {
+       
         public override void SetDefaults()
         {
             Projectile.timeLeft = 0;
