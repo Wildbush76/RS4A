@@ -10,7 +10,7 @@ namespace RS4A.Projectiles
         private const int outerRange = 80;
         private const int innerRange = 20;
         private const int maxVelocity = 30;
-        public override string Texture => "Terraria/Images/Projectiles_" + ProjectileID.ChlorophyteBullet;
+        public override string Texture => "Terraria/Images/Item_" + ProjectileID.ChlorophyteBullet;
         public override void SetDefaults()
         {
             Projectile.damage = 30;
