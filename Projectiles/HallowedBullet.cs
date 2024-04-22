@@ -12,6 +12,8 @@ namespace RS4A.Projectiles
         private const int innerRange = 20;
         private const int maxVelocity = 60;
         private const int maxNormalVelocity = 30;
+
+        private const int maxBounces = 2;
         public override string Texture => "Terraria/Images/Item_" + ItemID.ChlorophyteBullet;
         public override void SetDefaults()
         {
@@ -22,13 +24,14 @@ namespace RS4A.Projectiles
         }
 
 
-        private float GetDistance(Vector2 posOne, int width, int height, Vector2 posTwo) { 
+        private float GetDistance(Vector2 posOne, int width, int height, Vector2 posTwo)
+        {
             float maxOffset = Math.Max(width, height);
-            return Vector2.Distance(posOne,posTwo) + maxOffset;
+            return Vector2.Distance(posOne, posTwo) + maxOffset;
         }
-        
 
-        public override void AI()
+
+        public override void AI()//TODO make this work better, maybe just make it bounce off enemies?
         {
             NPC closestNpc = null;
             float dist = 0;
@@ -44,14 +47,15 @@ namespace RS4A.Projectiles
             }
             if (closestNpc is null)
             {
-                if (Projectile.velocity.Length() > maxNormalVelocity) { 
+                if (Projectile.velocity.Length() > maxNormalVelocity)
+                {
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity) * maxNormalVelocity;
                 }
                 return;
             }
-            Vector2 target = Vector2.Normalize(Projectile.Center - closestNpc.Center) * (maxVelocity * (innerRange/dist));
+            Vector2 target = Vector2.Normalize(Projectile.Center - closestNpc.Center) * (maxVelocity * (innerRange / dist));
 
-            Projectile.velocity = Vector2.Lerp(Projectile.velocity,target,innerRange/dist);
+            Projectile.velocity = Vector2.Lerp(Projectile.velocity, target, innerRange / dist);
         }
     }
 }

@@ -192,7 +192,7 @@ Items: {
 
 	HallowedBullet: {
 		DisplayName: Hallowed Bullet
-		Tooltip: ""
+		Tooltip: "Its chlorophyte but not"
 	}
 }
 
@@ -209,8 +209,7 @@ Projectiles: {
 	TargetedForOrbitalStrike.DisplayName: Targeted For Orbital Strike
 	weirdProjectile.DisplayName: weird Projectile
 	WeirdProjectile.DisplayName: Weird Projectile
-	RocketLauncherTargeting.DisplayName: Rocket Launcher Targeting
-	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding Projectile
+	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding
 	FirstPrismHoldout.DisplayName: First Prism Holdout
 	FirstPrismSpray.DisplayName: First Prism Spray
 	ShootYourselfBullets.DisplayName: Shoot Yourself Bullets

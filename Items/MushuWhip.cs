@@ -5,7 +5,6 @@ namespace RS4A.Items
 {
     public class MushuWhip : ModItem
     {
-
         public override string Texture => "Terraria/Images/Item_" + ItemID.BlandWhip;
         public override void SetDefaults()
         {
