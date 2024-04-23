@@ -192,7 +192,17 @@ Items: {
 
 	HallowedBullet: {
 		DisplayName: Hallowed Bullet
-		Tooltip: "Its chlorophyte but not"
+		Tooltip: Its chlorophyte but not
+	}
+
+	MissileSilo: {
+		Tooltip: ""
+		DisplayName: Missile Silo
+	}
+
+	Missile: {
+		DisplayName: Missile
+		Tooltip: ""
 	}
 }
 
