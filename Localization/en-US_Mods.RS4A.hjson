@@ -230,6 +230,7 @@ Projectiles: {
 	ShootYourselfBullets.DisplayName: Shoot Yourself Bullets
 	MushuWhipProjectile.DisplayName: Mushu Whip Projectile
 	HallowedBullet.DisplayName: Hallowed Bullet
+	MissileProjectile.DisplayName: Missile Projectile
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss

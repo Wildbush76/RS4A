@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using RS4A.Items;
+using RS4A.Projectiles;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -17,20 +18,21 @@ namespace RS4A.Tiles
             Main.tileLavaDeath[Type] = false;
 
             Main.tileFrameImportant[Type] = true;
-           
+
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
             TileObjectData.newTile.Height = 4;
-            TileObjectData.newTile.CoordinateHeights = new[] {16,16,16,16 };
+            TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16 };
             TileObjectData.addTile(Type);
-     
-            AddMapEntry(new Color(100,100,100));
+
+            AddMapEntry(new Color(100, 100, 100));
 
             MinPick = 100;
         }
 
-        public static void ToggleMissile(int i, int j, bool dropItem = true) {
-            Tile tile = Main.tile[i,j];
+        public static void ToggleMissile(int i, int j, bool dropItem = true)
+        {
+            Tile tile = Main.tile[i, j];
             int topY = j - (tile.TileFrameY / 18) % 4;
             int topX = i - (tile.TileFrameX / 18) % 2;
 
@@ -39,10 +41,11 @@ namespace RS4A.Tiles
             if (tile.TileFrameX > 18)
             {
                 frameAdjust = -36;
-                if(dropItem)
-                    Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i,j), new Rectangle(i * 16,j * 16,32,64), ModContent.ItemType<Missile>());
+                if (dropItem)
+                    Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 64), ModContent.ItemType<Missile>());
             }
-            else {
+            else
+            {
                 frameAdjust = 36;
             }
             for (short xOffset = 0; xOffset < 2; xOffset++)
@@ -54,9 +57,12 @@ namespace RS4A.Tiles
             }
         }
 
-        public void launch(int i, int j, Point16 target) {
-            if (Main.tile[i,j].TileFrameX > 18) {
+        public void Launch(int i, int j, Point16 target)
+        {
+            if (Main.tile[i, j].TileFrameX > 18)
+            {
                 ToggleMissile(i, j, false);
+                Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2(i * 16, j * 16), new Vector2(0, -20), ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
             }
         }
 
@@ -66,9 +72,9 @@ namespace RS4A.Tiles
             Item item = player.HeldItem;
             bool loaded = Main.tile[i, j].TileFrameX > 18;
 
-            if(item.ModItem is MissileRemote missileRemote)
+            if (item.ModItem is MissileRemote missileRemote)
             {
-                missileRemote.addLaunchLocation(new Point16(i, j));
+                missileRemote.AddLaunchLocation(new Point16(i, j));
             }
 
             else if (item.ModItem is Missile ^ loaded)
@@ -77,7 +83,7 @@ namespace RS4A.Tiles
                 ToggleMissile(i, j);
                 return true;
             }
-            
+
             return false;
         }
     }

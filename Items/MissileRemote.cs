@@ -12,7 +12,7 @@ namespace RS4A.Items
 {
     internal class MissileRemote : ModItem
     {
-        public Dictionary<string, List<Point16>> launchLocationsByWorld = [];
+        public Dictionary<string, List<Point16>> launchLocationsByWorld = new();
 
 
         public override void SetDefaults()
@@ -36,7 +36,7 @@ namespace RS4A.Items
                 if (TileLoader.GetTile(tile.TileType) is Tiles.MissileSilo silo) {
                     launched = true;
                     Main.NewText("Launching Missile!");
-                    silo.launch(location.X,location.Y,Point16.Zero);
+                    silo.Launch(location.X,location.Y,Point16.Zero);
                 }
                     
             }
@@ -53,17 +53,23 @@ namespace RS4A.Items
 //TODO figure this out later
         }
 
-        public void addLaunchLocation(Point16 location) { 
+        public void AddLaunchLocation(Point16 location) {
+            
             if(launchLocationsByWorld.TryGetValue(Main.worldName, out List<Point16> locations))
             {
-                locations.Add(location);
+                if (!locations.Contains(location))
+                {
+                    Main.NewText("Added launch location", new Color(150, 0, 0));
+                    locations.Add(location);
+                }
             }
             else
             {
-               locations = new();
-                locations.Add(location);
-                Main.NewText("Added launch location", new Color(150,0,0));
-
+                Main.NewText("Added launch location", new Color(150, 0, 0));
+                locations = new()
+                {
+                    location
+                };
                 launchLocationsByWorld.Add(Main.worldName, locations);
             }
         }

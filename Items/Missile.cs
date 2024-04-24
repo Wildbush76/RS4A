@@ -22,5 +22,7 @@ namespace RS4A.Items
             Item.knockBack = 1.2f;
             Item.rare = ItemRarityID.Red;
         }
+
+      
     }
 }
