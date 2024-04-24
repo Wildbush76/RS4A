@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using log4net.Core;
+using Microsoft.Xna.Framework;
 using RS4A.Tiles;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace RS4A.Items
                 if (TileLoader.GetTile(tile.TileType) is Tiles.MissileSilo silo) {
                     launched = true;
                     Main.NewText("Launching Missile!");
-                    silo.Launch(location.X,location.Y,Point16.Zero);
+                    Tiles.MissileSilo.Launch(location.X,location.Y,Point16.Zero);
                 }
                     
             }
@@ -66,10 +67,9 @@ namespace RS4A.Items
             else
             {
                 Main.NewText("Added launch location", new Color(150, 0, 0));
-                locations = new()
-                {
-                    location
-                };
+                locations = new();
+                locations.Add(location);
+                
                 launchLocationsByWorld.Add(Main.worldName, locations);
             }
         }

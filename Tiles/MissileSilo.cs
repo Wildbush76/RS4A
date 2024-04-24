@@ -22,7 +22,7 @@ namespace RS4A.Tiles
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
             TileObjectData.newTile.Height = 4;
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = new int[]{ 16, 16, 16, 16};
             TileObjectData.addTile(Type);
 
             AddMapEntry(new Color(100, 100, 100));
@@ -57,12 +57,12 @@ namespace RS4A.Tiles
             }
         }
 
-        public void Launch(int i, int j, Point16 target)
+        public static void Launch(int i, int j, Point16 target)
         {
             if (Main.tile[i, j].TileFrameX > 18)
             {
                 ToggleMissile(i, j, false);
-                Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2(i * 16, j * 16), new Vector2(0, -20), ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
+                Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2(i * 16, j * 16), new Vector2(0, -2), ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
             }
         }
 

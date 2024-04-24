@@ -202,7 +202,7 @@ Items: {
 
 	Missile: {
 		DisplayName: Missile
-		Tooltip: ""
+		Tooltip: The missile knows where it is becuase it knows where it isnt...
 	}
 
 	MissileRemote: {

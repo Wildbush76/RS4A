@@ -1,29 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent.Biomes;
 using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
 {
     internal class MissileProjectile : ModProjectile
     {
-        private Vector2 target = new Vector2(0,500);
+        private Vector2 target = new(0, 500);
         private Stage currentStage = Stage.LAUNCH;
         private Vector2 targetPoint = Vector2.Zero;
-        private Vector2 desiredVelocity = Vector2.Zero;
-       
-
+        
 
         private const float MAX_SPEED = 20;
         private const float ACCELERATION = 0.1f;
         private const int CRUISING_ALTITUDE = 2000;
-        public enum Stage {
+        private const float ROTATION_SPEED = 0.5f;
+        public enum Stage
+        {
             LAUNCH,
             CLIMB,
             CRUISE,
@@ -42,7 +36,7 @@ namespace RS4A.Projectiles
 
         public override void AI()
         {
-            switch(currentStage)
+            switch (currentStage)
             {
                 case Stage.LAUNCH:
                     Launch();
@@ -52,21 +46,25 @@ namespace RS4A.Projectiles
                     break;
                 case Stage.CRUISE:
                     Cruise();
-                    break; 
+                    break;
                 case Stage.ATTACK:
                     break;
             }
+            RotateByVelocity();
         }
 
-        private void Launch() {
-            Projectile.velocity.Y /= 1.4f;
-            if (Math.Abs(Projectile.velocity.Y) < 2) {
-                if (DistanceToTarget(target) > 200)
+        private void Launch()
+        {
+            Projectile.velocity.Y += MathF.CopySign(ACCELERATION, Projectile.velocity.Y);
+            if (Math.Abs(Projectile.velocity.Y) > MAX_SPEED / 1.3)
+            {
+                if (DistanceToTarget(target) > 300)
                 {
-                    targetPoint = new Vector2((target.X - Projectile.position.X) / 5 + Projectile.position.X, CRUISING_ALTITUDE);
+                    targetPoint = new Vector2(MathF.CopySign(100, target.X - Projectile.position.X) + Projectile.position.X, CRUISING_ALTITUDE);
                     currentStage = Stage.CLIMB;
                     Main.NewText("Switching to climb");
-                    Main.NewText("Climbing to " + targetPoint.X);
+                    Main.NewText("Climbing to X:" + targetPoint.X + " Y:" + targetPoint.Y);
+
                 }
                 else
                 {
@@ -76,29 +74,74 @@ namespace RS4A.Projectiles
             }
         }
 
-        private double DistanceToTarget(Vector2 target) { 
+        private double DistanceToTarget(Vector2 target)
+        {
             return Vector2.Distance(Projectile.position, target);
         }
 
-        private void Climb() {
-            if (DistanceToTarget(targetPoint) < 20) {
-                targetPoint.X = (target.X - Projectile.position.X) * (4/5f) + Projectile.position.X;
+        private void Climb()
+        {
+            if (DistanceToTarget(targetPoint) < 20)
+            {
+                targetPoint.X = (target.X - Projectile.position.X) * (4 / 5f) + Projectile.position.X;
                 Main.NewText("Crusing");
                 currentStage = Stage.CRUISE;
             }
             FlyToPoint();
         }
 
-        private void Cruise() {
+        private void Cruise()
+        {
             FlyToPoint();
         }
 
-        private void FlyToPoint() {
-            desiredVelocity = targetPoint - Projectile.position;
-            desiredVelocity.Normalize();
-            desiredVelocity *= MAX_SPEED;
+        private void FlyToPoint()
+        {
+            float currentAngle = MathF.Atan2(Projectile.velocity.Y, Projectile.velocity.X);
+            float desiredAngle = MathF.Atan2(targetPoint.Y - Projectile.position.Y, targetPoint.X - Projectile.position.X);
+            float speed = Projectile.velocity.Length();
 
-            Projectile.velocity = Vector2.Lerp(Projectile.velocity, desiredVelocity, ACCELERATION);
+            if (speed < MAX_SPEED)
+            {
+                speed += ACCELERATION;
+            }
+
+            if (Math.Abs(currentAngle - desiredAngle) < 0.3)
+            {
+                currentAngle = desiredAngle;
+
+            }
+            else if (currentAngle < desiredAngle)
+            {
+                if (Math.Abs(currentAngle - desiredAngle) < 180)
+                {
+                    currentAngle += ROTATION_SPEED;
+                }
+                else
+                {
+                    currentAngle -= ROTATION_SPEED;
+                }
+            }
+            else
+            {
+                if (Math.Abs(currentAngle - desiredAngle) < 180)
+                {
+                    currentAngle -= ROTATION_SPEED;
+                }
+                else
+                {
+                    currentAngle += ROTATION_SPEED;
+                }
+            }
+
+
+            Projectile.velocity.X = MathF.Cos(currentAngle) * speed;
+            Projectile.velocity.Y = MathF.Sin(currentAngle) * speed;
+        }
+
+        private void RotateByVelocity()
+        {
+            Projectile.rotation = MathF.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + MathF.PI / 2;
         }
 
     }
