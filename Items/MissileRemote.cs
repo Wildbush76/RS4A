@@ -1,4 +1,5 @@
-﻿using RS4A.Tiles;
+﻿using Microsoft.Xna.Framework;
+using RS4A.Tiles;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -11,7 +12,7 @@ namespace RS4A.Items
 {
     internal class MissileRemote : ModItem
     {
-        public Dictionary<String, List<Point16>> launchLocationsByWorld;
+        public Dictionary<string, List<Point16>> launchLocationsByWorld = [];
 
 
         public override void SetDefaults()
@@ -27,9 +28,17 @@ namespace RS4A.Items
         public override bool? UseItem(Player player)
         {
             bool launched = false;
+            if (!launchLocationsByWorld.ContainsKey(Main.worldName) || player.whoAmI != Main.myPlayer) {
+                return false;
+            }
             foreach(Point16 location in launchLocationsByWorld[Main.worldName]) {
                 Tile tile = Main.tile[location];
-                //TODO launch all of the things
+                if (TileLoader.GetTile(tile.TileType) is Tiles.MissileSilo silo) {
+                    launched = true;
+                    Main.NewText("Launching Missile!");
+                    silo.launch(location.X,location.Y,Point16.Zero);
+                }
+                    
             }
             return launched;
         }
@@ -51,7 +60,11 @@ namespace RS4A.Items
             }
             else
             {
-                launchLocationsByWorld[Main.worldName] = new List<Point16>(locations);
+               locations = new();
+                locations.Add(location);
+                Main.NewText("Added launch location", new Color(150,0,0));
+
+                launchLocationsByWorld.Add(Main.worldName, locations);
             }
         }
     }

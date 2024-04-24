@@ -29,7 +29,7 @@ namespace RS4A.Tiles
             MinPick = 100;
         }
 
-        public static void ToggleMissile(int i, int j) {
+        public static void ToggleMissile(int i, int j, bool dropItem = true) {
             Tile tile = Main.tile[i,j];
             int topY = j - (tile.TileFrameY / 18) % 4;
             int topX = i - (tile.TileFrameX / 18) % 2;
@@ -39,7 +39,8 @@ namespace RS4A.Tiles
             if (tile.TileFrameX > 18)
             {
                 frameAdjust = -36;
-                Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i,j), new Rectangle(i * 16,j * 16,32,64), ModContent.ItemType<Missile>());
+                if(dropItem)
+                    Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i,j), new Rectangle(i * 16,j * 16,32,64), ModContent.ItemType<Missile>());
             }
             else {
                 frameAdjust = 36;
@@ -53,13 +54,24 @@ namespace RS4A.Tiles
             }
         }
 
+        public void launch(int i, int j, Point16 target) {
+            if (Main.tile[i,j].TileFrameX > 18) {
+                ToggleMissile(i, j, false);
+            }
+        }
+
         public override bool RightClick(int i, int j)
         {
             Player player = Main.LocalPlayer;
             Item item = player.HeldItem;
             bool loaded = Main.tile[i, j].TileFrameX > 18;
 
-            if (item.ModItem is Missile ^ loaded)
+            if(item.ModItem is MissileRemote missileRemote)
+            {
+                missileRemote.addLaunchLocation(new Point16(i, j));
+            }
+
+            else if (item.ModItem is Missile ^ loaded)
             {
                 item.stack--;
                 ToggleMissile(i, j);

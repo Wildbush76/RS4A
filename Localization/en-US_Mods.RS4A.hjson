@@ -204,6 +204,11 @@ Items: {
 		DisplayName: Missile
 		Tooltip: ""
 	}
+
+	MissileRemote: {
+		DisplayName: Missile Remote
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
