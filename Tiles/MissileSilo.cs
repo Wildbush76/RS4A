@@ -57,7 +57,7 @@ namespace RS4A.Tiles
             }
         }
 
-        public static void Launch(int i, int j, Point16 target)
+        public static void Launch(int i, int j, Vector2 target)
         {
             if (Main.tile[i, j].TileFrameX > 18)
             {

@@ -37,7 +37,7 @@ namespace RS4A.Items
                 if (TileLoader.GetTile(tile.TileType) is Tiles.MissileSilo silo) {
                     launched = true;
                     Main.NewText("Launching Missile!");
-                    Tiles.MissileSilo.Launch(location.X,location.Y,Point16.Zero);
+                    Tiles.MissileSilo.Launch(location.X,location.Y,Main.MouseWorld);
                 }
                     
             }
