@@ -13,7 +13,7 @@ namespace RS4A.Items
 {
     internal class MissileRemote : ModItem
     {
-        public Dictionary<string, List<Point16>> launchLocationsByWorld = new();
+        public Dictionary<string, List<Point16>> launchLocationsByWorld;
 
 
         public override void SetDefaults()
@@ -44,13 +44,18 @@ namespace RS4A.Items
             return launched;
         }
 
-        public override void SaveData(TagCompound tag)
+        public override void SaveData(TagCompound tag) 
         {
-            //TODO figure this out later
+            //tag.Add("locations", launchLocationsByWorld);
         }
 
         public override void LoadData(TagCompound tag)
         {
+            launchLocationsByWorld = new();
+
+//            if (!tag.TryGet<Dictionary<string, List<Point16>>>("locations", out launchLocationsByWorld)) {
+              //  launchLocationsByWorld = new();
+            //}
 //TODO figure this out later
         }
 
