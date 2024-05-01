@@ -37,7 +37,15 @@ namespace RS4A.Items
         }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<Radiation>(), 180);
+            target.AddBuff(ModContent.BuffType<Radiation2>(), 180);
+        }
+        public override void UpdateInventory(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<Radiation3>(), 10);
+        }
+        public override void HoldItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<Radiation3>(), 10);
         }
     }
 }

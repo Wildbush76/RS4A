@@ -48,36 +48,15 @@ namespace RS4A.Biomes
         // Declare biome priority. The default is BiomeLow so this is only necessary if it needs a higher priority.
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
         private int disabledelay = 50;
-        /*
-        public override void SpecialVisuals(Player player, bool isActive)
+        
+        public override void SpecialVisuals(Player player, bool isActive) // T
         { //also compensates for underground (i think)
-            bool biomeActive = isActive || player.InModBiome<BrazilUndergroundBiome>();
-
-            if (SkyManager.Instance["Brazil"] == null)
+            if (isActive)
             {
-                ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("IT IS NULL! s"), Color.Green, Main.myPlayer);
-            }
-            if (SkyManager.Instance["Brazil"] != null && biomeActive != SkyManager.Instance["Brazil"].IsActive())
-            {
-                if (isActive)
-                {
-                    SkyManager.Instance.Activate("Brazil");
-                    player.AddBuff(ModContent.BuffType<Buffs.REZ>(),10);
-                }
-                else
-                {
-                    if (disabledelay <= 0)
-                    {
-                        SkyManager.Instance.Deactivate("Brazil");
-                        disabledelay = 50;
-                    } else
-                    {
-                        disabledelay--;
-                    }
-                }
+                player.AddBuff(ModContent.BuffType<Buffs.REZ>(), 10);
             }
         }
-        */
+        
         //i hope this wasnt all in vain, but at the same time hopefully lol
         
     }

@@ -16,7 +16,7 @@ Buffs: {
 
 	Radiation: {
 		DisplayName: Heavily Irradiated
-		Description: No, you can't right-click to get rid of it
+		Description: Your DNA is being scrambled
 	}
 
 	Radiation2: {
@@ -24,9 +24,19 @@ Buffs: {
 		Description: Your DNA is being scrambled
 	}
 
+	Radiation3: {
+		DisplayName: Lightly Irradiated
+		Description: Something in your inventory is radioactive
+	}
+
 	REZ: {
 		DisplayName: Radioactive Exclusion Zone
 		Description: It's too radioactive to be here without protection
+	}
+
+	LeadPoisoning: {
+		DisplayName: Lead Poisoning
+		Description: Don't you know that lead is bad for you?
 	}
 }
 
@@ -56,13 +66,17 @@ Items: {
 		Tooltip:
 			'''
 			"Now I am become death, the destroyer of worlds."
-			!!! HIGHLY UNSTABLE !!!
+			[c/FF0000:!!! HIGHLY UNSTABLE !!!]
 			'''
 	}
 
 	LeadWater: {
 		DisplayName: Lead Water
-		Tooltip: mmm tasty
+		Tooltip:
+			'''
+			A tasty concoction with a couple side effects
+			Makes you immune to [c/00FF00:radiation]
+			'''
 	}
 
 	LeeroyEmblem: {
@@ -157,7 +171,7 @@ Items: {
 
 	PotionOfExploding: {
 		DisplayName: Potion Of Exploding
-		Tooltip: ""
+		Tooltip: Every hit causes an explosion
 	}
 
 	RadioactiveStone: {

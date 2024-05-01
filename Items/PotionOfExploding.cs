@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using RS4A.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -10,7 +10,7 @@ namespace RS4A.Items
 
         public override void SetDefaults()
         {
-            Item.damage = 700;
+            Item.damage = 700; //lmfaoooo
             Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
             Item.scale = 1f;
             Item.width = 50;
@@ -34,7 +34,7 @@ namespace RS4A.Items
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.LivingRainbowDye, 5);
+            recipe.AddIngredient(ItemID.LivingRainbowDye, 5); //should probably make the recipe harder since this is fresh out of pre-hardmode
             recipe.AddIngredient(ItemID.SoulofLight, 6);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();

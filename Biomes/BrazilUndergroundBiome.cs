@@ -18,7 +18,7 @@ namespace RS4A.Biomes
         public override ModWaterStyle WaterStyle => ModContent.GetInstance<BrazilWaterStyle>(); // Sets a water style for when inside this biome
 
         // Select Music
-        public override int Music => MusicLoader.GetMusicSlot("RS4A/Music/funkyTown");
+        public override int Music => MusicLoader.GetMusicSlot("RS4A/Music/UEZ");
 
         // Sets how the Scene Effect associated with this biome will be displayed with respect to vanilla Scene Effects. For more information see SceneEffectPriority & its values.
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh; // We have set the SceneEffectPriority to be BiomeLow for purpose of example, however default behavior is BiomeLow.
@@ -38,25 +38,13 @@ namespace RS4A.Biomes
                 // Check how many tiles of our biome are present, such that biome should be active
                 ModContent.GetInstance<BrazilBiomeTileCount>().brazilBlockCount >= 40;
         }
-        /*
-        public override void SpecialVisuals(Player player, bool isActive)
-        {
-            /*
-            if (!Filters.Scene["Radiation"].Active)
+        public override void SpecialVisuals(Player player, bool isActive) // TODO: find better function to attach this to.
+        { //also compensates for underground (i think)
+            if (isActive)
             {
-
-                if (isActive)
-                {
-                    Filters.Scene.Activate("Radiation");
-                } else
-                {
-                    Filters.Scene.Deactivate("Radiation");
-                }
+                player.AddBuff(ModContent.BuffType<Buffs.REZ>(), 10);
             }
-            
-            //unsure if necessary
         }
-        */
     // In the event that both our biome AND one or more modded SceneEffect layers are active with the same SceneEffect Priority, this can decide which one.
     // It's uncommon that need to assign a weight - you'd have to specifically believe that you don't need higher SceneEffectPriority, but do need to be the active SceneEffect within the priority you designated
     // In this case, we don't need it, so this inclusion is purely to demonstrate this is available.
