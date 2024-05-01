@@ -30,11 +30,20 @@ namespace RS4A.Tiles
             MinPick = 100;
         }
 
-        public static void ToggleMissile(int i, int j, bool dropItem = true)
-        {
+        private static Point16 GetTop(int i, int j) {
+
             Tile tile = Main.tile[i, j];
             int topY = j - (tile.TileFrameY / 18) % 4;
             int topX = i - (tile.TileFrameX / 18) % 2;
+            return new Point16(topX, topY);
+        }
+
+        public static void ToggleMissile(int i, int j, bool dropItem = true)
+        {
+            Tile tile = Main.tile[i, j];
+
+            Point16 top = GetTop(i, j);
+     
 
 
             short frameAdjust;
@@ -52,7 +61,7 @@ namespace RS4A.Tiles
             {
                 for (short yOffset = 0; yOffset < 4; yOffset++)
                 {
-                    Main.tile[topX + xOffset, topY + yOffset].TileFrameX += frameAdjust;
+                    Main.tile[top.X + xOffset, top.Y + yOffset].TileFrameX += frameAdjust;
                 }
             }
         }
@@ -62,7 +71,8 @@ namespace RS4A.Tiles
             if (Main.tile[i, j].TileFrameX > 18)
             {
                 ToggleMissile(i, j, false);
-                Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2(i * 16, j * 16), new Vector2(0, -2), ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
+                Point16 top = GetTop(i,j);
+                Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2((top.X + 1) * 16, (top.Y + 2) * 16), Vector2.Zero, ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
             }
         }
 
@@ -74,7 +84,7 @@ namespace RS4A.Tiles
 
             if (item.ModItem is MissileRemote missileRemote)
             {
-                missileRemote.AddLaunchLocation(new Point16(i, j));
+                missileRemote.AddLaunchLocation(GetTop(i,j));
             }
 
             else if (item.ModItem is Missile ^ loaded)

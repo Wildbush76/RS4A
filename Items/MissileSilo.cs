@@ -19,6 +19,7 @@ namespace RS4A.Items
             Item.useAnimation = 10;
             Item.createTile = ModContent.TileType<Tiles.MissileSilo>();
             Item.maxStack = 5;
+            Item.consumable = true;
         }
     }
 }

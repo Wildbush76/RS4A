@@ -35,6 +35,7 @@
     <None Remove="NPCs\StupidBoss\StupidBossBody_Head_Boss.png" />
     <None Remove="NPCs\StupidBoss\StupidBossBody_Head_Boss_SecondStage.png" />
     <None Remove="Projectiles\light.png" />
+    <None Remove="Projectiles\MissileProjectile_head_boss.png" />
     <None Remove="Projectiles\StupidBossProjectiles\weirdProjectile.png" />
     <None Remove="Skies\BrazilSky.png" />
     <None Remove="Tiles\UraniumBar.png" />

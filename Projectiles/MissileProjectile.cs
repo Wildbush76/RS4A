@@ -19,12 +19,13 @@ namespace RS4A.Projectiles
         private int delay;
 
 
-        private const int MAX_LAUNCH_DELAY = 60;
-        private const float MAX_SPEED = 7;
+        private const int MAX_LAUNCH_DELAY = 180;
+        private const float MAX_SPEED = 30;
         private const float ACCELERATION = 0.3f;
         private const int CRUISING_ALTITUDE = 2000;
         private const float ROTATION_SPEED = 0.02f;
         private const int TILE_COLLIDE_RANGE = 40;//range to players or target to enable tile collide
+        private const int INACCURACY = 20;//Plus or minus this value on X
         public enum Stage
         {
             LAUNCH,
@@ -36,8 +37,8 @@ namespace RS4A.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
-            delay = random.Next(0, MAX_LAUNCH_DELAY);
-            target = new Vector2(Projectile.ai[0], Projectile.ai[1]);
+            delay = random.Next(60, MAX_LAUNCH_DELAY);
+            target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1]);
         }
         public override void SetDefaults()
         {
@@ -61,7 +62,7 @@ namespace RS4A.Projectiles
             {
                 foreach (Player player in Main.player)
                 {
-                    if (DistanceToTarget(player.position) / 16 > TILE_COLLIDE_RANGE)
+                    if (DistanceToTarget(player.position) / 16 < TILE_COLLIDE_RANGE)
                     {
                         Projectile.tileCollide = true;
                         return;
@@ -72,21 +73,27 @@ namespace RS4A.Projectiles
 
         }
 
-        public override void AI()
+        public override bool PreAI()
         {
             if (delay != 0)
             {
+
                 if (--delay == 0)
                 {
                     Projectile.Opacity = 1;
-                    for (int i = 0; i < 5; i++) {
-                        Gore.NewGore(Projectile.GetSource_FromThis(), Projectile.position,new Vector2(random.NextSingle() * 2 -1, random.NextSingle() * 2 -1),GoreID.Smoke1 );
-                    }
                 }
-                return;
+                else if (delay < 60)
+                {
+                    Dust.NewDust(Projectile.BottomLeft, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>(),SpeedX: random.NextSingle() * 50 - 25, SpeedY: random.NextSingle() * 2 - 1);
+                }
+                return false;
             }
-            else
-            {
+            return true;
+        }
+
+        public override void AI()
+        {
+            
                 switch (currentStage)
                 {
                     case Stage.LAUNCH:
@@ -104,7 +111,7 @@ namespace RS4A.Projectiles
                         break;
 
                 }
-            }
+            
             
             FlightAnimation();
         }
@@ -176,11 +183,11 @@ namespace RS4A.Projectiles
             {
                 case Stage.CLIMB:
                     targetPoint.X = (target.X - Projectile.position.X) * (4 / 5f) + Projectile.position.X;
-                    Main.NewText("Crusing");
+                    Main.NewText("Cruise");
                     currentStage = Stage.CRUISE;
                     break;
                 case Stage.CRUISE:
-                    Main.NewText("attacky");
+                    Main.NewText("attack");
                     currentStage = Stage.ATTACK;
                     targetPoint = target;
                     break;
@@ -192,7 +199,7 @@ namespace RS4A.Projectiles
 
         private void Launch()
         {
-            Projectile.velocity.Y += MathF.CopySign(ACCELERATION, Projectile.velocity.Y);
+            Projectile.velocity.Y -= ACCELERATION;
             launchTimer--;
             if (launchTimer == 0)
             {
@@ -221,49 +228,18 @@ namespace RS4A.Projectiles
 
         private bool FlyToPoint()
         {
-            float currentAngle = MathF.Atan2(Projectile.velocity.Y, Projectile.velocity.X);
-            float desiredAngle = MathF.Atan2(targetPoint.Y - Projectile.position.Y, targetPoint.X - Projectile.position.X);
-
             float speed = Projectile.velocity.Length();
 
             if (speed < MAX_SPEED)
             {
                 speed += ACCELERATION;
             }
+         
 
-            if (Math.Abs(currentAngle - desiredAngle) < ROTATION_SPEED)
-            {
-                currentAngle = desiredAngle;
-
-            }
-            else if (currentAngle < desiredAngle)
-            {
-                if (Math.Abs(currentAngle) - Math.Abs(desiredAngle) < 180)
-                {
-                    currentAngle -= ROTATION_SPEED;
-                }
-                else
-                {
-                    currentAngle += ROTATION_SPEED;
-                }
-            }
-            else
-            {
-                if (Math.Abs(currentAngle) - Math.Abs(desiredAngle) < 180)
-                {
-                    currentAngle += ROTATION_SPEED;
-                }
-                else
-                {
-                    currentAngle -= ROTATION_SPEED;
-                }
-            }
-
-
-            Projectile.velocity.X = MathF.Cos(currentAngle) * speed;
-            Projectile.velocity.Y = MathF.Sin(currentAngle) * speed;
-
+            Projectile.velocity = Vector2.Lerp( Vector2.Normalize(Projectile.velocity),Vector2.Normalize(targetPoint-Projectile.position),0.05f) * speed;
+           
             return DistanceToTarget(targetPoint) / 16 < 5;
+            
         }
 
         private void FlightAnimation()
@@ -271,8 +247,10 @@ namespace RS4A.Projectiles
             Projectile.rotation = MathF.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + MathF.PI / 2;
             Vector2 location = Projectile.Center - Vector2.Normalize(Projectile.velocity) * (Projectile.height / 2);
 
-            Gore.NewGore(Projectile.GetSource_FromThis(), location,-Projectile.velocity, GoreID.Smoke1);
-            Dust.NewDust(location, Projectile.width, 5, DustID.Torch);
+            //Gore.NewGore(Projectile.GetSource_FromThis(), location,-Projectile.velocity, GoreID.Smoke1);
+            Dust.NewDustPerfect(location,  DustID.Torch);
+            //Dust.NewDust(location, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>());
+            Dust.NewDustPerfect(location,ModContent.DustType<Dusts.SmokeCloud>());
         }
 
     }
