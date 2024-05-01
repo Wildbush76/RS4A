@@ -1,3 +1,4 @@
+using RS4A.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,14 @@ namespace RS4A.Items
         {
             Item.ResearchUnlockCount = 25;
 
+        }
+        public override void UpdateInventory(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<Radiation3>(), 10);
+        }
+        public override void HoldItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<Radiation3>(), 10);
         }
         public override void SetDefaults()
         {

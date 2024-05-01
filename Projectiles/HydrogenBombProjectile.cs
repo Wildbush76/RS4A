@@ -92,7 +92,7 @@ namespace RS4A.Projectiles
                                 deathMessage = " was reduced to sub-atomic particles";
                                 break;
                             case 1:
-                                deathMessage = " was turned into radiactive ash";
+                                deathMessage = " was turned into radioactive ash";
                                 break;
                             case 2:
                                 deathMessage = " was obliterated";

@@ -1,4 +1,5 @@
 ﻿
+using RS4A.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ namespace RS4A.Items
         {
             Item.width = 20;
             Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.useAnimation = 20;
             Item.useTime = 20;
             Item.useTurn = true;
@@ -20,7 +21,7 @@ namespace RS4A.Items
             Item.consumable = true;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(copper: 50);
-            Item.buffType = BuffID.Confused;
+            Item.buffType = ModContent.BuffType<LeadPoisoning>();
             Item.buffTime = 36000;
         }
         public override void AddRecipes()
