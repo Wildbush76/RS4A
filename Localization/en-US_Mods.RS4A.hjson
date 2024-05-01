@@ -206,6 +206,21 @@ Items: {
 
 	HallowedBullet: {
 		DisplayName: Hallowed Bullet
+		Tooltip: Its chlorophyte but not
+	}
+
+	MissileSilo: {
+		Tooltip: ""
+		DisplayName: Missile Silo
+	}
+
+	Missile: {
+		DisplayName: Missile
+		Tooltip: The missile knows where it is becuase it knows where it isnt...
+	}
+
+	MissileRemote: {
+		DisplayName: Missile Remote
 		Tooltip: ""
 	}
 }
@@ -223,13 +238,13 @@ Projectiles: {
 	TargetedForOrbitalStrike.DisplayName: Targeted For Orbital Strike
 	weirdProjectile.DisplayName: weird Projectile
 	WeirdProjectile.DisplayName: Weird Projectile
-	RocketLauncherTargeting.DisplayName: Rocket Launcher Targeting
-	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding Projectile
+	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding
 	FirstPrismHoldout.DisplayName: First Prism Holdout
 	FirstPrismSpray.DisplayName: First Prism Spray
 	ShootYourselfBullets.DisplayName: Shoot Yourself Bullets
 	MushuWhipProjectile.DisplayName: Mushu Whip Projectile
 	HallowedBullet.DisplayName: Hallowed Bullet
+	MissileProjectile.DisplayName: Missile Projectile
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss

@@ -16,11 +16,11 @@ namespace RS4A.Tiles
             Main.tileSpelunker[Type] = true;
             TileID.Sets.Ore[Type] = true;
             Main.tileSpelunker[Type] = true;
-           
+
 
             HitSound = SoundID.Tink;
 
-            AddMapEntry(new Color(0, 255, 120), CreateMapEntryName());
+            AddMapEntry(new Color(0, 100, 40), CreateMapEntryName());
             MinPick = 200;
             MineResist = 5f;
         }
@@ -31,8 +31,8 @@ namespace RS4A.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = 0f;
-            g = 0.8f;
-            b = 0.6f;
+            g = 0.4f;
+            b = 0.3f;
         }
     }
 }
