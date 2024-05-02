@@ -7,8 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
-{
-    [AutoloadBossHead]
+{ 
     internal class MissileProjectile : ModProjectile
     {
         private static readonly Random random = new();
@@ -22,7 +21,7 @@ namespace RS4A.Projectiles
         private const int MAX_LAUNCH_DELAY = 180;
         private const float MAX_SPEED = 30;
         private const float ACCELERATION = 0.3f;
-        private const int CRUISING_ALTITUDE = 2000;
+        private const int CRUISING_ALTITUDE = 1000;
         private const float ROTATION_SPEED = 0.02f;
         private const int TILE_COLLIDE_RANGE = 40;//range to players or target to enable tile collide
         private const int INACCURACY = 20;//Plus or minus this value on X
@@ -205,7 +204,7 @@ namespace RS4A.Projectiles
             {
                 if (DistanceToTarget(target) / 16 > 300)
                 {
-                    targetPoint = new Vector2(MathF.CopySign(200, target.X - Projectile.position.X) + Projectile.position.X, CRUISING_ALTITUDE);
+                    targetPoint = new Vector2(MathF.CopySign(200, target.X - Projectile.position.X) + Projectile.position.X, target.Y - CRUISING_ALTITUDE);
                     currentStage = Stage.CLIMB;
                     Main.NewText("Switching to climb");
                     Main.NewText("Climbing to X:" + targetPoint.X + " Y:" + targetPoint.Y);

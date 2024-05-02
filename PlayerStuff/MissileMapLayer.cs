@@ -21,7 +21,7 @@ namespace RS4A.PlayerStuff
                 {
                     Vector2 position = projectile.position / 16;
                     //context.Draw(TextureAssets.Projectile[ModContent.ProjectileType<MissileProjectile>()].Value, position, Alignment.Center);
-                    context.Draw(null, position, Color.Red, new SpriteFrame(1,1,0,0),0.3f,0.7f,Alignment.Center);
+                    context.Draw(TextureAssets.Projectile[ModContent.ProjectileType<MissileProjectile>()].Value, position, Color.White, new SpriteFrame(1,1,0,0),0.8f,1,Alignment.Center);
                 }
             }
         }
