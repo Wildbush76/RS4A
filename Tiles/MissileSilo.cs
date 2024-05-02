@@ -18,9 +18,12 @@ namespace RS4A.Tiles
             Main.tileLavaDeath[Type] = false;
 
             Main.tileFrameImportant[Type] = true;
+            Main.tileSolid[Type] = false;
+            
 
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
+         
             TileObjectData.newTile.Height = 4;
             TileObjectData.newTile.CoordinateHeights = new int[]{ 16, 16, 16, 16};
             TileObjectData.addTile(Type);

@@ -13,6 +13,7 @@ namespace RS4A.Dusts
         {
             dust.alpha = 0;
             dust.color = Color.Gray;
+       
         }
 
         public override bool Update(Dust dust)
@@ -24,6 +25,7 @@ namespace RS4A.Dusts
             {
                 dust.active = false;
             }
+            dust.position += dust.velocity;
             return false;
         }
 

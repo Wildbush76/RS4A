@@ -23,6 +23,16 @@ namespace RS4A.Items
             Item.rare = ItemRarityID.Red;
         }
 
-      
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.RocketIV,10);
+            recipe.AddIngredient(ItemID.Explosives);
+            recipe.AddIngredient(ItemID.IronBar, 3);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+
+
     }
 }
