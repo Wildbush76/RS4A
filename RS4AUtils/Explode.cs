@@ -14,12 +14,14 @@ namespace RS4A.RS4AUtils
         /// crater radius is how many layers of the outside of the crater should have the cratering effect
         /// </summary>
         /// <param name="center">the center of the explosion</param>
-        /// <param name="maxDamage">the max damage the explosion will do</param>
+        /// <param name="maxDamage">the max damage the explosion will do. set to 0 if you do not want to deal damage</param>
         /// <param name="blastRadius">the radius that explosion effects</param>
         /// <param name="craterRadius">how many of the outside layers should have the cratering</param>
         /// <param name="craterTiles">list of tiles to use when cratering</param>
         /// <param name="deathMessages">death messages to display if a player is killed</param>
-        public static void CrateringExplosion(Vector2 center, int maxDamage, int blastRadius, int craterRadius, int[] craterTiles, string[] deathMessages)
+        /// <param name="debuffOnHit">what debuff will be applied on hit. set to 0 for none</param>
+        /// <param name="duration">how long the debuff will last for.</param>
+        public static void CrateringExplosion(Vector2 center, int maxDamage, int blastRadius, int craterRadius, int[] craterTiles, string[] deathMessages, int debuffOnHit, int duration)
         {
             SoundEngine.PlaySound(SoundID.Item14, center);
             Random random = new();
@@ -78,8 +80,15 @@ namespace RS4A.RS4AUtils
                     float damageRadius = blastRadius * 16;
                     if (distance < damageRadius)
                     {
-                        int damage = (int)((damageRadius - distance) / damageRadius * maxDamage);
-                        targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessages[random.Next(deathMessages.Length)]), damage, 1, dodgeable: false);
+                        if (maxDamage > 0)
+                        {
+                            int damage = (int)((damageRadius - distance) / damageRadius * maxDamage);
+                            targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessages[random.Next(deathMessages.Length)]), damage, 1, dodgeable: false);
+                        }
+                        if (debuffOnHit != 0)
+                        {
+                            targetPlayer.AddBuff(debuffOnHit,)
+                        }
                     }
                 }
             }
@@ -145,7 +154,7 @@ namespace RS4A.RS4AUtils
                 projectile.ExplodeTiles(projectile.Center, explosionRadius, minTileX, maxTileX, minTileY, maxTileY, explodeWalls);
                 foreach (Player player in Main.player)
                 {
-                    if ((damageAll || player == Main.player[Main.myPlayer]) && player.Distance(projectile.Center) / 16 <= explosionRadius)
+                    if ((damageAll || player == Main.player[Main.myPlayer]) && player.Distance(projectile.Center) / 16 <= explosionRadius && damage>0)
                     {
                         Random random = new();
                         string message = deathMessages[random.Next(deathMessages.Length)];

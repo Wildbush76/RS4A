@@ -41,69 +41,7 @@ namespace RS4A.Projectiles.StupidBossProjectiles
         }
         public override void OnKill(int timeLeft) //thank ye henry
         {
-            Main.NewText("kabew");
-
-            
-            Vector2 position = Projectile.Center;
-            SoundEngine.PlaySound(SoundID.Item14, position);
-            Random random = new();
-            for (int x = -blastRadius; x <= blastRadius; x++)
-            {
-                for (int y = -blastRadius; y <= blastRadius; y++)
-                {
-                    int xPosition = (int)(x + Projectile.Center.X / 16.0f);
-                    int yPosition = (int)(y + Projectile.Center.Y / 16.0f);
-                    double dist = Math.Sqrt(x * x + y * y);
-                    Tile currentTile = Framing.GetTileSafely(xPosition, yPosition);
-                    if (dist > blastRadius)
-                    {
-
-
-                        int replaceChance = (int)((dist - (blastRadius)) / 2) + 1;
-                        if (random.Next(0, replaceChance) == 0)
-                        {
-                            if (currentTile.HasTile)
-                            {
-                                //WorldGen.ReplaceTile(xPosition, yPosition, craterTiles[random.Next(0, craterTil)
-                                WorldGen.KillTile(xPosition, yPosition, false, false, true);
-                                WorldGen.PlaceTile(xPosition, yPosition, craterTiles[random.Next(0, craterTiles.Length)], true);
-                            }
-                        }
-                    }
-                }
-
-            }
-            for (int player = 0; player < Main.maxPlayers; player++)
-            {
-                Player targetPlayer = Main.player[player];
-                if (targetPlayer.active && !targetPlayer.dead)
-                {
-                    float dist = Vector2.Distance(Projectile.Center, targetPlayer.Center);
-                    if (dist < playerDamageRadius)
-                    {
-                        String deathMessage = "";
-                        switch (random.Next(0, 4))
-                        {
-                            case 0:
-                                deathMessage = " was reduced to sub-atomic particles";
-                                break;
-                            case 1:
-                                deathMessage = " was turned into radioactive ash";
-                                break;
-                            case 2:
-                                deathMessage = " was obliterated";
-                                break;
-                            case 3:
-                                deathMessage = " didn't get away in time";
-                                break;
-                        }
-                        //apply calulated damage to the target player here
-                        targetPlayer.AddBuff(ModContent.BuffType<Radiation>(),300);
-                        targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessage), 100, 1, dodgeable: true);
-                    }
-                }
-            }
-            
+            RS4AUtils.Explode.CrateringExplosion(Projectile.Center, 0, 10, 10, [ModContent.TileType<RadioactiveStone>()], [" was reduced to sub-atomic ash", " was no more", " suddenly stopped existing"]);
         }
     }
 }
