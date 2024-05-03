@@ -20,10 +20,11 @@ namespace RS4A.PlayerStuff
            
             foreach (Projectile projectile in Main.projectile)
             {
-                if (projectile.active && projectile.type == ModContent.ProjectileType<MissileProjectile>() && projectile.owner == Main.myPlayer)
+                if (projectile.active && projectile.ModProjectile is MissileProjectile missileProjectile && projectile.owner == Main.myPlayer)
                 {
                     Vector2 position = projectile.position / 16;
                     context.Draw(TextureAssets.Item[ModContent.ItemType<Missile>()].Value, position, Color.White, new SpriteFrame(1,1,0,0),0.8f,1,Alignment.Center);
+                    context.Draw(TextureAssets.Projectile[ModContent.ProjectileType<TargetedForOrbitalStrike>()].Value, missileProjectile.GetTarget()/16, Color.Crimson, new SpriteFrame(1, 1, 0, 0), 0.3f, 0.8f, Alignment.Center);
                 }
             }
         }

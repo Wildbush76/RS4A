@@ -1,10 +1,5 @@
-using Microsoft.Xna.Framework;
 using RS4A.Tiles;
-using System;
 using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
@@ -13,7 +8,7 @@ namespace RS4A.Projectiles
         private const int blastRadius = 140;//includes the burnt block radius
         private const int burntBlockLayers = 30;
         private const float playerDamageRadius = 180 * 8;
-        private const int maxDamage = 9999999; 
+        private const int maxDamage = 9999999;
         private readonly int[] craterTiles = [ModContent.TileType<RadioactiveStone>()];
         public override void SetDefaults()
         {
