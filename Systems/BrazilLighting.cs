@@ -45,8 +45,12 @@ namespace RS4A.Systems
             }
 
 
-            backgroundColor = Color.Lerp(backgroundColor, color, strength*0.3f);
-            tileColor = Color.Lerp(tileColor, color, strength * 0.3f);
+            Color desiredBackgroundColor = new Color((byte)(backgroundColor.R * 0.3), (byte)Math.Min((int)(backgroundColor.G * 1.8), 255), (byte)(backgroundColor.B * 0.3));
+            Color desiredTileColor = new Color((byte)(tileColor.R * 0.3), (byte)Math.Min((int)(tileColor.G * 1.8), 255), (byte)(tileColor.B * 0.3));
+
+            tileColor = Color.Lerp(tileColor, desiredTileColor, strength);
+            backgroundColor = Color.Lerp(backgroundColor, desiredBackgroundColor, strength);
+
 
 
         }

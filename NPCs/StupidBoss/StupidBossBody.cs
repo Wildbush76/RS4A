@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Humanizer;
+using Microsoft.Xna.Framework;
 using RS4A.BossBars;
+using RS4A.Projectiles.StupidBossProjectiles;
 using RS4A.Systems;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,8 @@ namespace RS4A.NPCs.StupidBoss
         // It is applied in the BossHeadSlot hook when the boss is in its second stage
         public static int secondStageHeadSlot = -1;
 
-        public float speed = 5;
+        public float speed = 2;
+        public int internalTimer = 0;
 
         private bool SecondStage = false;
         private int blinkingDir = 1;
@@ -71,6 +74,7 @@ namespace RS4A.NPCs.StupidBoss
         public override void SetDefaults()
         {
             NPC.width = 100;
+            NPC.scale = 1.5f;
             NPC.height = 100;
             NPC.defense = 50;
             NPC.lifeMax = 20000;
@@ -222,6 +226,7 @@ namespace RS4A.NPCs.StupidBoss
 
         public override void AI()
         {
+            internalTimer++;
             //get very close guy
             double closest = 1300;
             Player closestPlayer = null;
@@ -283,13 +288,105 @@ namespace RS4A.NPCs.StupidBoss
                 speed *= 2;
             }
         }
-
+        private float chargingTicks = 0;
+        private Vector2 chargeVelocity;
+        private int phase = 0;
+        private int cooldownPhase = 100;
+        private int generalCooldown = 0;
+        private int repeat = 0;
+        private bool ChargeForth(Player player)
+        {
+            if (chargingTicks>0)
+            {
+                chargingTicks--; //prevents the velocity from being really small
+                NPC.velocity = chargeVelocity * (chargingTicks / 80f);
+                return false;
+            }
+            return true;
+        }
         private void DoFirstStage(Player player)
         {
             // its as shrimple as that
-            Vector2 fromPlayer = player.Center - NPC.Center;
-            float angle = fromPlayer.ToRotation();
-            NPC.velocity = angle.ToRotationVector2() * speed;
+            //speed = Vector2.Distance(player.Center, NPC.Center)/40 + 2;
+            //Vector2 fromPlayer = player.Center - NPC.Center;
+            //float angle = fromPlayer.ToRotation() + Main.rand.NextFloat(-0.5f,0.5f);
+            //NPC.velocity = angle.ToRotationVector2() * speed;
+            switch (phase)
+            {
+                case 0:
+                    cooldownPhase--;
+                    if (cooldownPhase == 0)
+                    {
+                        phase = 2;
+                        if (phase == 2)
+                        {
+                            repeat = 30;
+                        } else if (phase == 1)
+                        {
+                            Vector2 fromPlayer = player.Center - NPC.Center;
+                            float angle = fromPlayer.ToRotation() + Main.rand.NextFloat(-0.5f, 0.5f);
+                            chargeVelocity = angle.ToRotationVector2() * 10;
+                            NPC.velocity = chargeVelocity;
+                            chargingTicks = 80f;
+                        }
+                    }
+                    break;
+                case 1:
+                    if (ChargeForth(player))
+                    {
+                        phase = 0;
+                        generalCooldown = 0;
+                        cooldownPhase = 20;
+                    }
+                    break;
+                case 2:
+                    ExplosiveProjectiles(player);
+                    break;
+                case 3:
+                    DoProjectiles(player);
+                    phase = 0;
+                    generalCooldown = 0;
+                    cooldownPhase = 60;
+                    break;
+            }
+        }
+
+        private void DoProjectiles(Player player)
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient && internalTimer%80==0) //80 ticks = prjectile
+            {
+                for (int i=0; i<360; i+=60)
+                {
+                    float velocityX = (float)Math.Sin(MathHelper.ToRadians((float)i)) * 20;
+                    float velocityY = (float)Math.Cos(MathHelper.ToRadians((float)i)) * 20;
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocityX, velocityY, ModContent.ProjectileType<WeirdProjectile>(), 100, 0f, Main.myPlayer, Main.rand.NextFloat(2f,3f));
+
+                }
+            }
+        }
+        private void ExplosiveProjectiles(Player player)
+        {
+            Main.NewText("spawning");
+            generalCooldown--;
+            if (generalCooldown <= 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                float speed = Main.rand.NextFloat(5f, 20f);
+                //float angle = Main.rand.NextFloat((float)(Math.PI * 0.5f), (float)(Math.PI * 1.5f)); //i think?
+                float angle = Main.rand.NextFloat(90f,270f);
+                float velocityX = (float)Math.Sin(MathHelper.ToRadians(angle)) * speed;
+                float velocityY = (float)Math.Cos(MathHelper.ToRadians(angle)) * speed;
+                Main.NewText(velocityY);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocityX, velocityY, ModContent.ProjectileType<ExplosiveWaste>(), 30, 0f, Main.myPlayer, Main.rand.Next(60, 180));
+                generalCooldown = 15;
+                repeat--;
+
+            }
+            if (repeat <= 0)
+            {
+                phase = 0;
+                cooldownPhase = 60;
+                generalCooldown = 0;
+            }
         }
 
         private void DoSecondStage(Player player)

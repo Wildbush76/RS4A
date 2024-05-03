@@ -245,6 +245,7 @@ Projectiles: {
 	MushuWhipProjectile.DisplayName: Mushu Whip Projectile
 	HallowedBullet.DisplayName: Hallowed Bullet
 	MissileProjectile.DisplayName: Missile Projectile
+	ExplosiveWaste.DisplayName: Explosive Waste
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss
