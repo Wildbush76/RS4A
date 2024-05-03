@@ -14,7 +14,7 @@ namespace RS4A.Items
         public override void SetDefaults()
         {
             Item.damage = 300;
-            Item.DamageType = DamageClass.Ranged;
+            Item.DamageType = DamageClass.Summon;
             Item.width = 20;
             Item.height = 40;
             Item.maxStack = Item.CommonMaxStack;
@@ -23,6 +23,16 @@ namespace RS4A.Items
             Item.rare = ItemRarityID.Red;
         }
 
-      
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.RocketIV,10);
+            recipe.AddIngredient(ItemID.Explosives);
+            recipe.AddIngredient(ItemID.IronBar, 3);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+
+
     }
 }

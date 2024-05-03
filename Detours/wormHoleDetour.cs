@@ -29,10 +29,10 @@ namespace RS4A.Detours
                     Player player = Main.player[i];
                     if (player.active && !player.dead)
                     {
-                        double dist = Vector2.Distance(telePos, player.Center);
-                        if (dist < closest)
+                        double distance = Vector2.Distance(telePos, player.Center);
+                        if (distance < closest)
                         {
-                            closest = dist;
+                            closest = distance;
                             closestPlayer = player;
                         }
                     }
@@ -43,7 +43,7 @@ namespace RS4A.Detours
                 }
                 else if (closestPlayer.ZoneOverworldHeight)
                 {
-                    if (CheckForItemInInvetory(self, self.HeldItem.useAmmo))
+                    if (CheckForItemInInventory(self, self.HeldItem.useAmmo))
                     {
                         //use the ammo
                         for (int slot = 0; slot < Main.player[Main.myPlayer].inventory.Length; slot++)
@@ -62,7 +62,7 @@ namespace RS4A.Detours
                     }
                     else
                     {
-                        ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Insufficent nuclear fuel rods to use an Orbital Strike"), Color.Red, Main.myPlayer);
+                        ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Insufficient nuclear fuel rods to use an Orbital Strike"), Color.Red, Main.myPlayer);
                     }
                 }
 
@@ -91,7 +91,7 @@ namespace RS4A.Detours
 
         private bool On_Player_HasUnityPotion(On_Player.orig_HasUnityPotion orig, Player self)
         {
-            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()) && CheckForItemInInvetory(self, self.HeldItem.useAmmo))
+            if (self.HeldItem.type.Equals(ModContent.ItemType<Items.OrbitalStrike>()) && CheckForItemInInventory(self, self.HeldItem.useAmmo))
             {
                 return true;
             }
@@ -101,7 +101,7 @@ namespace RS4A.Detours
             }
         }
 
-        private static bool CheckForItemInInvetory(Player self, int itemType)
+        private static bool CheckForItemInInventory(Player self, int itemType)
         {
             foreach (Item item in self.inventory)
             {

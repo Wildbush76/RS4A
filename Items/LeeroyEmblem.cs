@@ -24,7 +24,7 @@ namespace RS4A.Items
             // TODO: make the leeroy emblem use PostUpdate defense, as you may be able to benefit from it when you shouldn't
             if (player.statDefense < 100 && player.endurance < 0.50)
             { 
-                player.GetDamage(DamageClass.Generic) += 2.0f * (1.0f - (float)player.statDefense / 100.0f) * (1f-player.endurance); //maximum of 200% damage (no defense, hard to do at post-moonlord as armor and accessories start giving the good stuff)
+                player.GetDamage(DamageClass.Generic) += 2.0f * (1.0f - (float)player.statDefense / 100.0f) * (1f-player.endurance); //maximum of 200% damage (no defense, hard to do at post-MoonLord as armor and accessories start giving the good stuff)
         
             }
         }

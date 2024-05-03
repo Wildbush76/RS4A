@@ -9,11 +9,6 @@ Buffs: {
 		Description: You are now an army recruiter
 	}
 
-	Gay: {
-		DisplayName: Gay
-		Description: You've become gay
-	}
-
 	Radiation: {
 		DisplayName: Heavily Irradiated
 		Description: Your DNA is being scrambled
@@ -38,17 +33,17 @@ Buffs: {
 		DisplayName: Lead Poisoning
 		Description: Don't you know that lead is bad for you?
 	}
+
+	Gay: {
+		Description: Mods.RS4A.Buffs.Gay.Description
+		DisplayName: Gay
+	}
 }
 
 Items: {
 	ArmyPotion: {
 		DisplayName: Army Potion
 		Tooltip: Makes you an army recruiter
-	}
-
-	Gayinator: {
-		DisplayName: Gay-Inator Mk1
-		Tooltip: Become the gay
 	}
 
 	HallowedShortsword: {
@@ -84,16 +79,6 @@ Items: {
 		Tooltip: Gives more damage the lower defense and damage reduction you have
 	}
 
-	TransgenderSword: {
-		DisplayName: TRANS sword
-		Tooltip: C:
-	}
-
-	NotGayLicense: {
-		DisplayName: Not Gay Licenese
-		Tooltip: certified not gay
-	}
-
 	NuclearFuelRod: {
 		DisplayName: Nuclear Fuel Cell
 		Tooltip: ""
@@ -102,11 +87,6 @@ Items: {
 	Nuke: {
 		DisplayName: Nuke
 		Tooltip: ""
-	}
-
-	Nurse: {
-		DisplayName: Nurse Sword
-		Tooltip: Her soul is trapped in it
 	}
 
 	ODM: {
@@ -119,11 +99,6 @@ Items: {
 		Tooltip: Don't get burnt
 	}
 
-	Radstoner: {
-		DisplayName: Radstoner
-		Tooltip: ""
-	}
-
 	SonicDart: {
 		DisplayName: Sonic Dart
 		Tooltip: Does more damage the faster you're going
@@ -132,11 +107,6 @@ Items: {
 	TerraSabre: {
 		DisplayName: TerraSabre
 		Tooltip: Looks like it's made out of foam
-	}
-
-	ThrowingNurse: {
-		DisplayName: Throwing Nurse
-		Tooltip: but why?
 	}
 
 	UraniumBullet: {
@@ -164,11 +134,6 @@ Items: {
 		Tooltip: ""
 	}
 
-	LockOnRocketLauncher: {
-		DisplayName: Lock On Rocket Launcher
-		Tooltip: ""
-	}
-
 	PotionOfExploding: {
 		DisplayName: Potion Of Exploding
 		Tooltip: Every hit causes an explosion
@@ -184,11 +149,6 @@ Items: {
 		Tooltip: Prism Mk1
 	}
 
-	FakeSDMG: {
-		DisplayName: Fake S D M G
-		Tooltip: ""
-	}
-
 	ODMSwords: {
 		DisplayName: O D M Swords
 		Tooltip: ""
@@ -197,16 +157,6 @@ Items: {
 	MushuWhip: {
 		DisplayName: Mushu Whip
 		Tooltip: ""
-	}
-
-	MicroShark: {
-		DisplayName: Micro Shark
-		Tooltip: ""
-	}
-
-	HallowedBullet: {
-		DisplayName: Hallowed Bullet
-		Tooltip: Its chlorophyte but not
 	}
 
 	MissileSilo: {
@@ -221,19 +171,16 @@ Items: {
 
 	MissileRemote: {
 		DisplayName: Missile Remote
-		Tooltip: ""
+		Tooltip: I wonder what this buttons does...
 	}
 }
 
 Projectiles: {
-	GayProjectile.DisplayName: Gay Porn!!!!!!!
 	HydrogenBombProjectile.DisplayName: Hydrogen Bomb
 	HandProjectile.DisplayName: Hand
 	NukeProjectile.DisplayName: Nuke
 	ODM.DisplayName: ODM
 	SonicDartProjectile.DisplayName: Sonic Dart
-	ThrowingNurseProjectile.DisplayName: Throwing nurse
-	UraniumBullet.DisplayName: Uranium Bullet
 	OrbitalStrikeProjectile.DisplayName: Orbital Strike Projectile
 	TargetedForOrbitalStrike.DisplayName: Targeted For Orbital Strike
 	weirdProjectile.DisplayName: weird Projectile
@@ -241,9 +188,7 @@ Projectiles: {
 	PotionOfExplodingProjectile.DisplayName: Potion Of Exploding
 	FirstPrismHoldout.DisplayName: First Prism Holdout
 	FirstPrismSpray.DisplayName: First Prism Spray
-	ShootYourselfBullets.DisplayName: Shoot Yourself Bullets
 	MushuWhipProjectile.DisplayName: Mushu Whip Projectile
-	HallowedBullet.DisplayName: Hallowed Bullet
 	MissileProjectile.DisplayName: Missile Projectile
 	ExplosiveWaste.DisplayName: Explosive Waste
 }

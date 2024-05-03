@@ -28,18 +28,28 @@ namespace RS4A.Items
 
         public override bool? UseItem(Player player)
         {
-            bool launched = false;
-            if (!launchLocationsByWorld.ContainsKey(Main.worldName) || player.whoAmI != Main.myPlayer) {
+            if (player.whoAmI != Main.myPlayer) {
                 return false;
             }
-            foreach(Point16 location in launchLocationsByWorld[Main.worldName]) {
+           
+            return FireMissile(Main.MouseWorld);
+        }
+
+        public bool FireMissile(Vector2 target) {
+            bool launched = false;
+            if (!launchLocationsByWorld.ContainsKey(Main.worldName) )
+            {
+                return false;
+            }
+            foreach (Point16 location in launchLocationsByWorld[Main.worldName])
+            {
                 Tile tile = Main.tile[location];
-                if (TileLoader.GetTile(tile.TileType) is Tiles.MissileSilo silo) {
+                if (TileLoader.GetTile(tile.TileType) is Tiles.MissileSilo silo)
+                {
                     launched = true;
-                    Main.NewText("Launching Missile!");
-                    Tiles.MissileSilo.Launch(location.X,location.Y,Main.MouseWorld);
+                    Tiles.MissileSilo.Launch(location.X, location.Y, target);
                 }
-                    
+
             }
             return launched;
         }
