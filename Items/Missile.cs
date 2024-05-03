@@ -14,7 +14,7 @@ namespace RS4A.Items
         public override void SetDefaults()
         {
             Item.damage = 300;
-            Item.DamageType = DamageClass.Ranged;
+            Item.DamageType = DamageClass.Summon;
             Item.width = 20;
             Item.height = 40;
             Item.maxStack = Item.CommonMaxStack;

@@ -27,7 +27,6 @@
     <None Remove="Buffs\Radiation2.png" />
     <None Remove="Dusts\BrazilWater.png" />
     <None Remove="Items\FirstPrism.png" />
-    <None Remove="Items\LockOnRocketLauncher.png" />
     <None Remove="Items\MissileSilo.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Back.png" />
     <None Remove="NPCs\StupidBoss\MinionBossBody_Front.png" />

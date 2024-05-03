@@ -29,14 +29,7 @@ namespace RS4A.NPCs
             DateTime today = DateTime.Today;
             if (today.Day == 2 && today.Month == 6)
             {
-                if (shop.NpcType == NPCID.PartyGirl)
-                {
-                    shop.Add(new Item(ModContent.ItemType<ThrowingNurse>())
-                    {
-                        shopCustomPrice = 100 //in copper
-                    });
-
-                }
+    
                 for (int a = 0; a < shop.Entries.Count; a++)
                 {
                     shop.Entries.ElementAt(a).Item.value = shop.Entries.ElementAt(a).Item.value / 2; //i have not fucking clue if this will work lmao
@@ -63,7 +56,7 @@ namespace RS4A.NPCs
                         chat = "Happy birthday my boy, half off prices for ye";
                         break;
                     case 3:
-                        chat = "your gettting old u sure u can still fight them bosses"; //lol
+                        chat = "your getting old you sure ye can still fight them bosses"; //lol
                         break;
 
                 }
