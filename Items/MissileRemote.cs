@@ -1,7 +1,4 @@
-﻿using log4net.Core;
-using Microsoft.Xna.Framework;
-using RS4A.Tiles;
-using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -28,16 +25,18 @@ namespace RS4A.Items
 
         public override bool? UseItem(Player player)
         {
-            if (player.whoAmI != Main.myPlayer) {
+            if (player.whoAmI != Main.myPlayer)
+            {
                 return false;
             }
-           
+
             return FireMissile(Main.MouseWorld);
         }
 
-        public bool FireMissile(Vector2 target) {
+        public bool FireMissile(Vector2 target)
+        {
             bool launched = false;
-            if (!launchLocationsByWorld.ContainsKey(Main.worldName) )
+            if (!launchLocationsByWorld.ContainsKey(Main.worldName))
             {
                 return false;
             }
@@ -54,7 +53,7 @@ namespace RS4A.Items
             return launched;
         }
 
-        public override void SaveData(TagCompound tag) 
+        public override void SaveData(TagCompound tag)
         {
             //tag.Add("locations", launchLocationsByWorld);
         }
@@ -63,15 +62,16 @@ namespace RS4A.Items
         {
             launchLocationsByWorld = new();
 
-//            if (!tag.TryGet<Dictionary<string, List<Point16>>>("locations", out launchLocationsByWorld)) {
-              //  launchLocationsByWorld = new();
+            //            if (!tag.TryGet<Dictionary<string, List<Point16>>>("locations", out launchLocationsByWorld)) {
+            //  launchLocationsByWorld = new();
             //}
-//TODO figure this out later
+            //TODO figure this out later
         }
 
-        public void AddLaunchLocation(Point16 location) {
-            
-            if(launchLocationsByWorld.TryGetValue(Main.worldName, out List<Point16> locations))
+        public void AddLaunchLocation(Point16 location)
+        {
+
+            if (launchLocationsByWorld.TryGetValue(Main.worldName, out List<Point16> locations))
             {
                 if (!locations.Contains(location))
                 {
@@ -84,7 +84,7 @@ namespace RS4A.Items
                 Main.NewText("Added launch location", new Color(150, 0, 0));
                 locations = new();
                 locations.Add(location);
-                
+
                 launchLocationsByWorld.Add(Main.worldName, locations);
             }
         }

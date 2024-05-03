@@ -36,9 +36,14 @@ namespace RS4A.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
-            ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"),Color.Red,Main.myPlayer);
+            ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"), Color.Red, Main.myPlayer);
             Projectile.ai[2] = random.Next(60, MAX_LAUNCH_DELAY);
-            target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1]);
+            target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1] + random.Next(-INACCURACY, INACCURACY) * 8);
+        }
+
+        public Vector2 GetTarget()
+        {
+            return target;
         }
 
         public override void SetStaticDefaults()
@@ -90,7 +95,7 @@ namespace RS4A.Projectiles
                 }
                 else if (Projectile.ai[2] < 60)
                 {
-                    Dust.NewDust(Projectile.BottomLeft, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>(), SpeedX: random.NextSingle() - 0.5f, SpeedY: random.NextSingle()/5f);
+                    Dust.NewDust(Projectile.BottomLeft, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>(), SpeedX: random.NextSingle() - 0.5f, SpeedY: random.NextSingle() / 5f);
                 }
                 return false;
             }
@@ -106,7 +111,7 @@ namespace RS4A.Projectiles
                     Launch();
                     break;
                 case Stage.NONTARGETING:
-                    CheckTileCollide();
+                    Projectile.tileCollide = true;
                     break;
                 default:
                     if (FlyToPoint())
@@ -132,7 +137,8 @@ namespace RS4A.Projectiles
             switch (currentStage)
             {
                 case Stage.CLIMB:
-                    targetPoint.X = (target.X - Projectile.position.X) * (4 / 5f) + Projectile.position.X;
+                    targetPoint.X = (target.X - Projectile.position.X) * (8 / 9f) + Projectile.position.X;
+                    targetPoint.Y += random.Next(-50, 50);
                     currentStage = Stage.CRUISE;
                     break;
                 case Stage.CRUISE:
@@ -153,7 +159,7 @@ namespace RS4A.Projectiles
             {
                 if (DistanceToTarget(target) / 16 > 300)
                 {
-                    targetPoint = new Vector2(MathF.CopySign(200, target.X - Projectile.position.X) + Projectile.position.X, target.Y - CRUISING_ALTITUDE);
+                    targetPoint = new Vector2(MathF.CopySign(400, target.X - Projectile.position.X) + Projectile.position.X, target.Y - CRUISING_ALTITUDE);
                     currentStage = Stage.CLIMB;
                 }
                 else
@@ -183,7 +189,7 @@ namespace RS4A.Projectiles
 
             Projectile.velocity = Vector2.Lerp(Vector2.Normalize(Projectile.velocity), Vector2.Normalize(targetPoint - Projectile.position), 0.05f) * speed;
 
-            return DistanceToTarget(targetPoint) / 16 < 5;
+            return DistanceToTarget(targetPoint) / 16 < 10;
 
         }
 
@@ -199,7 +205,7 @@ namespace RS4A.Projectiles
             Projectile.rotation = Projectile.velocity.ToRotation() + MathF.PI / 2;
             Vector2 location = Projectile.Center - Vector2.Normalize(Projectile.velocity) * (Projectile.height / 2);
             Dust.NewDustPerfect(location, DustID.Torch);
-            Dust.NewDustPerfect(location, ModContent.DustType<Dusts.SmokeCloud>(),Vector2.Zero,Scale:1.2f);
+            Dust.NewDustPerfect(location, ModContent.DustType<Dusts.SmokeCloud>(), Vector2.Zero, Scale: 1.2f);
         }
 
     }

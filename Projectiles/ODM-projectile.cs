@@ -100,7 +100,7 @@ namespace RS4A.Projectiles
             grappleY += dirToPlayer.Y * hangDist;
         }
 
-        // Can customize what tiles this hook can latch onto, or force/prevent latching alltogether, like Squirrel Hook also latching to trees
+        // Can customize what tiles this hook can latch onto, or force/prevent latching all together, like Squirrel Hook also latching to trees
         public override bool? GrappleCanLatchOnTo(Player player, int x, int y)
         {
             // By default, the hook returns null to apply the vanilla conditions for the given tile position (this tile position could be air or an actuated tile!)
