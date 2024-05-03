@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
@@ -34,7 +36,7 @@ namespace RS4A.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
-
+            ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"),Color.Red,Main.myPlayer);
             Projectile.ai[2] = random.Next(60, MAX_LAUNCH_DELAY);
             target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1]);
         }
@@ -131,11 +133,9 @@ namespace RS4A.Projectiles
             {
                 case Stage.CLIMB:
                     targetPoint.X = (target.X - Projectile.position.X) * (4 / 5f) + Projectile.position.X;
-                    Main.NewText("Cruise");
                     currentStage = Stage.CRUISE;
                     break;
                 case Stage.CRUISE:
-                    Main.NewText("attack");
                     currentStage = Stage.ATTACK;
                     targetPoint = target;
                     break;
@@ -155,14 +155,11 @@ namespace RS4A.Projectiles
                 {
                     targetPoint = new Vector2(MathF.CopySign(200, target.X - Projectile.position.X) + Projectile.position.X, target.Y - CRUISING_ALTITUDE);
                     currentStage = Stage.CLIMB;
-                    Main.NewText("Switching to climb");
-                    Main.NewText("Climbing to X:" + targetPoint.X + " Y:" + targetPoint.Y);
                 }
                 else
                 {
                     currentStage = Stage.ATTACK;
                     targetPoint = target;
-                    Main.NewText("On the attack");
                 }
             }
         }
