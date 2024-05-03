@@ -27,7 +27,6 @@ namespace RS4A.Tiles
         }
         public override void FloorVisuals(Player player)
         {
-
             player.AddBuff(ModContent.BuffType<Buffs.Radiation>(), 300);
         }
         public override bool CanDrop(int i, int j)

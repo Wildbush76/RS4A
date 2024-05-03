@@ -190,6 +190,7 @@ Projectiles: {
 	FirstPrismSpray.DisplayName: First Prism Spray
 	MushuWhipProjectile.DisplayName: Mushu Whip Projectile
 	MissileProjectile.DisplayName: Missile Projectile
+	ExplosiveWaste.DisplayName: Explosive Waste
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss

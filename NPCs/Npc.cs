@@ -24,6 +24,7 @@ namespace RS4A.NPCs
                 shop.Add(new Item(ModContent.ItemType<ArmyPotion>())
                 {
                     shopCustomPrice = 80000000 //in copper
+                    
                 });
             }
             DateTime today = DateTime.Today;
