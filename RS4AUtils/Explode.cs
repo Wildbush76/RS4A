@@ -94,6 +94,10 @@ namespace RS4A.RS4AUtils
             }
 
         }
+        public static void CrateringExplosion(Vector2 center, int maxDamage, int blastRadius, int craterRadius, int[] craterTiles, string[] deathMessages)
+        {
+            CrateringExplosion(center, maxDamage, blastRadius, craterRadius, craterTiles, deathMessages, 0, 0);
+        }
 
         public static void Explosion(Projectile projectile, int explosionRadius, int damage, bool damageAll, string[] deathMessages)
         {
