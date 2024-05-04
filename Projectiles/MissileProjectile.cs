@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.CodeDom;
 using Terraria;
 using Terraria.Chat;
 using Terraria.DataStructures;
@@ -16,7 +15,7 @@ namespace RS4A.Projectiles
         private Vector2 target = Vector2.Zero;
         private Stage currentStage = Stage.LAUNCH;
         private Vector2 targetPoint = Vector2.Zero;
- 
+
         private int launchTimer = 30;
 
 
@@ -61,17 +60,25 @@ namespace RS4A.Projectiles
             Projectile.width = 14;
             Projectile.height = 35;
             Projectile.penetrate = 1;
-            Projectile.tileCollide = false;
             Projectile.Opacity = 0;
             Projectile.friendly = true;
             Projectile.hostile = true;
+
+            SetCollide(false);
+        }
+
+        private void SetCollide(bool collide)
+        {
+            Projectile.tileCollide = collide;
+            Projectile.friendly = collide;
+            Projectile.hostile = collide;
         }
 
         public void CheckTileCollide()
         {
             if (DistanceToTarget(target) / 16 < TILE_COLLIDE_RANGE)
             {
-                Projectile.tileCollide = true;
+                SetCollide(true);
             }
             else
             {
@@ -79,11 +86,11 @@ namespace RS4A.Projectiles
                 {
                     if (DistanceToTarget(player.position) / 16 < TILE_COLLIDE_RANGE)
                     {
-                        Projectile.tileCollide = true;
+                        SetCollide(true);
                         return;
                     }
                 }
-                Projectile.tileCollide = false;
+                SetCollide(false);
             }
 
         }
@@ -207,11 +214,11 @@ namespace RS4A.Projectiles
                 Projectile.frameCounter = 0;
                 Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
             }
-      
+
 
             Projectile.rotation = Projectile.velocity.ToRotation() + MathF.PI / 2;
             Vector2 location = Projectile.Center - Vector2.Normalize(Projectile.velocity) * (Projectile.height / 2);
-            Lighting.AddLight(location,FLAME_COLOR);
+            Lighting.AddLight(location, FLAME_COLOR);
             Dust dust = Dust.NewDustPerfect(location, DustID.Torch);
             dust.noGravity = true;
             Dust.NewDustPerfect(location, ModContent.DustType<Dusts.SmokeCloud>(), Vector2.Zero, Scale: 1.2f);

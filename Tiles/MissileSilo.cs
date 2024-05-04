@@ -1,10 +1,8 @@
 using Microsoft.Xna.Framework;
 using RS4A.Items;
 using RS4A.Projectiles;
-using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -12,6 +10,7 @@ namespace RS4A.Tiles
 {
     public class MissileSilo : ModTile
     {
+
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
@@ -19,13 +18,12 @@ namespace RS4A.Tiles
 
             Main.tileFrameImportant[Type] = true;
             Main.tileSolid[Type] = false;
-            
 
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
-         
+
             TileObjectData.newTile.Height = 4;
-            TileObjectData.newTile.CoordinateHeights = new int[]{ 16, 16, 16, 16};
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 16 };
             TileObjectData.addTile(Type);
 
             AddMapEntry(new Color(100, 100, 100));
@@ -33,7 +31,8 @@ namespace RS4A.Tiles
             MinPick = 100;
         }
 
-        private static Point16 GetTop(int i, int j) {
+        private static Point16 GetTop(int i, int j)
+        {
 
             Tile tile = Main.tile[i, j];
             int topY = j - (tile.TileFrameY / 18) % 4;
@@ -46,7 +45,7 @@ namespace RS4A.Tiles
             Tile tile = Main.tile[i, j];
 
             Point16 top = GetTop(i, j);
-     
+
 
 
             short frameAdjust;
@@ -74,7 +73,7 @@ namespace RS4A.Tiles
             if (Main.tile[i, j].TileFrameX > 18)
             {
                 ToggleMissile(i, j, false);
-                Point16 top = GetTop(i,j);
+                Point16 top = GetTop(i, j);
                 Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2((top.X + 1) * 16, (top.Y + 2) * 16), Vector2.Zero, ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
             }
         }
@@ -87,7 +86,7 @@ namespace RS4A.Tiles
 
             if (item.ModItem is MissileRemote missileRemote)
             {
-                missileRemote.AddLaunchLocation(GetTop(i,j));
+                missileRemote.AddLaunchLocation(GetTop(i, j));
             }
 
             else if (item.ModItem is Missile ^ loaded)

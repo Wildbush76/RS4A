@@ -14,7 +14,7 @@ namespace RS4A.Items
 {
     internal class MissileRemote : ModItem
     {
-        public Dictionary<string, List<Point16>> launchLocationsByWorld;
+        private Dictionary<string, List<Point16>> launchLocationsByWorld = new();
 
 
         public override void SetDefaults()
@@ -45,6 +45,9 @@ namespace RS4A.Items
             {
                 return false;
             }
+
+
+            List<Point16> locationsToRemove = new();
             foreach (Point16 location in launchLocationsByWorld[Main.worldName])
             {
                 Tile tile = Main.tile[location];
@@ -53,11 +56,14 @@ namespace RS4A.Items
                     launched = true;
                     Tiles.MissileSilo.Launch(location.X, location.Y, target);
                 }
-                else { 
-                    RemoveLaunchLocation(location);
+                else
+                {
+                    locationsToRemove.Add(location);
                 }
 
             }
+
+            locationsToRemove.ForEach(item => launchLocationsByWorld[Main.worldName].Remove(item));
             return launched;
         }
 
@@ -66,7 +72,8 @@ namespace RS4A.Items
             tag.Add("locations", launchLocationsByWorld.Select(kvp => new TagCompound()
             {
                 ["world"] = kvp.Key,
-                ["worldLocations"] = kvp.Value.ConvertAll<TagCompound>(value => new TagCompound() {
+                ["worldLocations"] = kvp.Value.ConvertAll<TagCompound>(value => new TagCompound()
+                {
                     ["X"] = value.X,
                     ["Y"] = value.Y
                 })
@@ -75,7 +82,6 @@ namespace RS4A.Items
 
         public override void LoadData(TagCompound tag)
         {
-            launchLocationsByWorld = [];
 
             if (tag.GetList<TagCompound>("locations") is List<TagCompound> locations)
             {
@@ -88,11 +94,11 @@ namespace RS4A.Items
                     }
                     launchLocationsByWorld.Add(compound.GetString("world"), worldLocations);
                 }
-              
+
             }
-      
+
         }
-       public void AddLaunchLocation(Point16 location)
+        public void AddLaunchLocation(Point16 location)
         {
 
             if (launchLocationsByWorld.TryGetValue(Main.worldName, out List<Point16> locations))
@@ -111,10 +117,11 @@ namespace RS4A.Items
             }
         }
 
-        public void RemoveLaunchLocation(Point16 location) {
+        public void RemoveLaunchLocation(Point16 location)
+        {
             if (launchLocationsByWorld.TryGetValue(Main.worldName, out List<Point16> locations) && locations.Contains(location))
             {
-             locations.Remove(location);   
+                locations.Remove(location);
             }
         }
     }
