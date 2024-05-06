@@ -23,7 +23,7 @@ namespace RS4A.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 
             TileObjectData.newTile.Height = 4;
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 18 };
             TileObjectData.addTile(Type);
 
             AddMapEntry(new Color(100, 100, 100));
