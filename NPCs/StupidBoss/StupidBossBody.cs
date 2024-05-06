@@ -23,13 +23,6 @@ namespace RS4A.NPCs.StupidBoss
         // It is applied in the BossHeadSlot hook when the boss is in its second stage
         public static int secondStageHeadSlot = -1;
 
-        public float speed = 2;
-        public int internalTimer = 0;
-
-        private bool SecondStage = false;
-        private int blinkingDir = 1;
-        private bool blinking = false;
-
         public override void Load()
         {
             // We want to give it a second boss head icon, so we register one
@@ -223,12 +216,9 @@ namespace RS4A.NPCs.StupidBoss
                 Main.instance.CameraModifiers.Add(modifier);
             }
         }
-
-        public override void AI()
+        private Player FindClosestPlayer()
         {
-            internalTimer++;
-            //get very close guy
-            double closest = 1300;
+            double closest = 999999;
             Player closestPlayer = null;
 
             for (int i = 0; i < Main.maxPlayers; i++)
@@ -245,6 +235,15 @@ namespace RS4A.NPCs.StupidBoss
                 }
             }
 
+            return closestPlayer;
+        }
+
+
+        public override void AI()
+        {
+            internalTimer++;
+            //get very close guy
+            Player closestPlayer = FindClosestPlayer();
             if (closestPlayer == null)
             {
                 // If the targeted player is dead, flee
@@ -290,19 +289,148 @@ namespace RS4A.NPCs.StupidBoss
         }
         private float chargingTicks = 0;
         private Vector2 chargeVelocity;
+        
+       // attack phase variables
+        
         private int phase = 0;
         private int cooldownPhase = 100;
-        private int generalCooldown = 0;
+        private int generalCooldown = 0; //used for moves n stuff
         private int repeat = 0;
+
+        // charge
+
+        private float chargeT = 40f;
+
+        // general movement variables
+
+        private float speed = 2;
+        private float angle; //used a lot
+
+        // accelerate variables
+
+        private float accel = 0.15f;
+        private Vector2 playerPosition; //not updated in real time
+        private float minimumVelocity = 4;
+        private float maximumMovementVelocity = 15;
+        private int accelTimer = 0; // redundancy incase the bug happens
+
+        // decelerate
+
+        private float decel = 0.15f;
+
+        // lerp decel
+
+        private float speedAtInstance;
+
+        //turn variables
+
+        private float turnSpeed = 0.02f;
+
+        // lock on variables
+
+        private int lockOnTimer = 0; // determines how long the boss will lock onto the player before charging
+        private Player targetedPlayer;
+        private int lockOnCap = 30;
+        
+        public int internalTimer = 0;
+        private bool SecondStage = false;
+        private int blinkingDir = 1;
+        private bool blinking = false;
+        private enum MovementPhase
+        {
+            ACCELERATE,
+            DECELERATE,
+            LERPDECEL, //far more violent
+            TURN,
+            LOCKON
+        }
+        private MovementPhase movementphase = MovementPhase.TURN;
         private bool ChargeForth(Player player)
         {
-            if (chargingTicks>0)
+            chargingTicks--;
+            return chargingTicks <= 0;
+        }
+        private void MovementPhaseOne(Player player)
+        {
+            switch(movementphase)
             {
-                chargingTicks--; //prevents the velocity from being really small
-                NPC.velocity = chargeVelocity * (chargingTicks / 80f);
-                return false;
+                case MovementPhase.ACCELERATE:
+
+                    speed += accel;
+                    if (speed>=maximumMovementVelocity)
+                    {
+                        speed = maximumMovementVelocity;
+                        accelTimer++;
+
+                    }
+                    if ((Math.Abs(NPC.Center.X - playerPosition.X) < speed*18 && Math.Abs(NPC.Center.Y - playerPosition.Y) < speed * 18) || accelTimer>60)
+                    {
+                        movementphase = MovementPhase.DECELERATE;
+                    }
+                    break;
+                case MovementPhase.DECELERATE:
+
+                    speed -= decel;
+                    if (speed<=minimumVelocity)
+                    {
+                        speed = minimumVelocity;
+                        movementphase = MovementPhase.TURN;
+                    }
+                    break;
+                case MovementPhase.LERPDECEL: //used exclusively for charging
+                    speed = MathHelper.Lerp(speedAtInstance, minimumVelocity, (chargeT-chargingTicks)/chargeT); // yeay
+                    if (chargingTicks<=0)
+                    {
+                        movementphase = MovementPhase.TURN;
+                    }
+                    break;
+                case MovementPhase.TURN:
+                    turnSpeed += 0.0002f; //to ensure that the player cannot cheese as easily
+                    float rotatedplayerX = player.Center.Y * (float)Math.Cos(angle) - player.Center.X * (float)Math.Sin(angle);
+                    float rotatedbossX = NPC.Center.Y * (float)Math.Cos(angle) - NPC.Center.X * (float)Math.Sin(angle);
+                    if (rotatedplayerX > rotatedbossX)
+                    {
+                        angle += turnSpeed;
+                    }
+                    else
+                    {
+                        angle -= turnSpeed;
+                    }
+                    if (Math.Abs(rotatedbossX-rotatedplayerX)<10)
+                    {
+                        turnSpeed = 0.02f;
+                        movementphase = MovementPhase.LOCKON;
+                        targetedPlayer = player;
+                        lockOnCap = Main.rand.Next(30, 90);
+                    }
+                    break;
+                case MovementPhase.LOCKON:
+
+                    lockOnTimer++;
+                    if (lockOnTimer>=lockOnCap)
+                    {
+                        Vector2 fromPlayer = player.Center - NPC.Center; //will change target when charging if a closer one is nearbys
+                        angle = fromPlayer.ToRotation() + Main.rand.NextFloat(-0.5f, 0.5f);
+                        lockOnTimer = 0;
+                        movementphase = MovementPhase.ACCELERATE;
+                        accelTimer = 0;
+                        playerPosition = new Vector2(player.Center.X,player.Center.Y);
+                    } else
+                    {
+                        if (targetedPlayer==null)
+                        {
+                            targetedPlayer = player;
+                        }
+                        Vector2 fromPlayer = targetedPlayer.Center - NPC.Center;
+                        angle = fromPlayer.ToRotation();
+                    }
+                    break;
             }
-            return true;
+            ApplyVelocity();
+        }
+        private void ApplyVelocity()
+        {
+            NPC.velocity = angle.ToRotationVector2() * speed;
         }
         private void DoFirstStage(Player player)
         {
@@ -311,6 +439,7 @@ namespace RS4A.NPCs.StupidBoss
             //Vector2 fromPlayer = player.Center - NPC.Center;
             //float angle = fromPlayer.ToRotation() + Main.rand.NextFloat(-0.5f,0.5f);
             //NPC.velocity = angle.ToRotationVector2() * speed;
+            MovementPhaseOne(player);
             switch (phase)
             {
                 case 0:
@@ -325,10 +454,11 @@ namespace RS4A.NPCs.StupidBoss
                         } else if (phase == 1)
                         {
                             Vector2 fromPlayer = player.Center - NPC.Center;
-                            float angle = fromPlayer.ToRotation() + Main.rand.NextFloat(-0.5f, 0.5f);
-                            chargeVelocity = angle.ToRotationVector2() * 10;
-                            NPC.velocity = chargeVelocity;
-                            chargingTicks = 80f;
+                            angle = fromPlayer.ToRotation() + Main.rand.NextFloat(-0.5f, 0.5f);
+                            speed = 30;
+                            speedAtInstance = speed;
+                            chargingTicks = chargeT;
+                            movementphase = MovementPhase.LERPDECEL;
                         }
                     }
                     break;
@@ -350,6 +480,7 @@ namespace RS4A.NPCs.StupidBoss
                     cooldownPhase = 60;
                     break;
             }
+            ApplyVelocity();
         }
 
         private void DoProjectiles(Player player)

@@ -38,7 +38,7 @@ namespace RS4A.Biomes
         public override bool IsBiomeActive(Player player)
         {
             // First, we will use the exampleBlockCount from our added ModSystem for our first custom condition
-            bool b1 = ModContent.GetInstance<BrazilBiomeTileCount>().brazilBlockCount >= 70;
+            bool b1 = ModContent.GetInstance<BrazilBiomeTileCount>().brazilBlockCount >= 100;
 
             // Finally, we will limit the height at which this biome can be active to above ground (ie sky and surface). Most (if not all) surface biomes will use this condition.
             bool b2 = player.ZoneSkyHeight || player.ZoneOverworldHeight;
