@@ -15,9 +15,8 @@ namespace RS4A.Systems
         //if this works...
         float strength = 0;
         float step = 0.02f;
-        Color color = new Color(0, 255, 0);
 
-        //mfw the tmod discord tells me to do fuckin filters rather than this (i wasted so much time for nothing)
+        //mfw the mod discord tells me to do fuckin filters rather than this (i wasted so much time for nothing)
 
         public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
         {
@@ -31,7 +30,7 @@ namespace RS4A.Systems
             desiredStrength = Math.Min(desiredStrength, 1f);
             //ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral(desiredStrength.ToString()), Color.Green, Main.myPlayer);
 
-            //TODO chances are that theres already something to handle this buuuuuuuuuuut whatever. might make my own
+            //TODO chances are that there is already something to handle this but whatever. might make my own
 
             if (Math.Abs(strength-desiredStrength)<step)
             {
@@ -45,8 +44,8 @@ namespace RS4A.Systems
             }
 
 
-            Color desiredBackgroundColor = new Color((byte)(backgroundColor.R * 0.3), (byte)Math.Min((int)(backgroundColor.G * 1.8), 255), (byte)(backgroundColor.B * 0.3));
-            Color desiredTileColor = new Color((byte)(tileColor.R * 0.3), (byte)Math.Min((int)(tileColor.G * 1.8), 255), (byte)(tileColor.B * 0.3));
+            Color desiredBackgroundColor = new((byte)(backgroundColor.R * 0.3), (byte)Math.Min((int)(backgroundColor.G * 1.8), 255), (byte)(backgroundColor.B * 0.3));
+            Color desiredTileColor = new((byte)(tileColor.R * 0.3), (byte)Math.Min((int)(tileColor.G * 1.8), 255), (byte)(tileColor.B * 0.3));
 
             tileColor = Color.Lerp(tileColor, desiredTileColor, strength);
             backgroundColor = Color.Lerp(backgroundColor, desiredBackgroundColor, strength);

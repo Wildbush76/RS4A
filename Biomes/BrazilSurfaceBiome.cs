@@ -47,7 +47,7 @@ namespace RS4A.Biomes
 
         // Declare biome priority. The default is BiomeLow so this is only necessary if it needs a higher priority.
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
-        private int disabledelay = 50;
+        //private int disabledelay = 50;
         
         public override void SpecialVisuals(Player player, bool isActive) // T
         { //also compensates for underground (i think)
