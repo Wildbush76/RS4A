@@ -36,7 +36,7 @@ namespace RS4A.Biomes
             // Limit the biome height to be underground in either rock layer or dirt layer
             return (player.ZoneRockLayerHeight || player.ZoneDirtLayerHeight) &&
                 // Check how many tiles of our biome are present, such that biome should be active
-                ModContent.GetInstance<BrazilBiomeTileCount>().brazilBlockCount >= 40;
+                ModContent.GetInstance<BrazilBiomeTileCount>().brazilBlockCount >= 70;
         }
         public override void SpecialVisuals(Player player, bool isActive) // TODO: find better function to attach this to.
         { //also compensates for underground (i think)

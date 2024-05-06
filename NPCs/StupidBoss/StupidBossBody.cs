@@ -317,10 +317,11 @@ namespace RS4A.NPCs.StupidBoss
                     cooldownPhase--;
                     if (cooldownPhase == 0)
                     {
-                        phase = 2;
+                        phase = Main.rand.Next(1,4);
+                        Main.NewText(phase);
                         if (phase == 2)
                         {
-                            repeat = 30;
+                            repeat = 10;
                         } else if (phase == 1)
                         {
                             Vector2 fromPlayer = player.Center - NPC.Center;
@@ -353,7 +354,7 @@ namespace RS4A.NPCs.StupidBoss
 
         private void DoProjectiles(Player player)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && internalTimer%80==0) //80 ticks = prjectile
+            if (Main.netMode != NetmodeID.MultiplayerClient) //80 ticks = prjectile
             {
                 for (int i=0; i<360; i+=60)
                 {
@@ -366,7 +367,6 @@ namespace RS4A.NPCs.StupidBoss
         }
         private void ExplosiveProjectiles(Player player)
         {
-            Main.NewText("spawning");
             generalCooldown--;
             if (generalCooldown <= 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
@@ -375,9 +375,8 @@ namespace RS4A.NPCs.StupidBoss
                 float angle = Main.rand.NextFloat(90f,270f);
                 float velocityX = (float)Math.Sin(MathHelper.ToRadians(angle)) * speed;
                 float velocityY = (float)Math.Cos(MathHelper.ToRadians(angle)) * speed;
-                Main.NewText(velocityY);
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocityX, velocityY, ModContent.ProjectileType<ExplosiveWaste>(), 30, 0f, Main.myPlayer, Main.rand.Next(60, 180));
-                generalCooldown = 15;
+                generalCooldown = 7;
                 repeat--;
 
             }

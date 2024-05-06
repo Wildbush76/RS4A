@@ -87,7 +87,7 @@ namespace RS4A.RS4AUtils
                         }
                         if (debuffOnHit != 0)
                         {
-                            //targetPlayer.AddBuff(debuffOnHit,)
+                            targetPlayer.AddBuff(debuffOnHit, duration);
                         }
                     }
                 }
