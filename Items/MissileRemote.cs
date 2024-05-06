@@ -54,7 +54,6 @@ namespace RS4A.Items
             {
                 if (Main.tile[location].TileFrameX > 18 && MissileSystem.missilesToLaunch.All(item => item.siloLocation != location))
                 {
-                    Main.NewText("adding some location");
                     launched = true;
                     MissileSystem.missilesToLaunch.Add(new RS4AUtils.MissileLaunchInfo(random.Next(60, 180), location, target));
                 }
