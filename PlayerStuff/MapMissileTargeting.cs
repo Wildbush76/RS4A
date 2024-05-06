@@ -17,26 +17,29 @@ namespace RS4A.PlayerStuff
                 return;
             if (player.HeldItem.ModItem is MissileRemote missileRemote)
             {
-                mouseText = "target location?";
+                mouseText = "middle click to fire missiles";
 
-                if (Main.mouseRight)
+                if (Main.mouseMiddle)
                 {
+                    
                     if (!pressed)
                     {
+                      
                         Vector2 cursorPosition = new(Main.mouseX, Main.mouseY);
 
-                        cursorPosition.X -= Main.screenWidth / 2;
-                        cursorPosition.Y -= Main.screenHeight / 2;
+                        cursorPosition.X -= Main.screenWidth / 2f;
+                        cursorPosition.Y -= Main.screenHeight / 2f;
 
-                        Vector2 mapPosition = Main.mapFullscreenPos;
-                        Vector2 cursorWorldPosition = mapPosition;
+                     
+                        Vector2 cursorWorldPosition = Main.mapFullscreenPos;
 
-                        cursorPosition /= 16;
-                        cursorPosition *= 16 / Main.mapFullscreenScale;
+                        cursorPosition /= 16f;
+                        cursorPosition *= 16f / Main.mapFullscreenScale;
                         cursorWorldPosition += cursorPosition;
+                        cursorWorldPosition *= 16f;
 
-                        if (missileRemote.FireMissile(cursorWorldPosition * 16)) { 
-                            Main.mapFullscreen = false;
+                        if (missileRemote.FireMissile(cursorWorldPosition)) { 
+                           // Main.mapFullscreen = false;
                         }
                         pressed = true;
                     }

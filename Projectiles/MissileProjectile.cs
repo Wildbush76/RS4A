@@ -15,6 +15,7 @@ namespace RS4A.Projectiles
         private Vector2 target = Vector2.Zero;
         private Stage currentStage = Stage.LAUNCH;
         private Vector2 targetPoint = Vector2.Zero;
+
         private int launchTimer = 30;
 
 
@@ -25,6 +26,7 @@ namespace RS4A.Projectiles
         private const float ROTATION_SPEED = 0.02f;
         private const int TILE_COLLIDE_RANGE = 40;//range to players or target to enable tile collide
         private const int INACCURACY = 20;//Plus or minus this value on X
+        private readonly Vector3 FLAME_COLOR = new(2, 0.7f, 0.3f);
         public enum Stage
         {
             LAUNCH,
@@ -58,16 +60,25 @@ namespace RS4A.Projectiles
             Projectile.width = 14;
             Projectile.height = 35;
             Projectile.penetrate = 1;
-            Projectile.tileCollide = false;
             Projectile.Opacity = 0;
             Projectile.friendly = true;
+            Projectile.hostile = true;
+
+            SetCollide(false);
+        }
+
+        private void SetCollide(bool collide)
+        {
+            Projectile.tileCollide = collide;
+            Projectile.friendly = collide;
+            Projectile.hostile = collide;
         }
 
         public void CheckTileCollide()
         {
             if (DistanceToTarget(target) / 16 < TILE_COLLIDE_RANGE)
             {
-                Projectile.tileCollide = true;
+                SetCollide(true);
             }
             else
             {
@@ -75,11 +86,11 @@ namespace RS4A.Projectiles
                 {
                     if (DistanceToTarget(player.position) / 16 < TILE_COLLIDE_RANGE)
                     {
-                        Projectile.tileCollide = true;
+                        SetCollide(true);
                         return;
                     }
                 }
-                Projectile.tileCollide = false;
+                SetCollide(false);
             }
 
         }
@@ -95,6 +106,8 @@ namespace RS4A.Projectiles
                 }
                 else if (Projectile.ai[2] < 60)
                 {
+                    float brightness = (60 - Projectile.ai[2]) / 60;
+                    Lighting.AddLight(Projectile.Center, FLAME_COLOR * brightness);
                     Dust.NewDust(Projectile.BottomLeft, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>(), SpeedX: random.NextSingle() - 0.5f, SpeedY: random.NextSingle() / 5f);
                 }
                 return false;
@@ -202,9 +215,12 @@ namespace RS4A.Projectiles
                 Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
             }
 
+
             Projectile.rotation = Projectile.velocity.ToRotation() + MathF.PI / 2;
             Vector2 location = Projectile.Center - Vector2.Normalize(Projectile.velocity) * (Projectile.height / 2);
-            Dust.NewDustPerfect(location, DustID.Torch);
+            Lighting.AddLight(location, FLAME_COLOR);
+            Dust dust = Dust.NewDustPerfect(location, DustID.Torch);
+            dust.noGravity = true;
             Dust.NewDustPerfect(location, ModContent.DustType<Dusts.SmokeCloud>(), Vector2.Zero, Scale: 1.2f);
         }
 

@@ -1,8 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -10,7 +14,7 @@ namespace RS4A.Items
 {
     internal class MissileRemote : ModItem
     {
-        public Dictionary<string, List<Point16>> launchLocationsByWorld;
+        private Dictionary<string, List<Point16>> launchLocationsByWorld = new();
 
 
         public override void SetDefaults()
@@ -22,6 +26,7 @@ namespace RS4A.Items
             Item.rare = ItemRarityID.Red;
             Item.useStyle = ItemUseStyleID.HoldUp;
         }
+
 
         public override bool? UseItem(Player player)
         {
@@ -40,6 +45,9 @@ namespace RS4A.Items
             {
                 return false;
             }
+
+
+            List<Point16> locationsToRemove = new();
             foreach (Point16 location in launchLocationsByWorld[Main.worldName])
             {
                 Tile tile = Main.tile[location];
@@ -48,26 +56,48 @@ namespace RS4A.Items
                     launched = true;
                     Tiles.MissileSilo.Launch(location.X, location.Y, target);
                 }
+                else
+                {
+                    locationsToRemove.Add(location);
+                }
 
             }
+
+            locationsToRemove.ForEach(item => launchLocationsByWorld[Main.worldName].Remove(item));
             return launched;
         }
 
         public override void SaveData(TagCompound tag)
         {
-            //tag.Add("locations", launchLocationsByWorld);
+            tag.Add("locations", launchLocationsByWorld.Select(kvp => new TagCompound()
+            {
+                ["world"] = kvp.Key,
+                ["worldLocations"] = kvp.Value.ConvertAll<TagCompound>(value => new TagCompound()
+                {
+                    ["X"] = value.X,
+                    ["Y"] = value.Y
+                })
+            }).ToList());
         }
 
         public override void LoadData(TagCompound tag)
         {
-            launchLocationsByWorld = new();
 
-            //            if (!tag.TryGet<Dictionary<string, List<Point16>>>("locations", out launchLocationsByWorld)) {
-            //  launchLocationsByWorld = new();
-            //}
-            //TODO figure this out later
+            if (tag.GetList<TagCompound>("locations") is List<TagCompound> locations)
+            {
+                foreach (TagCompound compound in locations)
+                {
+                    List<Point16> worldLocations = [];
+                    foreach (TagCompound point in compound.GetList<TagCompound>("worldLocations"))
+                    {
+                        worldLocations.Add(new Point16(point.GetShort("X"), point.GetShort("Y")));
+                    }
+                    launchLocationsByWorld.Add(compound.GetString("world"), worldLocations);
+                }
+
+            }
+
         }
-
         public void AddLaunchLocation(Point16 location)
         {
 
@@ -75,17 +105,23 @@ namespace RS4A.Items
             {
                 if (!locations.Contains(location))
                 {
-                    Main.NewText("Added launch location", new Color(150, 0, 0));
+                    ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Adding launch location!"), Color.Crimson, Main.myPlayer);
                     locations.Add(location);
                 }
             }
             else
             {
-                Main.NewText("Added launch location", new Color(150, 0, 0));
-                locations = new();
-                locations.Add(location);
-
+                ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Adding launch location!"), Color.Crimson, Main.myPlayer);
+                locations = [location];
                 launchLocationsByWorld.Add(Main.worldName, locations);
+            }
+        }
+
+        public void RemoveLaunchLocation(Point16 location)
+        {
+            if (launchLocationsByWorld.TryGetValue(Main.worldName, out List<Point16> locations) && locations.Contains(location))
+            {
+                locations.Remove(location);
             }
         }
     }

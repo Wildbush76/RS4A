@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Net;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -82,8 +83,7 @@ namespace RS4A.RS4AUtils
                     {
                         if (maxDamage > 0)
                         {
-                            int damage = (int)((damageRadius - distance) / damageRadius * maxDamage);
-                            targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessages[random.Next(deathMessages.Length)]), damage, 1, dodgeable: false);
+                            targetPlayer.Hurt(PlayerDeathReason.ByCustomReason(targetPlayer.name + deathMessages[random.Next(deathMessages.Length)]), CalculateDamageFromDistance(maxDamage,damageRadius,distance), 1, dodgeable: false);
                         }
                         if (debuffOnHit != 0)
                         {
@@ -93,6 +93,20 @@ namespace RS4A.RS4AUtils
                 }
             }
 
+            foreach (NPC npc in Main.npc)
+            {
+                float distance = (npc.Distance(center));
+                if (distance / 16 <= blastRadius)
+                {
+                    //npc.StrikeNPC(npc.CalculateHitInfo(damage, 1, false, 0));
+                    NetMessage.SendStrikeNPC(npc, npc.CalculateHitInfo(CalculateDamageFromDistance(maxDamage,blastRadius * 16,distance), 1, false, 0));
+                }
+            }
+
+        }
+
+        public static int CalculateDamageFromDistance(int maxDamage, float damageRadius, float distance) {
+            return (int)((damageRadius - distance) / damageRadius * maxDamage);
         }
         public static void CrateringExplosion(Vector2 center, int maxDamage, int blastRadius, int craterRadius, int[] craterTiles, string[] deathMessages)
         {
@@ -163,6 +177,14 @@ namespace RS4A.RS4AUtils
                         Random random = new();
                         string message = deathMessages[random.Next(deathMessages.Length)];
                         player.Hurt(PlayerDeathReason.ByCustomReason(player.name + message), damage, 1);
+                    }
+                }
+
+                foreach (NPC npc in Main.npc) { 
+                    if(npc.Distance(projectile.Center)/16 <= explosionRadius)
+                    {
+                        //npc.StrikeNPC(npc.CalculateHitInfo(damage, 1, false, 0));
+                        NetMessage.SendStrikeNPC(npc, npc.CalculateHitInfo(damage, 1, false, 0));
                     }
                 }
             }
