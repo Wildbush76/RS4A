@@ -23,13 +23,14 @@ namespace RS4A.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 
             TileObjectData.newTile.Height = 4;
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 16];
             TileObjectData.addTile(Type);
 
             AddMapEntry(new Color(100, 100, 100));
-
             MinPick = 100;
         }
+
+       
 
         private static Point16 GetTop(int i, int j)
         {
@@ -74,7 +75,7 @@ namespace RS4A.Tiles
             {
                 ToggleMissile(i, j, false);
                 Point16 top = GetTop(i, j);
-                Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2((top.X + 1) * 16, (top.Y + 2) * 16), Vector2.Zero, ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
+                Projectile.NewProjectile(Main.player[Main.myPlayer].GetSource_FromAI(), new Vector2((top.X + 1) * 16 - 10, (top.Y + 2) * 16), Vector2.Zero, ModContent.ProjectileType<MissileProjectile>(), 300, 10, ai0: target.X, ai1: target.Y);
             }
         }
 

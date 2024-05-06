@@ -1,21 +1,8 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Humanizer;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using RS4A.Items;
-using RS4A.Projectiles;
-using Terraria.Chat;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Terraria.Localization;
-using Humanizer;
+using Terraria.ModLoader;
 
 namespace RS4A.PlayerStuff
 {
@@ -25,7 +12,7 @@ namespace RS4A.PlayerStuff
         public bool leadPoisoned;
         public bool radioactive; // only exists for death messages i think :)
         public int DOT;
-        private string deathMessages = "Mods.RS4A.Status.Death";
+        private readonly string deathMessages = "Mods.RS4A.Status.Death";
 
         public override void ResetEffects()
         {
@@ -48,7 +35,7 @@ namespace RS4A.PlayerStuff
         }
         public override void UpdateBadLifeRegen()
         {
-            if (DOT<0)
+            if (DOT < 0)
             {
                 // These lines zero out any positive lifeRegen. This is expected for all bad life regeneration effects
                 if (Player.lifeRegen > 0)

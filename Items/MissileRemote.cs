@@ -1,5 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
+using RS4A.PlayerStuff;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -14,7 +16,7 @@ namespace RS4A.Items
 {
     internal class MissileRemote : ModItem
     {
-        private Dictionary<string, List<Point16>> launchLocationsByWorld = new();
+        private readonly Dictionary<string, List<Point16>> launchLocationsByWorld = [];
 
 
         public override void SetDefaults()
@@ -26,7 +28,6 @@ namespace RS4A.Items
             Item.rare = ItemRarityID.Red;
             Item.useStyle = ItemUseStyleID.HoldUp;
         }
-
 
         public override bool? UseItem(Player player)
         {
@@ -41,26 +42,22 @@ namespace RS4A.Items
         public bool FireMissile(Vector2 target)
         {
             bool launched = false;
-            if (!launchLocationsByWorld.ContainsKey(Main.worldName))
+            if (!launchLocationsByWorld.TryGetValue(Main.worldName,out List<Point16> locations))
             {
                 return false;
             }
 
 
-            List<Point16> locationsToRemove = new();
-            foreach (Point16 location in launchLocationsByWorld[Main.worldName])
+            List<Point16> locationsToRemove = [];
+            Random random = new();
+            foreach (Point16 location in locations)
             {
-                Tile tile = Main.tile[location];
-                if (TileLoader.GetTile(tile.TileType) is Tiles.MissileSilo silo)
+                if (Main.tile[location].TileFrameX > 18 && MissileSystem.missilesToLaunch.All(item => item.siloLocation != location))
                 {
+                    Main.NewText("adding some location");
                     launched = true;
-                    Tiles.MissileSilo.Launch(location.X, location.Y, target);
+                    MissileSystem.missilesToLaunch.Add(new RS4AUtils.MissileLaunchInfo(random.Next(60, 180), location, target));
                 }
-                else
-                {
-                    locationsToRemove.Add(location);
-                }
-
             }
 
             locationsToRemove.ForEach(item => launchLocationsByWorld[Main.worldName].Remove(item));

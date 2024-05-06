@@ -18,12 +18,9 @@ namespace RS4A.Projectiles
 
         private int launchTimer = 30;
 
-
-        private const int MAX_LAUNCH_DELAY = 180;
         private const float MAX_SPEED = 30;
         private const float ACCELERATION = 0.3f;
         private const int CRUISING_ALTITUDE = 1000;
-        private const float ROTATION_SPEED = 0.02f;
         private const int TILE_COLLIDE_RANGE = 40;//range to players or target to enable tile collide
         private const int INACCURACY = 20;//Plus or minus this value on X
         private readonly Vector3 FLAME_COLOR = new(2, 0.7f, 0.3f);
@@ -39,9 +36,14 @@ namespace RS4A.Projectiles
         public override void OnSpawn(IEntitySource source)
         {
             ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"), Color.Red, Main.myPlayer);
-            Projectile.ai[2] = random.Next(60, MAX_LAUNCH_DELAY);
             target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1] + random.Next(-INACCURACY, INACCURACY) * 8);
+
+            for (int i = 0; i < 30; i++) {
+                Dust.NewDust(Projectile.BottomLeft, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>(), SpeedX: random.NextSingle() - 0.5f, SpeedY: random.NextSingle() / 5f);
+            }
         }
+    
+
 
         public Vector2 GetTarget()
         {
@@ -55,15 +57,10 @@ namespace RS4A.Projectiles
         public override void SetDefaults()
         {
             Projectile.damage = 300;
-            Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Summon;
             Projectile.width = 14;
             Projectile.height = 35;
             Projectile.penetrate = 1;
-            Projectile.Opacity = 0;
-            Projectile.friendly = true;
-            Projectile.hostile = true;
-
             SetCollide(false);
         }
 
@@ -95,25 +92,7 @@ namespace RS4A.Projectiles
 
         }
 
-        public override bool PreAI()
-        {
-            if (Projectile.ai[2] != 0)
-            {
-
-                if (--Projectile.ai[2] == 0)
-                {
-                    Projectile.Opacity = 1;
-                }
-                else if (Projectile.ai[2] < 60)
-                {
-                    float brightness = (60 - Projectile.ai[2]) / 60;
-                    Lighting.AddLight(Projectile.Center, FLAME_COLOR * brightness);
-                    Dust.NewDust(Projectile.BottomLeft, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>(), SpeedX: random.NextSingle() - 0.5f, SpeedY: random.NextSingle() / 5f);
-                }
-                return false;
-            }
-            return true;
-        }
+      
 
         public override void AI()
         {
@@ -172,7 +151,9 @@ namespace RS4A.Projectiles
             {
                 if (DistanceToTarget(target) / 16 > 300)
                 {
-                    targetPoint = new Vector2(MathF.CopySign(400, target.X - Projectile.position.X) + Projectile.position.X, target.Y - CRUISING_ALTITUDE);
+                    float targetHeight = Math.Min(target.Y, Projectile.Center.Y) - CRUISING_ALTITUDE;
+                    targetHeight = Math.Max(targetHeight, Main.topWorld - 20);
+                    targetPoint = new Vector2(MathF.CopySign(400, target.X - Projectile.position.X) + Projectile.position.X, targetHeight);
                     currentStage = Stage.CLIMB;
                 }
                 else
@@ -201,7 +182,6 @@ namespace RS4A.Projectiles
 
 
             Projectile.velocity = Vector2.Lerp(Vector2.Normalize(Projectile.velocity), Vector2.Normalize(targetPoint - Projectile.position), 0.05f) * speed;
-
             return DistanceToTarget(targetPoint) / 16 < 10;
 
         }
