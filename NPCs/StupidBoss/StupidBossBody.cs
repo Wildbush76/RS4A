@@ -293,6 +293,9 @@ namespace RS4A.NPCs.StupidBoss
        // attack phase variables
         
         private int phase = 0;
+        private List<int> referenceBag = [1, 2, 3, 4];
+        private List<int> attackBag = [1, 2, 3, 4];
+
         private int cooldownPhase = 100;
         private int generalCooldown = 0; //used for moves n stuff
         private int repeat = 0;
@@ -343,6 +346,13 @@ namespace RS4A.NPCs.StupidBoss
             LERPDECEL, //far more violent
             TURN,
             LOCKON
+        }
+        private enum AttackPhase // later
+        {
+            CHARGE,
+            HOMING,
+            EXPLODING,
+            TELEPORTATTACK
         }
         private MovementPhase movementphase = MovementPhase.TURN;
         private bool ChargeForth(Player player)
@@ -432,6 +442,20 @@ namespace RS4A.NPCs.StupidBoss
         {
             NPC.velocity = angle.ToRotationVector2() * speed;
         }
+        private int DecideNewAttack()
+        {
+            if (attackBag.Count==0)
+            {
+                foreach (var attack in referenceBag)
+                {
+                    attackBag.Add(attack);
+                }
+            }
+            int index = Main.rand.Next(1, attackBag.Count+1);
+            int savedValue = attackBag[index];
+            attackBag.RemoveAt(index); //pop(); please :(
+            return savedValue;
+        }
         private void DoFirstStage(Player player)
         {
             // its as shrimple as that
@@ -446,8 +470,7 @@ namespace RS4A.NPCs.StupidBoss
                     cooldownPhase--;
                     if (cooldownPhase == 0)
                     {
-                        phase = Main.rand.Next(1,4);
-                        Main.NewText(phase);
+                        phase = DecideNewAttack();
                         if (phase == 2)
                         {
                             repeat = 10;
@@ -478,6 +501,16 @@ namespace RS4A.NPCs.StupidBoss
                     phase = 0;
                     generalCooldown = 0;
                     cooldownPhase = 60;
+                    break;
+                case 4:
+                    Math.Max(20,player.velocity.Distance(new(0, 0))); //TODO: finish
+
+
+                    NPC.Center = player.Center * player.velocity;
+                    speed = 0;
+                    movementphase = MovementPhase.ACCELERATE;
+                    Vector2 fromPlayer = player.Center - NPC.Center;
+                    angle = fromPlayer.ToRotation();
                     break;
             }
             ApplyVelocity();
