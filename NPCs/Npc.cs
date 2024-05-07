@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using RS4A.Items;
 using RS4A.Projectiles;
+using Terraria.GameContent.ItemDropRules;
 
 namespace RS4A.NPCs
 {
@@ -89,6 +90,14 @@ namespace RS4A.NPCs
             if (npc.HasBuff(BuffID.Venom))
             {
                 modifiers.SetCrit(); //i think?
+            }
+        }
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if(npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MushuWhip>(),100)); 
             }
         }
 

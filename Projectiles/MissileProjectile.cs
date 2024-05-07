@@ -44,10 +44,8 @@ namespace RS4A.Projectiles
                 Volume = 0.2f,
                 PitchVariance = 0.4f,
                 MaxInstances = 1,
-
             });
 
-            //ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"), Color.Red, Main.myPlayer);
             target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1] + random.Next(-INACCURACY, INACCURACY) * 8);
 
             for (int i = 0; i < 30; i++) {
@@ -134,7 +132,11 @@ namespace RS4A.Projectiles
 
         public override void OnKill(int timeLeft)
         {
-            RS4AUtils.Explode.Explosion(Projectile, 10, Projectile.damage, true, [" got turned into ash", " was rapidly disassembled"]);
+
+            if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound)) {
+                sound.Stop();
+            }
+            RS4AUtils.Explode.Explosion(Projectile, 10, Projectile.damage, true, [" got turned into ash", " was rapidly disassembled", " was blown to bits"]);
         }
         private void SetNextTargetPoint()
         {

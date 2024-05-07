@@ -16,9 +16,10 @@ namespace RS4A.Items
             Item.consumable = true;
             Item.knockBack = 1.2f;
             Item.rare = ItemRarityID.Blue;
-            Item.shoot = ModContent.ProjectileType<Projectiles.NukeProjectile>();
+            //Item.shoot = ModContent.ProjectileType<Projectiles.NukeProjectile>();
+            Item.shoot = ProjectileID.Glowstick;
             Item.shootSpeed = 15f;
-            Item.ammo = AmmoID.Rocket;
+            Item.ammo = AmmoID.Arrow;
         }
 
         public override void AddRecipes()
