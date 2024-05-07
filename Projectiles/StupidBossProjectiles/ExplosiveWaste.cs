@@ -43,5 +43,10 @@ namespace RS4A.Projectiles.StupidBossProjectiles
         {
             RS4AUtils.Explode.CrateringExplosion(Projectile.Center, 0, 10, 10, [ModContent.TileType<RadioactiveStone>()], [" was reduced to sub-atomic ash", " was no more", " suddenly stopped existing"],ModContent.BuffType<Radiation>(),60);
         }
+        public virtual bool TileCollideStyle(ref int width,ref int height,ref bool fallThrough,ref Vector2 hitboxCenterFrac)
+        {
+            fallThrough = false;
+            return true;
+        }
     }
 }
