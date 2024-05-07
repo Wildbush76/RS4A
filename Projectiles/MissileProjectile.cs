@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using ReLogic.Utilities;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -15,6 +17,7 @@ namespace RS4A.Projectiles
         private Vector2 target = Vector2.Zero;
         private Stage currentStage = Stage.LAUNCH;
         private Vector2 targetPoint = Vector2.Zero;
+        private SlotId soundSlot;
 
         private int launchTimer = 30;
 
@@ -35,7 +38,16 @@ namespace RS4A.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
-            ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"), Color.Red, Main.myPlayer);
+            soundSlot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/FirstPrismHumm")//TODO set this to be the right one
+            {
+                IsLooped = true,
+                Volume = 0.2f,
+                PitchVariance = 0.4f,
+                MaxInstances = 1,
+
+            });
+
+            //ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"), Color.Red, Main.myPlayer);
             target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1] + random.Next(-INACCURACY, INACCURACY) * 8);
 
             for (int i = 0; i < 30; i++) {
@@ -188,7 +200,7 @@ namespace RS4A.Projectiles
 
         private void FlightAnimation()
         {
-
+            
             if (++Projectile.frameCounter >= 3)
             {
                 Projectile.frameCounter = 0;
