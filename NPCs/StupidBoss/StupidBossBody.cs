@@ -293,8 +293,8 @@ namespace RS4A.NPCs.StupidBoss
        // attack phase variables
         
         private int phase = 0;
-        private List<int> referenceBag = [1, 2, 3, 4];
-        private List<int> attackBag = [1, 2, 3, 4];
+        private List<int> referenceBag = [1, 2, 3];
+        private List<int> attackBag = [1, 2, 3];
 
         private int cooldownPhase = 100;
         private int generalCooldown = 0; //used for moves n stuff
@@ -451,7 +451,8 @@ namespace RS4A.NPCs.StupidBoss
                     attackBag.Add(attack);
                 }
             }
-            int index = Main.rand.Next(1, attackBag.Count+1);
+            int index = Main.rand.Next(0, attackBag.Count);
+            Main.NewText(index);
             int savedValue = attackBag[index];
             attackBag.RemoveAt(index); //pop(); please :(
             return savedValue;
@@ -476,8 +477,8 @@ namespace RS4A.NPCs.StupidBoss
                             repeat = 10;
                         } else if (phase == 1)
                         {
-                            Vector2 fromPlayer = player.Center - NPC.Center;
-                            angle = fromPlayer.ToRotation() + Main.rand.NextFloat(-0.5f, 0.5f);
+                            Vector2 thing = player.Center - NPC.Center;
+                            angle = thing.ToRotation() + Main.rand.NextFloat(-0.5f, 0.5f);
                             speed = 30;
                             speedAtInstance = speed;
                             chargingTicks = chargeT;
@@ -486,7 +487,7 @@ namespace RS4A.NPCs.StupidBoss
                     }
                     break;
                 case 1:
-                    if (ChargeForth(player))
+                    if (ChargeForth(player)) //pohhmdf
                     {
                         phase = 0;
                         generalCooldown = 0;

@@ -191,6 +191,7 @@ Projectiles: {
 	MushuWhipProjectile.DisplayName: Mushu Whip Projectile
 	MissileProjectile.DisplayName: Missile Projectile
 	ExplosiveWaste.DisplayName: Explosive Waste
+	NormalProjectile.DisplayName: Normal Projectile
 }
 
 NPCs.StupidBossBody.DisplayName: Stupid Boss
