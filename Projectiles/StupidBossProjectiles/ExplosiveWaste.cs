@@ -22,7 +22,7 @@ namespace RS4A.Projectiles.StupidBossProjectiles
             Projectile.width = 20;
             Projectile.height = 20;
             Projectile.alpha = 0;
-            Projectile.timeLeft = 100;
+            Projectile.timeLeft = 10000;
             Projectile.penetrate = -1;
             Projectile.friendly = false;
             Projectile.hostile = true;
@@ -43,9 +43,14 @@ namespace RS4A.Projectiles.StupidBossProjectiles
         {
             RS4AUtils.Explode.CrateringExplosion(Projectile.Center, 0, 10, 10, [ModContent.TileType<RadioactiveStone>()], [" was reduced to sub-atomic ash", " was no more", " suddenly stopped existing"],ModContent.BuffType<Radiation>(),60);
         }
-        public virtual bool TileCollideStyle(ref int width,ref int height,ref bool fallThrough,ref Vector2 hitboxCenterFrac)
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
-            fallThrough = false;
+            Main.NewText(Projectile.ai[1]);
+            if (Projectile.ai[1] == 1)
+            {
+                Main.NewText("YES");
+                fallThrough = false;
+            }
             return true;
         }
     }

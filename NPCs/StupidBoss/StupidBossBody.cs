@@ -540,7 +540,7 @@ namespace RS4A.NPCs.StupidBoss
                 float angle = Main.rand.NextFloat(90f,270f);
                 float velocityX = (float)Math.Sin(MathHelper.ToRadians(angle)) * speed;
                 float velocityY = (float)Math.Cos(MathHelper.ToRadians(angle)) * speed;
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocityX, velocityY, ModContent.ProjectileType<ExplosiveWaste>(), 30, 0f, Main.myPlayer, Main.rand.Next(60, 180));
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, velocityX, velocityY, ModContent.ProjectileType<ExplosiveWaste>(), 30, 0f, Main.myPlayer, 0, Main.rand.Next(0, 3));
                 generalCooldown = 7;
                 repeat--;
 
