@@ -8,7 +8,7 @@ namespace RS4A.Items
     {
         public override void SetDefaults()
         {
-            Item.damage = 10;
+            Item.damage = 100;
             Item.DamageType = DamageClass.Ranged;
             Item.width = 7;
             Item.height = 13;
@@ -16,10 +16,10 @@ namespace RS4A.Items
             Item.consumable = true;
             Item.knockBack = 1.2f;
             Item.rare = ItemRarityID.Blue;
-            //Item.shoot = ModContent.ProjectileType<Projectiles.NukeProjectile>();
-            Item.shoot = ProjectileID.Glowstick;
+            Item.shoot = ModContent.ProjectileType<Projectiles.NukeProjectile>()-134;
+       
             Item.shootSpeed = 15f;
-            Item.ammo = AmmoID.Arrow;
+            Item.ammo = AmmoID.Rocket;
         }
 
         public override void AddRecipes()
