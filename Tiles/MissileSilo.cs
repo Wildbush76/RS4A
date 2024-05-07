@@ -2,7 +2,9 @@ using Microsoft.Xna.Framework;
 using RS4A.Items;
 using RS4A.Projectiles;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 

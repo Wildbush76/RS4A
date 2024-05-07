@@ -13,14 +13,13 @@ namespace RS4A.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.damage = 150;
+            Projectile.damage = 100;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.width = 23;
             Projectile.height = 36;
-            Projectile.aiStyle = 34;
+            Projectile.aiStyle = 1;
             Projectile.penetrate = 1;
-
         }
         public override void OnKill(int timeLeft)
         {

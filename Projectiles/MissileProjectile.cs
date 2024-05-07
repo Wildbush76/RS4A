@@ -38,16 +38,19 @@ namespace RS4A.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
-            soundSlot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/FirstPrismHumm")//TODO set this to be the right one
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/launch")
+            {
+                IsLooped = false,
+                Volume = 0.1f
+            }) ;
+            soundSlot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/looplaunch")//TODO set this to be the right one
             {
                 IsLooped = true,
-                Volume = 0.2f,
-                PitchVariance = 0.4f,
+                Volume = 0.5f,
+                PitchVariance = 0.2f,
                 MaxInstances = 1,
-
             });
 
-            //ChatHelper.SendChatMessageToClient(NetworkText.FromLiteral("Firing missile!"), Color.Red, Main.myPlayer);
             target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1] + random.Next(-INACCURACY, INACCURACY) * 8);
 
             for (int i = 0; i < 30; i++) {
@@ -134,7 +137,12 @@ namespace RS4A.Projectiles
 
         public override void OnKill(int timeLeft)
         {
-            RS4AUtils.Explode.Explosion(Projectile, 10, Projectile.damage, true, [" got turned into ash", " was rapidly disassembled"]);
+
+            if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound)) {
+                sound.Stop();
+                
+            }
+            RS4AUtils.Explode.Explosion(Projectile, 10, Projectile.damage, true, [" got turned into ash", " was rapidly disassembled", " was blown to bits"]);
         }
         private void SetNextTargetPoint()
         {
@@ -200,7 +208,9 @@ namespace RS4A.Projectiles
 
         private void FlightAnimation()
         {
-            
+            if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound)) {
+                sound.Position = Projectile.Center;
+            }
             if (++Projectile.frameCounter >= 3)
             {
                 Projectile.frameCounter = 0;

@@ -1,36 +1,44 @@
 ﻿using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
     public class SonicDartProjectile : ModProjectile
     {
-        int speed = 0;
+        private const int MAX_DAMAGE = 30;
         public override void SetDefaults()
         {
             Projectile.scale = 0.5f;
             Projectile.damage = 10;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.DamageType = DamageClass.Throwing;
             Projectile.width = 30;
             Projectile.height = 9;
             Projectile.aiStyle = 1;
             Projectile.tileCollide = true;
             Projectile.velocity *= 1.9f;
         }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.velocity += Main.player[Projectile.owner].velocity;
+            
+        }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            speed = Math.Abs((int)Math.Round(Main.LocalPlayer.velocity.X + Main.LocalPlayer.velocity.Y));
+            int speed = (int)Projectile.velocity.Length();
+
             Projectile.damage = Projectile.damage + speed * 3;
+            Projectile.damage = Math.Min(Projectile.damage, MAX_DAMAGE);
             if (speed > 20)
             {
-                modifiers.SetCrit(); //lol?
+                modifiers.SetCrit();
                 if (speed > 30)
                 {
                     target.AddBuff(BuffID.Ichor, 600);
                     target.AddBuff(BuffID.CursedInferno, 240);
-
                 }
             }
         }

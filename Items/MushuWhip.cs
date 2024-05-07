@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RS4A.Items
@@ -10,6 +11,12 @@ namespace RS4A.Items
         {
             Item.DefaultToWhip(ModContent.ProjectileType<Projectiles.MushuWhipProjectile>(), 30, 10, 10, 30);
 
+        }
+
+
+        public override void OnCreated(ItemCreationContext context)
+        {
+            //TODO play the sound
         }
 
     }
