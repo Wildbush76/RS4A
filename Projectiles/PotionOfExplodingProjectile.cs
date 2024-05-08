@@ -19,7 +19,7 @@ namespace RS4A.Projectiles
         public override void OnKill(int timeLeft)
         {
             Player player = Main.player[Main.myPlayer];
-            RS4AUtils.Explode.Explosion(Projectile, 5, player.statLife + player.statDefense + 1 , false, [" was a moron", " earned a Darwin award", " was a dumbass", " wanted to explode"]);
+            RS4AUtils.Explode.Explosion(Projectile, 5, 5000, false, [" was a moron", " earned a Darwin award", " was a dumbass", " wanted to explode"]);
         }
     }
 
