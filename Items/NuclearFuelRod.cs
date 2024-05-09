@@ -6,12 +6,17 @@ namespace RS4A.Items
 {
     public class NuclearFuelRod : ModItem
     {
+
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 10;
+        }
         public override void SetDefaults()
         {
             Item.maxStack = 99;
             Item.material = true;
             Item.notAmmo = false;
-            //Item.value
+            Item.value = 71750;
         }
 
 

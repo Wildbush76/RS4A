@@ -6,6 +6,10 @@ namespace RS4A.Items
 {
     public class Nuke : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 100;
+        }
         public override void SetDefaults()
         {
             Item.damage = 100;

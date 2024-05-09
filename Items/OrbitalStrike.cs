@@ -10,7 +10,7 @@ namespace RS4A.Items
         public override void SetDefaults()
         {
             Item.useStyle = ItemUseStyleID.None;
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ItemRarityID.Red;
             Item.consumable = false;
         }
 

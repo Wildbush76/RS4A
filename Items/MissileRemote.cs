@@ -27,7 +27,7 @@ namespace RS4A.Items
             Item.knockBack = 1.2f;
             Item.rare = ItemRarityID.Red;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            
+            Item.value = 75000;
         }
 
         public override bool? UseItem(Player player)
@@ -126,8 +126,8 @@ namespace RS4A.Items
         {
             Recipe recipe = CreateRecipe(1);
             recipe.AddIngredient(ItemID.Radar);
-            recipe.AddIngredient(ItemID.Wire, 10);
-            recipe.AddIngredient(ItemID.Switch,10);
+            recipe.AddIngredient(ItemID.Wire, 100);
+            recipe.AddIngredient(ItemID.Switch,1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.Register();
         }

@@ -11,6 +11,10 @@ namespace RS4A.Items
 {
     internal class Missile : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 10;
+        }
         public override void SetDefaults()
         {
             Item.damage = 300;
