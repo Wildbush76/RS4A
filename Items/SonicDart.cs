@@ -18,7 +18,7 @@ namespace RS4A.Items
 			Item.height = 18;
 			Item.useTime = 8;
 			Item.useAnimation = 8;
-			Item.useStyle = ItemUseStyleID.Thrust;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 3;
 			Item.value = 1000;
 			Item.rare = ItemRarityID.Lime;
@@ -26,10 +26,10 @@ namespace RS4A.Items
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			Item.DamageType = DamageClass.Melee;
-			//Item.noUseGraphic = true;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Throwing;
 			Item.shoot = ModContent.ProjectileType<SonicDartProjectile>();
+			Item.noUseGraphic = true;
 		}
 		public override void AddRecipes()
 		{

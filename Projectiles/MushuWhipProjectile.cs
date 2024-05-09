@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,13 +20,23 @@ namespace RS4A.Projectiles
         public override void SetDefaults()
         {
             Projectile.DefaultToWhip();
-            Projectile.damage = 30;
+            Projectile.damage = 170;
+            Projectile.WhipSettings.Segments = 26;
         }
         private float Timer
         {
             get => Projectile.ai[0];
             set => Projectile.ai[0] = value;
         }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/mushuHurt")
+            {
+                PitchVariance = 0.3f
+            });
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
             List<Vector2> list = new();

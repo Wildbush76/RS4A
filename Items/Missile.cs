@@ -25,11 +25,12 @@ namespace RS4A.Items
 
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.RocketIV,10);
-            recipe.AddIngredient(ItemID.Explosives);
-            recipe.AddIngredient(ItemID.IronBar, 3);
+            Recipe recipe = CreateRecipe(3);
+            recipe.AddIngredient(ItemID.RocketIV,3);
+            recipe.AddIngredient(ItemID.Explosives,3);
+            recipe.AddIngredient(ItemID.RocketBoots, 1);
             recipe.AddTile(TileID.MythrilAnvil);
+           
             recipe.Register();
         }
 

@@ -121,5 +121,14 @@ namespace RS4A.Items
                 locations.Remove(location);
             }
         }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe(1);
+            recipe.AddIngredient(ItemID.Radar);
+            recipe.AddIngredient(ItemID.Wire, 10);
+            recipe.AddIngredient(ItemID.Switch,10);
+            recipe.Register();
+        }
     }
 }

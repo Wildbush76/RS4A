@@ -56,11 +56,18 @@ namespace RS4A.Tiles
             {
                 frameAdjust = -36;
                 if (dropItem)
+                {
+                   
                     Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 64), ModContent.ItemType<Missile>());
+                }
             }
             else
             {
                 frameAdjust = 36;
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/addMissile")
+                {
+                    Volume = 0.6f
+                });
             }
             for (short xOffset = 0; xOffset < 2; xOffset++)
             {

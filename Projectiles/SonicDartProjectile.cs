@@ -7,7 +7,7 @@ namespace RS4A.Projectiles
 {
     public class SonicDartProjectile : ModProjectile
     {
-        private const int MAX_DAMAGE = 30;
+        private const int MAX_DAMAGE_BONUS = 30;
         public override void SetDefaults()
         {
             Projectile.scale = 0.5f;
@@ -18,20 +18,22 @@ namespace RS4A.Projectiles
             Projectile.height = 9;
             Projectile.aiStyle = 1;
             Projectile.tileCollide = true;
-            Projectile.velocity *= 1.9f;
+            //Projectile.velocity *= 1.9f;
         }
 
         public override void OnSpawn(IEntitySource source)
         {
             Projectile.velocity += Main.player[Projectile.owner].velocity;
-            
+
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             int speed = (int)Projectile.velocity.Length();
-
-            Projectile.damage = Projectile.damage + speed * 3;
-            Projectile.damage = Math.Min(Projectile.damage, MAX_DAMAGE);
+            int damage = Math.Min((speed - 20) * 3, MAX_DAMAGE_BONUS);
+            if (damage > 0)
+            {
+                Projectile.damage += damage;
+            }
             if (speed > 20)
             {
                 modifiers.SetCrit();
