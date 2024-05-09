@@ -20,6 +20,7 @@ namespace RS4A.Items
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
             Item.knockBack = 1.2f;
+            Item.value = 19200;
             Item.rare = ItemRarityID.Red;
         }
 
@@ -30,7 +31,6 @@ namespace RS4A.Items
             recipe.AddIngredient(ItemID.Explosives,3);
             recipe.AddIngredient(ItemID.RocketBoots, 1);
             recipe.AddTile(TileID.MythrilAnvil);
-           
             recipe.Register();
         }
 

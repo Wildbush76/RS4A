@@ -11,6 +11,7 @@ namespace RS4A.Items
             Item.maxStack = 99;
             Item.material = true;
             Item.notAmmo = false;
+            //Item.value
         }
 
 

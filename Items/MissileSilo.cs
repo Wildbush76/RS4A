@@ -22,15 +22,17 @@ namespace RS4A.Items
             Item.maxStack = 5;
             Item.consumable = true;
             Item.autoReuse = true;
+            Item.value = 29000;
         }
 
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe(5);
             recipe.AddIngredient(ItemID.IronBar, 10);
-            recipe.AddIngredient(ItemID.Wire, 20);
+            recipe.AddIngredient(ItemID.Wire, 100);
             recipe.AddIngredient(ItemID.RocketLauncher);
             recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
         }
     }
 }

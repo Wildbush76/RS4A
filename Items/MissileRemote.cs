@@ -128,6 +128,7 @@ namespace RS4A.Items
             recipe.AddIngredient(ItemID.Radar);
             recipe.AddIngredient(ItemID.Wire, 10);
             recipe.AddIngredient(ItemID.Switch,10);
+            recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.Register();
         }
     }

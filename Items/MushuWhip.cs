@@ -14,6 +14,8 @@ namespace RS4A.Items
             Item.DefaultToWhip(ModContent.ProjectileType<Projectiles.MushuWhipProjectile>(), 30, 10, 10, 30);
             Item.damage = 170;
             Item.autoReuse = true;
+            Item.value = 300000;
+            Item.rare = ItemRarityID.Yellow;
         }
 
         public override void OnSpawn(IEntitySource source)

@@ -1,15 +1,12 @@
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+
 using RS4A.Items;
-using RS4A.Projectiles;
+using System;
+using System.Linq;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RS4A.NPCs
 {
@@ -24,17 +21,17 @@ namespace RS4A.NPCs
 
                 shop.Add(new Item(ModContent.ItemType<ArmyPotion>())
                 {
-                    shopCustomPrice = 80000000 //in copper
-                    
+                    shopCustomPrice = 80000000
+
                 });
             }
             DateTime today = DateTime.Today;
             if (today.Day == 2 && today.Month == 6)
             {
-    
+
                 for (int a = 0; a < shop.Entries.Count; a++)
                 {
-                    shop.Entries.ElementAt(a).Item.value = shop.Entries.ElementAt(a).Item.value / 2; //i have not fucking clue if this will work lmao
+                    shop.Entries.ElementAt(a).Item.value = shop.Entries.ElementAt(a).Item.value /= 2; //i have not fucking clue if this will work lmao
                 }
             }
         }
@@ -85,19 +82,11 @@ namespace RS4A.NPCs
                 return true;
             }
         }
-        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
-        {
-            if (npc.HasBuff(BuffID.Venom))
-            {
-                modifiers.SetCrit(); //i think?
-            }
-        }
-
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if(npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler)
+            if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MushuWhip>(),100)); 
+                npcLoot.Add(ItemDropRule.ByCondition(new Conditions.DownedPlantera(), ModContent.ItemType<MushuWhip>(), 100));
             }
         }
 

@@ -18,6 +18,7 @@ namespace RS4A.Items
             Item.createTile = ModContent.TileType<Tiles.UraniumOre>();
             Item.maxStack = 999;
             Item.autoReuse = true;
+            
         }
         public override void UpdateInventory(Player player)
         {
