@@ -194,7 +194,10 @@ Projectiles: {
 	NormalProjectile.DisplayName: Normal Projectile
 }
 
-NPCs.StupidBossBody.DisplayName: Stupid Boss
+NPCs: {
+	StupidBossBody.DisplayName: Stupid Boss
+	ToxicZombie.DisplayName: Toxic Zombie
+}
 
 Biomes: {
 	BrazilSurfaceBiome: {

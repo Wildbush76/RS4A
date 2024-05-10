@@ -48,7 +48,6 @@ namespace RS4A.Projectiles.StupidBossProjectiles
             Main.NewText(Projectile.ai[1]);
             if (Projectile.ai[1] == 1)
             {
-                Main.NewText("YES");
                 fallThrough = false;
             }
             return true;
