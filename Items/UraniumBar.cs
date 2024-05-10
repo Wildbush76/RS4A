@@ -10,7 +10,6 @@ namespace RS4A.Items
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 25;
-
         }
         public override void UpdateInventory(Player player)
         {
@@ -25,7 +24,8 @@ namespace RS4A.Items
             Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.UraniumBar>());
             Item.width = 20;
             Item.height = 20;
-            Item.value = 670;
+            Item.value = 20000;
+            Item.maxStack = Item.CommonMaxStack;
         }
 
         public override void AddRecipes()

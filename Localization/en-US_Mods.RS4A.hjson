@@ -109,11 +109,6 @@ Items: {
 		Tooltip: Looks like it's made out of foam
 	}
 
-	UraniumBullet: {
-		DisplayName: Uranium Bullet
-		Tooltip: ""
-	}
-
 	UraniumBar: {
 		DisplayName: Uranium Bar
 		Tooltip: ""
@@ -124,14 +119,9 @@ Items: {
 		Tooltip: ""
 	}
 
-	OrbitalTargeter: {
-		DisplayName: Orbital Targeter
-		Tooltip: vaporize your enemies
-	}
-
 	OrbitalStrike: {
 		DisplayName: Orbital Strike
-		Tooltip: ""
+		Tooltip: vaporize your enemies
 	}
 
 	PotionOfExploding: {
@@ -149,19 +139,14 @@ Items: {
 		Tooltip: Prism Mk1
 	}
 
-	ODMSwords: {
-		DisplayName: O D M Swords
-		Tooltip: ""
-	}
-
 	MushuWhip: {
 		DisplayName: Mushu Whip
-		Tooltip: ""
+		Tooltip: you weild the mighty Mushu
 	}
 
 	MissileSilo: {
-		Tooltip: ""
 		DisplayName: Missile Silo
+		Tooltip: ""
 	}
 
 	Missile: {

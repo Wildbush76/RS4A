@@ -21,7 +21,7 @@ namespace RS4A.Projectiles
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.defense = 0; //lol
+            target.defense = 0;
             target.AddBuff(BuffID.Venom, 240);
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
 

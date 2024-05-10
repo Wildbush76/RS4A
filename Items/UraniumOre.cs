@@ -7,6 +7,11 @@ namespace RS4A.Items
 {
     public class UraniumOre : ModItem
     {
+
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 75;
+        }
         public override void SetDefaults()
         {
             Item.width = 8;
@@ -16,8 +21,9 @@ namespace RS4A.Items
             Item.useTime = 10;
             Item.useAnimation = 10;
             Item.createTile = ModContent.TileType<Tiles.UraniumOre>();
-            Item.maxStack = 999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.autoReuse = true;
+            Item.value = 6666;
         }
         public override void UpdateInventory(Player player)
         {

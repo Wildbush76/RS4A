@@ -1,4 +1,6 @@
-﻿using Terraria.DataStructures;
+﻿using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,13 +12,18 @@ namespace RS4A.Items
         public override void SetDefaults()
         {
             Item.DefaultToWhip(ModContent.ProjectileType<Projectiles.MushuWhipProjectile>(), 30, 10, 10, 30);
-
+            Item.damage = 170;
+            Item.autoReuse = true;
+            Item.value = 300000;
+            Item.rare = ItemRarityID.Yellow;
         }
 
-
-        public override void OnCreated(ItemCreationContext context)
+        public override void OnSpawn(IEntitySource source)
         {
-            //TODO play the sound
+            if (source is EntitySource_Loot)
+            {
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/mushuNotLizard"));
+            }
         }
 
     }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,6 @@ namespace RS4A.Projectiles
 {
     public class MushuWhipProjectile : ModProjectile
     {
-        //TODO make play voice lines when the whip is used
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.IsAWhip[Type] = true;
@@ -19,16 +19,33 @@ namespace RS4A.Projectiles
         public override void SetDefaults()
         {
             Projectile.DefaultToWhip();
-            Projectile.damage = 30;
+            Projectile.damage = 170;
+            Projectile.WhipSettings.Segments = 26;
         }
         private float Timer
         {
             get => Projectile.ai[0];
             set => Projectile.ai[0] = value;
         }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/mushuHurt")
+            {
+                PitchVariance = 0.3f
+            });
+
+            target.AddBuff(BuffID.OnFire, 300);
+
+            for (int i = 0; i < 10; i++) {
+                Dust.NewDust(target.Center, 32, 32, DustID.Torch);
+                Dust.NewDust(target.Center, 32, 32, DustID.Smoke);
+            }
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
-            List<Vector2> list = new();
+            List<Vector2> list = [];
             Projectile.FillWhipControlPoints(Projectile, list);
             SpriteEffects flip = Projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
