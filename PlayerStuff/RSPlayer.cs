@@ -45,6 +45,7 @@ namespace RS4A.PlayerStuff
                 Player.lifeRegenTime = 0;
                 // lifeRegen is measured in 1/2 life per second. Therefore, this effect causes 8 life lost per second
                 Player.lifeRegen += DOT;
+                
             }
         }
     }
