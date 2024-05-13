@@ -19,7 +19,7 @@ namespace RS4A.Items
             Item.useAnimation = 34;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 3;
-            Item.value = 1;
+            Item.value = 12;
             Item.rare = ItemRarityID.Lime;
             Item.crit = 0;
             Item.UseSound = SoundID.Item1;

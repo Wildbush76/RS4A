@@ -19,7 +19,7 @@ namespace RS4A.Projectiles
         public override void SetDefaults()
         {
             Projectile.DefaultToWhip();
-            Projectile.damage = 170;
+            Projectile.damage = 120;
             Projectile.WhipSettings.Segments = 26;
         }
         private float Timer

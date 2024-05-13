@@ -7,6 +7,7 @@ namespace RS4A.Items
 {
     public class RadioactiveStone : ModItem
     {
+
         public override void SetDefaults()
         {
 
@@ -19,6 +20,7 @@ namespace RS4A.Items
             Item.createTile = ModContent.TileType<Tiles.RadioactiveStone>();
             Item.maxStack = 9999;
             Item.autoReuse = true;
+           
         }
         public override void UpdateInventory(Player player)
         {

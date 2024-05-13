@@ -9,7 +9,6 @@ namespace RS4A.Items
 {
     public class Hand : ModItem
     {
-
         public override void SetDefaults()
         {
             Item.shootSpeed = 20f;

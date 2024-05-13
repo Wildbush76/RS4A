@@ -7,6 +7,10 @@ namespace RS4A.Items
 {
     public class HydrogenBomb : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 3;
+        }
         public override void SetDefaults()
         {
             Item.shoot = ModContent.ProjectileType<Projectiles.HydrogenBombProjectile>();

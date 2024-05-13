@@ -21,8 +21,6 @@ namespace RS4A.Items
             Item.color = OverrideColor;
             Item.damage = 5;
         }
-
-
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.FirstPrismHoldout>()] <= 0;
