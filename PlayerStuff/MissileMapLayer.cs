@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using RS4A.Items;
 using RS4A.Projectiles;
+using RS4A.RS4AUtils;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -19,29 +20,12 @@ namespace RS4A.PlayerStuff
         {
             foreach (Projectile projectile in Main.projectile)
             {
-                if (projectile.active && projectile.ModProjectile is MissileProjectile missileProjectile && projectile.owner == Main.myPlayer)//TODO package this in a helper function, could be useful later
+                if (projectile.active && projectile.ModProjectile is MissileProjectile missileProjectile && projectile.owner == Main.myPlayer)
                 {
                     Vector2 position = projectile.position / 16;
-              
-                    position = (position - context.MapPosition) * context.MapScale + context.MapOffset;
+                    float rotation = MathF.Atan2(projectile.velocity.Y, projectile.velocity.X) + MathHelper.ToRadians(90);
 
-                    if (!context.ClippingRectangle.HasValue || context.ClippingRectangle.Value.Contains(position.ToPoint()))
-                    {
-                        float rotation = MathF.Atan2(projectile.velocity.Y, projectile.velocity.X) + MathHelper.ToRadians(90);
-                        Texture2D texture = TextureAssets.Item[ModContent.ItemType<Missile>()].Value;
-                        SpriteFrame frame = new SpriteFrame(1, 1, 0, 0);
-
-                        Rectangle sourceRectangle = frame.GetSourceRectangle(texture);
-                        Vector2 vector = sourceRectangle.Size() * Alignment.Center.OffsetMultiplier;
-                        Vector2 position2 = position;
-                        
-                        float scale = context.DrawScale;
-                
-
-                        Main.spriteBatch.Draw(texture, position2, sourceRectangle, Color.White, rotation, vector, scale, SpriteEffects.None, 0f);
-                    }
-
-
+                    Maputils.DrawOnMapWithRotation(ref context, TextureAssets.Item[ModContent.ItemType<Missile>()].Value, position, Color.White, rotation, new SpriteFrame(1, 1, 0, 0), 1, 1, Alignment.Center, SpriteEffects.None);
                     context.Draw(TextureAssets.Projectile[ModContent.ProjectileType<TargetedForOrbitalStrike>()].Value, missileProjectile.GetTarget() / 16, Color.Crimson, new SpriteFrame(1, 1, 0, 0), 0.3f, 0.8f, Alignment.Center);
                 }
             }
