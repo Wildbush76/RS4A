@@ -22,10 +22,10 @@ namespace RS4A.Projectiles
         private int launchTimer = 30;
 
         private const float MAX_SPEED = 30;
-        private const float ACCELERATION = 0.3f;
+        private const float ACCELERATION = 0.1f;
         private const int CRUISING_ALTITUDE = 1000;
         private const int TILE_COLLIDE_RANGE = 40;//range to players or target to enable tile collide
-        private const int INACCURACY = 20;//Plus or minus this value on X
+        private const int INACCURACY = 10;//Plus or minus this value on X
         private readonly Vector3 FLAME_COLOR = new(2, 0.7f, 0.3f);
         public enum Stage
         {
@@ -224,6 +224,7 @@ namespace RS4A.Projectiles
             Dust dust = Dust.NewDustPerfect(location, DustID.Torch);
             dust.noGravity = true;
             Dust.NewDustPerfect(location, ModContent.DustType<Dusts.SmokeCloud>(), Vector2.Zero, Scale: 1.2f);
+        
         }
 
     }
