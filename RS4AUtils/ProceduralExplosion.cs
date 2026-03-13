@@ -1,28 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace RS4A.RS4AUtils
 {
     internal class ProceduralExplosion
     {
-        private readonly int blastRadius;
         private readonly PriorityQueue<Tuple<int, int, Tile>, double> tilesToExplode = new();
-        private readonly int dequeuePerTick;
-        private readonly Vector2 center;
+        private int dequeuePerTick;
+        private Vector2 center;
+        private static readonly Random random = new Random();
+
 
 
         /// <summary>
         /// How many layers of the crater should be dedicated to the block replacmenet
         /// </summary>
-        public int CrateringSize
+        public int CraterLayers
         {
-            init => field = blastRadius - value;
-            get => field;
+            init;
+            get;
+        }
+
+        private int CrateringRadius
+        {
+            get => BlastRadius - CraterLayers;
         }
 
         public int[] CrateringTiles
@@ -31,27 +37,29 @@ namespace RS4A.RS4AUtils
             get;
         }
 
-        public int DamageRadius { init; get; }
-        public int MaxDamage { init; get; }
+        public string[] DeathMessages { init; get; }
 
 
-        public ProceduralExplosion(Vector2 center, int blastRadius, int explosionTime)
+
+        public int DamageRadius { init; get; } = 80;
+        public int MaxDamage { init; get; } = 0;
+        public int ExplosionTime { init; get; } = 60;
+        public bool Exploding { private set; get; } = false;
+        public int BlastRadius { init; get; } = 10;
+
+
+        public void InitExplosion(Vector2 center)
         {
             this.center = center;
-            this.blastRadius = blastRadius;
 
-            InitExplosion(center, blastRadius);
-            dequeuePerTick =  Math.Max(tilesToExplode.Count / explosionTime,1);
-        }
+            center /= 16;
 
-        private void InitExplosion(Vector2 center, int blastRadius)
-        {
-            int minX = (int)(center.X / 16) - blastRadius;
-            int maxX = (int)(center.X / 16) + blastRadius;
-            int minY = (int)(center.Y / 16) - blastRadius;
-            int maxY = (int)(center.Y / 16) + blastRadius;
+            int minX = (int)(center.X) - BlastRadius;
+            int maxX = (int)(center.X) + BlastRadius;
+            int minY = (int)(center.Y) - BlastRadius;
+            int maxY = (int)(center.Y) + BlastRadius;
 
-            Utils.ClampWithinWorld(ref minX, ref maxX, ref minY, ref maxY);
+            Utils.ClampWithinWorld(ref minX, ref minY, ref maxX, ref maxY);
 
             tilesToExplode.EnsureCapacity((maxX - minX) * (maxY - minY));
 
@@ -59,15 +67,17 @@ namespace RS4A.RS4AUtils
             {
                 for (int y = minY; y <= maxY; y++)
                 {
-                    double distance = Math.Sqrt(x * x + y * y);
+                    double distance = center.Distance(new Vector2(x, y));
+
                     Tile currentTile = Framing.GetTileSafely(x, y);
-                    if (distance < blastRadius)
-                    {
+                    if (distance < BlastRadius)
                         tilesToExplode.Enqueue(new(x, y, currentTile), distance);
-                    }
+
                 }
             }
             EntityDamage();
+            dequeuePerTick = Math.Max(tilesToExplode.Count / ExplosionTime, 1);
+            Exploding = true;
         }
 
 
@@ -81,19 +91,27 @@ namespace RS4A.RS4AUtils
                     continue;
 
                 float distance = player.Center.Distance(center);
+
                 if (distance <= DamageRadius)
-                    player.Hurt(PlayerDeathReason.LegacyEmpty(), EntityDamage(distance), 0, dodgeable: false, knockback: 0);
+                {
+                    NetworkText deathMessage = NetworkText.FromKey(DeathMessages[random.Next(0, DeathMessages.Length)],player.name);
+                    player.Hurt(PlayerDeathReason.ByCustomReason(deathMessage), EntityDamage(distance), 0, dodgeable: false, knockback: 0);
+                }
+
             }
 
-            foreach(NPC npc in Main.npc) {
+            foreach (NPC npc in Main.npc)
+            {
                 if (!npc.active)
                     continue;
-                
+
                 float distance = npc.Center.Distance(center);
 
-                NPC.HitInfo info = new() {
+                NPC.HitInfo info = new()
+                {
                     Damage = EntityDamage(distance),
-                    Knockback = 0 };
+                    Knockback = 0
+                };
 
                 npc.StrikeNPC(info);
             }
@@ -102,7 +120,7 @@ namespace RS4A.RS4AUtils
 
         private int EntityDamage(float distance)
         {
-            return (int)(Math.Pow(1 - distance / DamageRadius, 2) * MaxDamage);
+            return Math.Min((int)(Math.Pow(1 - distance / DamageRadius, 2) * MaxDamage), MaxDamage);
         }
 
 
@@ -111,36 +129,15 @@ namespace RS4A.RS4AUtils
         {
             for (int i = 0; i < dequeuePerTick; i++)
             {
-
                 if (!tilesToExplode.TryDequeue(out var t, out double distance))
                 {
                     return true;
                 }
                 Tile tile = t.Item3;
 
-
                 if (tile.HasTile)
                 {
-                    if (distance > CrateringSize)
-                    {
-                        double replaceChance = Math.Sqrt((distance - CrateringSize) / (CrateringSize - blastRadius));
-
-                        if (Main.rand.Next() < replaceChance)
-                        {
-
-                            if (CrateringTiles.Length > 0 || Main.rand.Next() > (1 - replaceChance))
-                            {
-                                continue;
-                            }
-
-                            WorldGen.KillTile(t.Item1, t.Item2, false, false, true);
-                            WorldGen.PlaceTile(t.Item1, t.Item2, CrateringTiles[Main.rand.Next(0, CrateringTiles.Length)], true);
-                        }
-
-                    }
-                    else
-                        WorldGen.KillTile(t.Item1, t.Item2, false, false, true);
-
+                    DestroyOrReplace(t.Item1, t.Item2, tile, distance);
                 }
                 if (tile.WallType != WallID.None)
                 {
@@ -148,6 +145,28 @@ namespace RS4A.RS4AUtils
                 }
             }
             return false;
+        }
+
+        private void DestroyOrReplace(int x, int y, Tile tile, double distance)
+        {
+            if (distance > CrateringRadius)
+            {
+                double replaceChance = Math.Sqrt((distance - CrateringRadius) / (CraterLayers));
+                if (random.NextDouble() < replaceChance)
+                {
+
+                    if (CrateringTiles.Length > 0 && random.NextDouble() < (1 - replaceChance))
+                    {
+                        return;// dont destroy
+                    }
+
+                    WorldGen.KillTile(x, y, false, false, true);
+                    WorldGen.PlaceTile(x, y, CrateringTiles[Main.rand.Next(0, CrateringTiles.Length)], true);
+                    return;
+                }
+            }
+            WorldGen.KillTile(x, y, false, false, true);
+
         }
 
 

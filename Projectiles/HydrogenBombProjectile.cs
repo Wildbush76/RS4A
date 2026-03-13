@@ -2,29 +2,25 @@
 using RS4A.RS4AUtils;
 using RS4A.Systems;
 using RS4A.Tiles;
-using System;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
     public class HydrogenBombProjectile : ModProjectile
     {
-        private const int blastRadius = 140;//includes the burnt block radius
-        private const int burntBlockLayers = 20;
+        private ProceduralExplosion explosion = new()
+        {
+            BlastRadius = 140,
+            CraterLayers = 20,
+            DamageRadius = 180 * 8,
+            CrateringTiles = [ModContent.TileType<RadioactiveStone>(), TileID.Hellstone],
+            MaxDamage = 10000,
+            DeathMessages = ["Mods.RS4A.DeathMessages.HydrogenBomb.Death-1", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-2", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-3", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-4", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-5"]
+        };
 
-        private const int playerDamageRadius = 180 * 8;
-        private const int maxDamage = 9999999;
-        private readonly int[] craterTiles = [ModContent.TileType<RadioactiveStone>(), TileID.Obsidian, TileID.Hellstone];
 
-
-
-        private ProceduralExplosion explosion;
         private int explosionCountdown = 180;
-
-
 
         public override void SetDefaults()
         {
@@ -35,7 +31,6 @@ namespace RS4A.Projectiles
             Projectile.height = 16;
             Projectile.aiStyle = ProjAIStyleID.Explosive;
             Projectile.penetrate = 1;
-
         }
 
 
@@ -45,25 +40,20 @@ namespace RS4A.Projectiles
             {
                 explosionCountdown--;
                 if (explosionCountdown == 0)
-                    explosion = new ProceduralExplosion(Projectile.Center, blastRadius, 60) { 
-                        CrateringSize = burntBlockLayers,
-                        DamageRadius = playerDamageRadius,
-                        CrateringTiles = craterTiles,
-                        MaxDamage = maxDamage
-
-                    };
-                return true;
+                {
+                    explosion.InitExplosion(Projectile.Center);
+                    NuclearFlash.TriggerFlash();
+                }
+                else
+                    return true;
             }
 
-            if (explosion.ProcessExplosion()) 
+            if (explosion.Exploding && explosion.ProcessExplosion())
                 Projectile.Kill();
-                
-            
 
-         
             return false;
         }
 
-       
+
     }
 }

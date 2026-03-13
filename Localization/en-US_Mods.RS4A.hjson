@@ -179,6 +179,16 @@ Projectiles: {
 	NormalProjectile.DisplayName: Normal Projectile
 }
 
+DeathMessages: {
+	HydrogenBomb: {
+		Death-1: "{0} was vaporized"
+		Death-2: "{0} suddenly stopped existing"
+		Death-3: "{0} got split by the atom"
+		Death-4: "{0} miscalculated the yield"
+		Death-5: "{0} got annilhated by death, the destroyer of worlds"
+	}
+}
+
 NPCs: {
 	StupidBossBody.DisplayName: Stupid Boss
 	ToxicZombie.DisplayName: Toxic Zombie

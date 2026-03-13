@@ -31,10 +31,11 @@ namespace RS4A.Items
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe(1);
-            recipe.AddIngredient(ModContent.ItemType<Items.NuclearFuelRod>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<Items.NuclearFuelRod>(), 10);
             recipe.AddIngredient(ItemID.Wire, 200);
             recipe.AddIngredient(ItemID.Explosives, 5);
             recipe.AddIngredient(ItemID.IronBar, 20);
+            recipe.AddIngredient(ItemID.TimerOneFourthSecond,5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
