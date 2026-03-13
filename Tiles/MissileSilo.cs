@@ -15,7 +15,6 @@ namespace RS4A.Tiles
 
         public override void SetStaticDefaults()
         {
-            Main.tileSolid[Type] = true;
             Main.tileLavaDeath[Type] = false;
 
             Main.tileFrameImportant[Type] = true;

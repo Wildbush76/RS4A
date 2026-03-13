@@ -7,9 +7,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
 {
-    public class HydrogenBombProjectile : ModProjectile
+    public class HydrogenBombExplosion : ModProjectile
     {
-        private ProceduralExplosion explosion = new()
+        private readonly ProceduralExplosion explosion = new()
         {
             BlastRadius = 140,
             CraterLayers = 20,
@@ -19,41 +19,31 @@ namespace RS4A.Projectiles
             DeathMessages = ["Mods.RS4A.DeathMessages.HydrogenBomb.Death-1", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-2", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-3", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-4", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-5"]
         };
 
-
-        private int explosionCountdown = 180;
-
         public override void SetDefaults()
         {
-            Projectile.damage = 500;
+            Projectile.hostile = true;
             Projectile.friendly = false;
-            Projectile.DamageType = DamageClass.Ranged;
             Projectile.width = 32;
             Projectile.height = 16;
-            Projectile.aiStyle = ProjAIStyleID.Explosive;
-            Projectile.penetrate = 1;
+            Projectile.Opacity = 0;
         }
 
 
-        public override bool PreAI()
+        public override void AI()
         {
-            if (explosionCountdown > 0)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
+
+            if (!explosion.Exploding)
             {
-                explosionCountdown--;
-                if (explosionCountdown == 0)
-                {
-                    explosion.InitExplosion(Projectile.Center);
-                    NuclearFlash.TriggerFlash();
-                }
-                else
-                    return true;
+                explosion.InitExplosion(Projectile.Center);
+                NuclearFlash.TriggerFlash();
             }
-
-            if (explosion.Exploding && explosion.ProcessExplosion())
-                Projectile.Kill();
-
-            return false;
+            else {
+                if (explosion.ProcessExplosion())
+                    Projectile.Kill();
+            }
         }
-
 
     }
 }

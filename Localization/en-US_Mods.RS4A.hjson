@@ -177,6 +177,7 @@ Projectiles: {
 	MissileProjectile.DisplayName: Missile Projectile
 	ExplosiveWaste.DisplayName: Explosive Waste
 	NormalProjectile.DisplayName: Normal Projectile
+	HydrogenBombExplosion.DisplayName: Hydrogen Bomb Explosion
 }
 
 DeathMessages: {

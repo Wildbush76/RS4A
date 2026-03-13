@@ -13,7 +13,7 @@ namespace RS4A.RS4AUtils
         private readonly PriorityQueue<Tuple<int, int, Tile>, double> tilesToExplode = new();
         private int dequeuePerTick;
         private Vector2 center;
-        private static readonly Random random = new Random();
+        private static readonly Random random = new();
 
 
 
@@ -94,7 +94,7 @@ namespace RS4A.RS4AUtils
 
                 if (distance <= DamageRadius)
                 {
-                    NetworkText deathMessage = NetworkText.FromKey(DeathMessages[random.Next(0, DeathMessages.Length)],player.name);
+                    NetworkText deathMessage = NetworkText.FromKey(DeathMessages[random.Next(0, DeathMessages.Length)], player.name);
                     player.Hurt(PlayerDeathReason.ByCustomReason(deathMessage), EntityDamage(distance), 0, dodgeable: false, knockback: 0);
                 }
 
@@ -127,6 +127,7 @@ namespace RS4A.RS4AUtils
 
         public bool ProcessExplosion()
         {
+            WorldGen.gen = true;
             for (int i = 0; i < dequeuePerTick; i++)
             {
                 if (!tilesToExplode.TryDequeue(out var t, out double distance))
@@ -137,18 +138,22 @@ namespace RS4A.RS4AUtils
 
                 if (tile.HasTile)
                 {
-                    DestroyOrReplace(t.Item1, t.Item2, tile, distance);
+                    DestroyOrReplace(t.Item1, t.Item2, distance);
                 }
                 if (tile.WallType != WallID.None)
                 {
                     WorldGen.KillWall(t.Item1, t.Item2);
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendData(MessageID.TileManipulation, number: 2, number2: t.Item1, number3: t.Item2, number4: 0);
                 }
             }
+            WorldGen.gen = false;   
             return false;
         }
 
-        private void DestroyOrReplace(int x, int y, Tile tile, double distance)
+        private void DestroyOrReplace(int x, int y, double distance)
         {
+           
             if (distance > CrateringRadius)
             {
                 double replaceChance = Math.Sqrt((distance - CrateringRadius) / (CraterLayers));
@@ -162,12 +167,17 @@ namespace RS4A.RS4AUtils
 
                     WorldGen.KillTile(x, y, false, false, true);
                     WorldGen.PlaceTile(x, y, CrateringTiles[Main.rand.Next(0, CrateringTiles.Length)], true);
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: x, number3: y, number4: 0);
+                          
                     return;
                 }
             }
             WorldGen.KillTile(x, y, false, false, true);
 
         }
+
+       
 
 
     }

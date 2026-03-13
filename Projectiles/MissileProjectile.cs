@@ -137,7 +137,7 @@ namespace RS4A.Projectiles
 
         public override void OnKill(int timeLeft)
         {
-
+          
             if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound)) {
                 sound.Stop();
                 

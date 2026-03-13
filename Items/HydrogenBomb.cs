@@ -1,4 +1,3 @@
-using RS4A.PlayerStuff;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,11 +12,11 @@ namespace RS4A.Items
         }
         public override void SetDefaults()
         {
-            Item.shoot = ModContent.ProjectileType<Projectiles.HydrogenBombProjectile>();
             Item.width = 32;
             Item.height = 32;
             Item.consumable = true;
             Item.useStyle = ItemUseStyleID.Swing;
+            Item.createTile = ModContent.TileType<Tiles.HydrogenBomb>();
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.maxStack = 5;
@@ -39,7 +38,6 @@ namespace RS4A.Items
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
-
 
     }
 
