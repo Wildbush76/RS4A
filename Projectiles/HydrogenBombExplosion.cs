@@ -3,6 +3,7 @@ using RS4A.RS4AUtils;
 using RS4A.Systems;
 using RS4A.Tiles;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 namespace RS4A.Projectiles
@@ -31,13 +32,22 @@ namespace RS4A.Projectiles
 
         public override void AI()
         {
+
             if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                Projectile.Kill();
                 return;
+            }
 
             if (!explosion.Exploding)
             {
                 explosion.InitExplosion(Projectile.Center);
                 NuclearFlash.TriggerFlash();
+                SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/hydrogenBomb")
+                {
+                    Volume = 0.6f,
+                    PitchVariance = 0.2f
+                });
             }
             else {
                 if (explosion.ProcessExplosion())

@@ -132,6 +132,7 @@ namespace RS4A.RS4AUtils
             {
                 if (!tilesToExplode.TryDequeue(out var t, out double distance))
                 {
+                    WorldGen.gen = false;
                     return true;
                 }
                 Tile tile = t.Item3;

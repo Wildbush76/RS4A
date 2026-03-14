@@ -65,7 +65,8 @@ namespace RS4A.Tiles
                 frameAdjust = 36;
                 SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/addMissile")
                 {
-                    Volume = 0.6f
+                    Volume = 0.6f,
+                    
                 });
             }
             for (short xOffset = 0; xOffset < 2; xOffset++)
