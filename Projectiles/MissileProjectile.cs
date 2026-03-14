@@ -3,10 +3,8 @@ using ReLogic.Utilities;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RS4A.Projectiles
@@ -42,7 +40,7 @@ namespace RS4A.Projectiles
             {
                 IsLooped = false,
                 Volume = 0.1f
-            }) ;
+            });
             soundSlot = SoundEngine.PlaySound(new SoundStyle($"{nameof(RS4A)}/Sounds/looplaunch")//TODO set this to be the right one
             {
                 IsLooped = true,
@@ -53,11 +51,12 @@ namespace RS4A.Projectiles
 
             target = new Vector2(Projectile.ai[0] + random.Next(-INACCURACY, INACCURACY) * 16, Projectile.ai[1] + random.Next(-INACCURACY, INACCURACY) * 8);
 
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 30; i++)
+            {
                 Dust.NewDust(Projectile.BottomLeft, Projectile.width, 5, ModContent.DustType<Dusts.SmokeCloud>(), SpeedX: random.NextSingle() - 0.5f, SpeedY: random.NextSingle() / 5f);
             }
         }
-    
+
 
 
         public Vector2 GetTarget()
@@ -107,7 +106,7 @@ namespace RS4A.Projectiles
 
         }
 
-      
+
 
         public override void AI()
         {
@@ -137,10 +136,11 @@ namespace RS4A.Projectiles
 
         public override void OnKill(int timeLeft)
         {
-          
-            if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound)) {
+
+            if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound))
+            {
                 sound.Stop();
-                
+
             }
             RS4AUtils.Explode.Explosion(Projectile, 10, Projectile.damage, true, [" got turned into ash", " was rapidly disassembled", " was blown to bits"]);
         }
@@ -208,7 +208,8 @@ namespace RS4A.Projectiles
 
         private void FlightAnimation()
         {
-            if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound)) {
+            if (SoundEngine.TryGetActiveSound(soundSlot, out ActiveSound sound))
+            {
                 sound.Position = Projectile.Center;
             }
             if (++Projectile.frameCounter >= 3)
@@ -224,7 +225,7 @@ namespace RS4A.Projectiles
             Dust dust = Dust.NewDustPerfect(location, DustID.Torch);
             dust.noGravity = true;
             Dust.NewDustPerfect(location, ModContent.DustType<Dusts.SmokeCloud>(), Vector2.Zero, Scale: 1.2f);
-        
+
         }
 
     }

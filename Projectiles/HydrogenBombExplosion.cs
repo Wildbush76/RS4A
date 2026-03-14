@@ -15,7 +15,7 @@ namespace RS4A.Projectiles
             BlastRadius = 140,
             CraterLayers = 20,
             DamageRadius = 180 * 8,
-            CrateringTiles = [ModContent.TileType<RadioactiveStone>(), TileID.Hellstone],
+            CrateringTiles = [ModContent.TileType<RadioactiveStone>(), TileID.Hellstone, ModContent.TileType<RadioactiveStone>()],
             MaxDamage = 10000,
             DeathMessages = ["Mods.RS4A.DeathMessages.HydrogenBomb.Death-1", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-2", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-3", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-4", "Mods.RS4A.DeathMessages.HydrogenBomb.Death-5"]
         };
@@ -49,7 +49,8 @@ namespace RS4A.Projectiles
                     PitchVariance = 0.2f
                 });
             }
-            else {
+            else
+            {
                 if (explosion.ProcessExplosion())
                     Projectile.Kill();
             }

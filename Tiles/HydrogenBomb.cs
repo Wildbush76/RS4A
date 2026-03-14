@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using RS4A.Projectiles;
-using RS4A.Systems;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -9,13 +8,13 @@ using Terraria.ObjectData;
 namespace RS4A.Tiles
 {
 
-    internal class StoppingHydrogenDropping : GlobalTile {
-    }
 
     internal class HydrogenBomb : ModTile
     {
         const int TileWidth = 2;
         const int TileHeight = 3;
+
+
 
         public override void SetStaticDefaults()
         {
@@ -66,7 +65,7 @@ namespace RS4A.Tiles
             float spawnY = (y + TileHeight * 0.65f) * 16;
             var source = new EntitySource_TileUpdate(x, y, "HydrogenBomb");
             Projectile.NewProjectile(source, spawnX, spawnY, 0, 0, ModContent.ProjectileType<HydrogenBombExplosion>(), 0, 0);
-          
+
         }
     }
 }

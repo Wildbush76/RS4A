@@ -148,13 +148,13 @@ namespace RS4A.RS4AUtils
                         NetMessage.SendData(MessageID.TileManipulation, number: 2, number2: t.Item1, number3: t.Item2, number4: 0);
                 }
             }
-            WorldGen.gen = false;   
+            WorldGen.gen = false;
             return false;
         }
 
         private void DestroyOrReplace(int x, int y, double distance)
         {
-           
+
             if (distance > CrateringRadius)
             {
                 double replaceChance = Math.Sqrt((distance - CrateringRadius) / (CraterLayers));
@@ -170,7 +170,7 @@ namespace RS4A.RS4AUtils
                     WorldGen.PlaceTile(x, y, CrateringTiles[Main.rand.Next(0, CrateringTiles.Length)], true);
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendData(MessageID.TileManipulation, number: 4, number2: x, number3: y, number4: 0);
-                          
+
                     return;
                 }
             }
@@ -178,7 +178,7 @@ namespace RS4A.RS4AUtils
 
         }
 
-       
+
 
 
     }

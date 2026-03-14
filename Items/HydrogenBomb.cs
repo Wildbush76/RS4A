@@ -4,8 +4,11 @@ using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
+    [AutoloadEquip(EquipType.Back)]
     public class HydrogenBomb : ModItem
     {
+
+        public static readonly int EQUIPMENT_DAMAGE_THRESHOLD = 50;
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 3;
@@ -34,7 +37,7 @@ namespace RS4A.Items
             recipe.AddIngredient(ItemID.Wire, 200);
             recipe.AddIngredient(ItemID.Explosives, 5);
             recipe.AddIngredient(ItemID.IronBar, 20);
-            recipe.AddIngredient(ItemID.TimerOneFourthSecond,5);
+            recipe.AddIngredient(ItemID.TimerOneFourthSecond, 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }

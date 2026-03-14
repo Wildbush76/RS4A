@@ -1,4 +1,6 @@
-﻿using Humanizer;
+﻿using Microsoft.Xna.Framework;
+using RS4A.Items;
+using RS4A.Projectiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Localization;
@@ -26,7 +28,8 @@ namespace RS4A.PlayerStuff
             {
                 if (radioactive)
                 {
-                    damageSource = PlayerDeathReason.ByCustomReason(Language.GetTextValue(deathMessages + ".Radiation-" + Main.rand.Next(1, 4)).FormatWith(Player.name));
+                    var deathMessage = NetworkText.FromKey(deathMessages + ".Radiation-" + Main.rand.Next(1, 4), Player.name);
+                    damageSource = PlayerDeathReason.ByCustomReason(deathMessage);
                 }
             }
 
@@ -45,7 +48,24 @@ namespace RS4A.PlayerStuff
                 Player.lifeRegenTime = 0;
                 // lifeRegen is measured in 1/2 life per second. Therefore, this effect causes 8 life lost per second
                 Player.lifeRegen += DOT;
-                
+
+            }
+        }
+
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+            if (modifiers.FinalDamage.Base >= Items.HydrogenBomb.EQUIPMENT_DAMAGE_THRESHOLD)
+            {
+                for (int i = 3; i <= 9; i++)
+                {
+
+
+                    if (Player.armor[i].type == ModContent.ItemType<HydrogenBomb>())
+                    {
+                        Player.armor[i].TurnToAir();
+                        Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, Vector2.Zero, ModContent.ProjectileType<HydrogenBombExplosion>(), 0, 0);
+                    }
+                }
             }
         }
     }
