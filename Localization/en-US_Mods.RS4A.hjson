@@ -158,6 +158,11 @@ Items: {
 		DisplayName: Missile Remote
 		Tooltip: I wonder what this buttons does...
 	}
+
+	W2: {
+		DisplayName: W2
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -190,9 +195,12 @@ DeathMessages: {
 	}
 }
 
+Taxes.W2: You paid ${0:N0} in taxes!
+
 NPCs: {
 	StupidBossBody.DisplayName: Stupid Boss
 	ToxicZombie.DisplayName: Toxic Zombie
+	IRSAgent.DisplayName: I R S Agent
 }
 
 Biomes: {

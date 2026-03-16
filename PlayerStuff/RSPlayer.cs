@@ -2,6 +2,7 @@
 using RS4A.Items;
 using RS4A.Projectiles;
 using Terraria;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -52,14 +53,11 @@ namespace RS4A.PlayerStuff
             }
         }
 
-        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        public override void OnHurt(Player.HurtInfo info)
         {
-            if (modifiers.FinalDamage.Base >= Items.HydrogenBomb.EQUIPMENT_DAMAGE_THRESHOLD)
-            {
+            if (info.Damage >= Items.HydrogenBomb.EQUIPMENT_DAMAGE_THRESHOLD) {
                 for (int i = 3; i <= 9; i++)
                 {
-
-
                     if (Player.armor[i].type == ModContent.ItemType<HydrogenBomb>())
                     {
                         Player.armor[i].TurnToAir();
@@ -68,6 +66,8 @@ namespace RS4A.PlayerStuff
                 }
             }
         }
+
+        
     }
 
 }

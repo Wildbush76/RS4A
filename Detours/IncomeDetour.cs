@@ -20,7 +20,7 @@ namespace RS4A.Detours
             {
                 Income income = self.GetModPlayer<Income>();
 
-                long pickedUpCoinValue = 0;
+                int pickedUpCoinValue = 0;
 
                 switch (itemToPickUp.type)
                 {
@@ -32,10 +32,10 @@ namespace RS4A.Detours
                         break;
 
                     case ItemID.GoldCoin:
-                        pickedUpCoinValue += itemToPickUp.stack * 100000;
+                        pickedUpCoinValue += itemToPickUp.stack * 100 * 100;
                         break;
                     case ItemID.PlatinumCoin:
-                        pickedUpCoinValue += itemToPickUp.stack * 100000000;
+                        pickedUpCoinValue += itemToPickUp.stack * 100 * 100 * 100;
                         break;
 
                 }

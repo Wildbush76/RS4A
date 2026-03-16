@@ -14,8 +14,6 @@ namespace RS4A.Tiles
         const int TileWidth = 2;
         const int TileHeight = 3;
 
-
-
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = false;
@@ -55,11 +53,9 @@ namespace RS4A.Tiles
             }
 
             CreateExplosion(x, y);
-
-
         }
 
-        private void CreateExplosion(int x, int y)
+        private static void CreateExplosion(int x, int y)
         {
             float spawnX = (x + TileWidth * 0.5f) * 16;
             float spawnY = (y + TileHeight * 0.65f) * 16;

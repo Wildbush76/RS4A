@@ -15,6 +15,10 @@ namespace RS4A.Items
         }
         public override void SetDefaults()
         {
+            int realBackSlot = Item.backSlot;
+            Item.CloneDefaults(ItemID.HiveBackpack);
+            Item.backSlot = realBackSlot;
+
             Item.width = 32;
             Item.height = 32;
             Item.consumable = true;

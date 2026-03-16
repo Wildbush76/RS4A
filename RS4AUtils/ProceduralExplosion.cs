@@ -177,9 +177,5 @@ namespace RS4A.RS4AUtils
             WorldGen.KillTile(x, y, false, false, true);
 
         }
-
-
-
-
     }
 }
