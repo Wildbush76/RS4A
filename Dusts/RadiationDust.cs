@@ -12,6 +12,8 @@ namespace RS4A.Dusts
             dust.frame = new Rectangle(0, 0, 5, 5);//(0,0,5,5)
                                                    //If our texture had 2 different dust on top of each other (a 30x60 pixel image), we might do this:
                                                    //dust.frame = new Rectangle(0, Main.rand.Next(2) * 30, 30, 30);
+
+            dust.velocity = Vector2.Zero;
         }
 
         public override bool Update(Dust dust)
