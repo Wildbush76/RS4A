@@ -22,12 +22,13 @@ namespace RS4A
 
             if (Main.netMode != NetmodeID.Server)
             {
-                BrazilSky = ModContent.Request<Texture2D>("RS4A/Skies/BrazilSky", AssetRequestMode.ImmediateLoad).Value;
+                BrazilSky = ModContent.Request<Texture2D>("RS4A/Skies/BrazilSky", AssetRequestMode.AsyncLoad).Value;
                 // First, you load in your shader file.
                 // You'll have to do this regardless of what kind of shader it is,
                 // and you'll have to do it for every shader file.
                 // This example assumes you have both armor and screen shaders.
-                Ref<Effect> filterRef = new Ref<Effect>(this.Assets.Request<Effect>("Effects/Filters/Radiation", AssetRequestMode.ImmediateLoad).Value);
+                Ref<Effect> filterRef = new Ref<Effect>(this.Assets.Request<Effect>("Effects/Filters/Radiation", AssetRequestMode.AsyncLoad).Value);
+                
                 Filters.Scene["Radiation"] = new Filter(new ScreenShaderData(filterRef, "Radiation"), EffectPriority.High);
                 SkyManager.Instance["Brazil"] = new BrazilSky();
             }

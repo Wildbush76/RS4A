@@ -38,6 +38,11 @@ Buffs: {
 		Description: Mods.RS4A.Buffs.Gay.Description
 		DisplayName: Gay
 	}
+
+	GravitationReal: {
+		DisplayName: Gravitation Real
+		Description: Mods.RS4A.Buffs.GravitationReal.Description
+	}
 }
 
 Items: {
@@ -158,6 +163,16 @@ Items: {
 		DisplayName: Missile Remote
 		Tooltip: I wonder what this buttons does...
 	}
+
+	W2: {
+		DisplayName: W2
+		Tooltip: ""
+	}
+
+	RealGravityPotion: {
+		DisplayName: Real Gravity Potion
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -177,11 +192,25 @@ Projectiles: {
 	MissileProjectile.DisplayName: Missile Projectile
 	ExplosiveWaste.DisplayName: Explosive Waste
 	NormalProjectile.DisplayName: Normal Projectile
+	HydrogenBombExplosion.DisplayName: Hydrogen Bomb Explosion
 }
+
+DeathMessages: {
+	HydrogenBomb: {
+		Death-1: "{0} was vaporized"
+		Death-2: "{0} suddenly stopped existing"
+		Death-3: "{0} got split by the atom"
+		Death-4: "{0} miscalculated the yield"
+		Death-5: "{0} got annilhated by death, the destroyer of worlds"
+	}
+}
+
+Taxes.W2: You paid ${0:N0} in taxes!
 
 NPCs: {
 	StupidBossBody.DisplayName: Stupid Boss
 	ToxicZombie.DisplayName: Toxic Zombie
+	IRSAgent.DisplayName: I R S Agent
 }
 
 Biomes: {

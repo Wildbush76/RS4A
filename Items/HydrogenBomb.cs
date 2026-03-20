@@ -1,23 +1,29 @@
-using RS4A.PlayerStuff;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RS4A.Items
 {
+    [AutoloadEquip(EquipType.Back)]
     public class HydrogenBomb : ModItem
     {
+
+        public static readonly int EQUIPMENT_DAMAGE_THRESHOLD = 50;
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 3;
         }
         public override void SetDefaults()
         {
-            Item.shoot = ModContent.ProjectileType<Projectiles.HydrogenBombProjectile>();
+            int realBackSlot = Item.backSlot;
+            Item.CloneDefaults(ItemID.HiveBackpack);
+            Item.backSlot = realBackSlot;
+
             Item.width = 32;
             Item.height = 32;
             Item.consumable = true;
             Item.useStyle = ItemUseStyleID.Swing;
+            Item.createTile = ModContent.TileType<Tiles.HydrogenBomb>();
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.maxStack = 5;
@@ -31,14 +37,14 @@ namespace RS4A.Items
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe(1);
-            recipe.AddIngredient(ModContent.ItemType<Items.NuclearFuelRod>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<Items.NuclearFuelRod>(), 10);
             recipe.AddIngredient(ItemID.Wire, 200);
             recipe.AddIngredient(ItemID.Explosives, 5);
             recipe.AddIngredient(ItemID.IronBar, 20);
+            recipe.AddIngredient(ItemID.TimerOneFourthSecond, 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }
-
 
     }
 

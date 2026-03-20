@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace RS4A.Systems
 {
-    public class BrazilLighting : ModSystem
+    public class BrazilLighting : ModSystem//TODO maybe add a grainy filter to this
     {
         //if this works...
         float strength = 0;

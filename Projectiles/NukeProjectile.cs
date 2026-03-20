@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using RS4A.Tiles;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -11,6 +12,7 @@ namespace RS4A.Projectiles
     public class NukeProjectile : ModProjectile
     {
 
+
         public override void SetDefaults()
         {
             Projectile.damage = 100;
@@ -18,9 +20,11 @@ namespace RS4A.Projectiles
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.width = 23;
             Projectile.height = 36;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = ProjAIStyleID.Arrow;
             Projectile.penetrate = 1;
         }
+
+
         public override void OnKill(int timeLeft)
         {
             RS4AUtils.Explode.Explosion(Projectile, 6, Projectile.damage, false, [" split the atom", " wanted to be nuclear ash"]);

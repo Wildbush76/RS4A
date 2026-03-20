@@ -48,7 +48,7 @@ namespace RS4A.RS4AUtils
                                     WorldGen.KillTile(xPosition, yPosition, false, false, true);
                                     WorldGen.PlaceTile(xPosition, yPosition, craterTiles[random.Next(0, craterTiles.Length)], true);
                                 }
-                                if (currentTile.WallType != 0)
+                                if (currentTile.WallType != WallID.None)
                                 {
                                     WorldGen.KillWall(xPosition, yPosition);
                                 }
@@ -60,7 +60,7 @@ namespace RS4A.RS4AUtils
                             {
                                 WorldGen.KillTile(xPosition, yPosition, false, false, true);
                             }
-                            if (currentTile.WallType != 0)
+                            if (currentTile.WallType != WallID.None)
                             {
                                 WorldGen.KillWall(xPosition, yPosition);
                             }
